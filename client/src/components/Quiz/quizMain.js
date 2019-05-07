@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, History } from "react-router-dom";
 
 class Quiz extends Component {
   constructor(props) {
@@ -20,14 +20,16 @@ class Quiz extends Component {
               gifs: [
                 "https://cdn.dribbble.com/users/655449/screenshots/2896602/fodadrib.gif",
                 "https://cdn.dribbble.com/users/720555/screenshots/3432505/woods_800x600.gif"
-              ]
+              ],
+              videoId: "z5F1a7_dsrs"
             },
             {
               name: "mountain",
               gifs: [
                 "https://cdn.dribbble.com/users/853467/screenshots/2826543/viewpoint-dribble.gif",
                 "https://cdn.dribbble.com/users/1455307/screenshots/4574457/back_view_on_snow_mountain.gif"
-              ]
+              ],
+              videoId: "deWeERCVc2o"
             }
           ]
         },
@@ -44,13 +46,15 @@ class Quiz extends Component {
               gifs: [
                 "https://cdn.dribbble.com/users/914927/screenshots/2454500/d_astro1_3.gif",
                 "https://cdn.dribbble.com/users/59947/screenshots/4516932/astronaut.gif"
-              ]
+              ],
+              videoId: "uj3FqkflC7g"
             },
             {
               name: "northernLights",
               gifs: [
                 "https://cdn.dribbble.com/users/967416/screenshots/3259814/aurora_dribble.gif"
-              ]
+              ],
+              videoId: "CwriDd8STdI"
             }
           ]
         },
@@ -67,14 +71,16 @@ class Quiz extends Component {
               gifs: [
                 "https://cdn.dribbble.com/users/448601/screenshots/5827556/__dribbble_ocean-4-800x600.gif",
                 "https://cdn.dribbble.com/users/97602/screenshots/3341027/littlefish.gif"
-              ]
+              ],
+              videoId: "CEzSXX3tcmU"
             },
             {
               name: "shore",
               gifs: [
                 "https://cdn.dribbble.com/users/901963/screenshots/4012214/riverfinal.gif",
                 "https://cdn.dribbble.com/users/3409004/screenshots/6443754/canoe6.gif"
-              ]
+              ],
+              videoId: "qWlU7hWEl8c"
             }
           ]
         }
@@ -85,24 +91,36 @@ class Quiz extends Component {
   }
 
   onSelection(event) {
-    console.log(event.target, "index");
+    console.log(event.target.id, "index");
+
     let targetState;
     if (this.state.selected) {
       targetState = this.state.selected[event.target.id].next;
+      // ||
+      // this.state.selected[event.target.id];
+      console.log(targetState, "what is target state");
     } else {
       targetState = this.state.options[event.target.id].next;
     }
 
+    console.log(this.state, "STATE IN MIDDLE");
     if (targetState) {
       this.setState({ selected: targetState, prompt: "Choose one..." });
     } else {
+      console.log(this.state.selected[event.target.id].videoId, "what is this");
       return (
-        <Redirect
-          to={{
-            pathname: "/userHome",
-            video: this.selected.video
-          }}
-        />
+        // <Redirect
+        //   to={{
+        //     pathname: "/userHome",
+        //     state: { video: this.state.selected[event.target.id].videoId }
+        //   }}
+        // />
+        this.props.history.push({
+          pathname: "/user",
+          state: {
+            video: this.state.selected[event.target.id].videoId
+          }
+        })
       );
     }
     //eventually will make DB call for next option.
