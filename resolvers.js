@@ -48,6 +48,14 @@ exports.resolvers = {
     },
     // getCaptureVideo: async(root,'', ''),
 
+    getAllUsers: async (root, args, { User }) => {
+      const allUsers = await User.find().sort({
+        joinDate: 'desc'
+      });
+
+      return allUsers;
+    },
+
     getCurrentUser: async (root, args, { currentUser, User }) => {
       if (!currentUser) {
         return null;
@@ -60,7 +68,17 @@ exports.resolvers = {
       });
 
       return user;
-    }
+    },
+
+    getAllQuizzes: async (root, args, { Quiz }) => {
+      const allQuizzes = await Quiz.find()
+
+
+      return allQuizzes;
+    },
+
+
+
   },
   Mutation: {
     addVideo: async (
@@ -129,6 +147,20 @@ exports.resolvers = {
       }).save();
 
       return { token: createToken(newUser, process.env.SECRET, '1hr') };
+    },
+
+    addQuiz: async (
+      root,
+      { name, gifs },
+      { Quiz }
+    ) => {
+      const newQuiz = await new Quiz({
+        name,
+        gifs
+      }).save();
+      return newQuiz;
     }
+
+
   }
 };

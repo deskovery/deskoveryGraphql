@@ -101,6 +101,18 @@ export const DELETE_USER_VIDEO = gql`
   }
 `;
 
+//Quiz Queries
+export const GET_ALL_QUIZZES = gql`
+  query {
+    getAllQuizzes {
+      name
+      gifs
+
+    }
+  }
+`;
+
+
 /* User Queries */
 export const GET_CURRENT_USER = gql`
   query {
@@ -140,6 +152,27 @@ export const SIGNIN_USER = gql`
   mutation($username: String!, $password: String!) {
     signinUser(username: $username, password: $password) {
       token
+    }
+  }
+`;
+
+
+//Quiz Mutations
+
+export const ADD_QUIZ = gql`
+  mutation(
+    $name: String!
+    $gifs: String!
+
+  ) {
+    addQuiz(
+      name: $name
+      gifs: $gifs
+
+    ) {
+      name
+      gifs
+
     }
   }
 `;

@@ -17,6 +17,7 @@ import AddVideo from './components/Video/AddVideo';
 import Profile from './components/Profile/Profile';
 import VideoPage from './components/Video/VideoPage';
 import { Capture } from './components/momentCapture';
+import AddQuiz from './components/Quiz/AddQuiz'
 import userHome from './components/user-home';
 
 // Importing Apollo
@@ -59,8 +60,9 @@ const Root = ({ refetch, session }) => (
           render={() => <AddVideo session={session} />}
         />
         <Route path="/videos/:_id" component={VideoPage} />
+        <Route path="/quiz" component={AddQuiz} />
         <Route path="/profile" render={() => <Profile session={session} />} />
-        {/* <Redirect to='/' /> */}
+        <Redirect to='/' />
       </Switch>
     </Fragment>
   </Router>

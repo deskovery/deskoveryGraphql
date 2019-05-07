@@ -21,13 +21,24 @@ type User {
   favorites: [Video]
 }
 
+  type Quiz {
+    _id: ID
+    name: String!
+    gifs: String!
+  }
+
+
+
 type Query {
   getAllVideos: [Video]
+  getAllUsers: [User]
+  getAllQuizzes: [Quiz]
   getVideo(_id: ID): Video
   searchVideos(searchTerm: String):[Video]
 
   getCurrentUser: User
   getUserVideos(username: String!): [Video]
+
 }
 
 type Token {
@@ -36,6 +47,8 @@ type Token {
 
 type Mutation {
   addVideo(name: String!, imageUrl: String!, description: String!, category: String!, instructions: String!, username: String): Video
+
+  addQuiz(name:String!, gifs:String!): Quiz
 
   deleteUserVideo(_id: ID): Video
   likeVideo(_id: ID!, username: String!): Video
