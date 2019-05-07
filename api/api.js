@@ -107,7 +107,7 @@ router.post('/', async (req, res, next) => {
     });
 
     const videoFile = await video.pipe(
-      fs.createWriteStream(`./client/public/${id}-${Date.now()}.mp4`)
+      fs.createWriteStream(`./api/public/${id}-${Date.now()}.mp4`)
     );
 
     // Writes video to our desired filepath.

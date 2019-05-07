@@ -1,7 +1,10 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
+const path = require('path');
 module.exports = router;
 
 router.use('/videos', require('./api'));
+router.use(express.static(path.join(__dirname, 'public')));
 
 router.use((req, res, next) => {
   console.log('Inside 404');

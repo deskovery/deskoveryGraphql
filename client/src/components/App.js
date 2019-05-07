@@ -10,16 +10,16 @@ import Spinner from './Spinner';
 const VideoList = posed.ul({
   shown: {
     x: '0%',
-    staggeredChildren: 100
+    staggeredChildren: 100,
   },
   hidden: {
-    x: '-100%'
-  }
+    x: '-100%',
+  },
 });
 
 class App extends React.Component {
   state = {
-    on: false
+    on: false,
   };
 
   componentDidMount() {
@@ -31,8 +31,8 @@ class App extends React.Component {
   };
   render() {
     return (
-      <div className='App'>
-        <h1 className='main-title'>
+      <div className="App">
+        <h1 className="main-title">
           Immerse Yourself in the <strong>Wild</strong>
         </h1>
         <Query query={GET_ALL_VIDEOS}>
@@ -41,7 +41,7 @@ class App extends React.Component {
             if (error) return <div>Error</div>;
             const { on } = this.state;
             return (
-              <VideoList pose={on ? 'shown' : 'hidden'} className='cards'>
+              <VideoList pose={on ? 'shown' : 'hidden'} className="cards">
                 {data.getAllVideos.map(video => (
                   <VideoItem key={video._id} {...video} />
                 ))}
