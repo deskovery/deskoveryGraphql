@@ -23,8 +23,8 @@ type User {
 
   type Quiz {
     _id: ID
-    name: String!
-    gifs: String!
+    name: String! @unique
+    gifs: [String!]
   }
 
 

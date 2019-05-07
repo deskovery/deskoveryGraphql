@@ -131,7 +131,7 @@ exports.resolvers = {
       if (!isValidPassword) {
         throw new Error('Invalid password');
       } else {
-        return { token: createToken(user, process.env.SECRET, '1hr') };
+        return { token: createToken(user, process.env.SECRET, '2hrs') };
       }
     },
 
@@ -146,7 +146,7 @@ exports.resolvers = {
         password
       }).save();
 
-      return { token: createToken(newUser, process.env.SECRET, '1hr') };
+      return { token: createToken(newUser, process.env.SECRET, '2hrs') };
     },
 
     addQuiz: async (
@@ -154,13 +154,13 @@ exports.resolvers = {
       { name, gifs },
       { Quiz }
     ) => {
+      // console.log(args, "args")
       const newQuiz = await new Quiz({
         name,
         gifs
       }).save();
       return newQuiz;
     }
-
 
   }
 };

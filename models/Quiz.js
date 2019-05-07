@@ -5,10 +5,11 @@ const Schema = mongoose.Schema;
 const QuizSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   gifs: {
-    type: String,
+    type: [String],
     required: true
   }
 
