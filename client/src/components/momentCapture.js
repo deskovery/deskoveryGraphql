@@ -26,7 +26,6 @@ export class Capture extends Component {
       console.log('**MOUNT**');
       const { data } = await axios.post('/api/videos');
       console.log(data.path, ' is data.path');
-      debugger;
       const path = data.path.replace('./api/public', '');
       this.setState({ videoSrc: `http://localhost:3000/api${path}` });
     } else {
