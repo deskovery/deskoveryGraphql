@@ -5,6 +5,7 @@ class Quiz extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      prompt: "Where to?",
       options: [
         {
           name: "land",
@@ -16,9 +17,18 @@ class Quiz extends Component {
           next: [
             {
               name: "forest",
-              gifs: []
+              gifs: [
+                "https://cdn.dribbble.com/users/655449/screenshots/2896602/fodadrib.gif",
+                "https://cdn.dribbble.com/users/720555/screenshots/3432505/woods_800x600.gif"
+              ]
             },
-            { name: "mountain", gifs: [""] }
+            {
+              name: "mountain",
+              gifs: [
+                "https://cdn.dribbble.com/users/853467/screenshots/2826543/viewpoint-dribble.gif",
+                "https://cdn.dribbble.com/users/1455307/screenshots/4574457/back_view_on_snow_mountain.gif"
+              ]
+            }
           ]
         },
         {
@@ -29,8 +39,19 @@ class Quiz extends Component {
             "https://cdn.dribbble.com/users/1904689/screenshots/4048390/ezgif.com-resize.gif"
           ],
           next: [
-            { name: "space", gifs: [] },
-            { name: "northernLights", gifs: [] }
+            {
+              name: "space",
+              gifs: [
+                "https://cdn.dribbble.com/users/914927/screenshots/2454500/d_astro1_3.gif",
+                "https://cdn.dribbble.com/users/59947/screenshots/4516932/astronaut.gif"
+              ]
+            },
+            {
+              name: "northernLights",
+              gifs: [
+                "https://cdn.dribbble.com/users/967416/screenshots/3259814/aurora_dribble.gif"
+              ]
+            }
           ]
         },
         {
@@ -40,7 +61,22 @@ class Quiz extends Component {
             "https://cdn.dribbble.com/users/2279258/screenshots/4541991/ezgif.com-optimize.gif",
             "https://cdn.dribbble.com/users/59947/screenshots/4217182/penguin-dribbble.gif"
           ],
-          next: [{ name: "scuba", gifs: [] }, { name: "shore", gifs: [] }]
+          next: [
+            {
+              name: "scuba",
+              gifs: [
+                "https://cdn.dribbble.com/users/448601/screenshots/5827556/__dribbble_ocean-4-800x600.gif",
+                "https://cdn.dribbble.com/users/97602/screenshots/3341027/littlefish.gif"
+              ]
+            },
+            {
+              name: "shore",
+              gifs: [
+                "https://cdn.dribbble.com/users/901963/screenshots/4012214/riverfinal.gif",
+                "https://cdn.dribbble.com/users/3409004/screenshots/6443754/canoe6.gif"
+              ]
+            }
+          ]
         }
       ],
       selected: null
@@ -58,7 +94,7 @@ class Quiz extends Component {
     }
 
     if (targetState) {
-      this.setState({ selected: targetState });
+      this.setState({ selected: targetState, prompt: "Choose one..." });
     } else {
       return (
         <Redirect
@@ -80,7 +116,7 @@ class Quiz extends Component {
       : (selected = this.state.options);
     return (
       <div className="quiz">
-        <h1>Where to?</h1>
+        <h1>{this.state.prompt}</h1>
         <div className="quizBox">
           {selected.map((option, index) => {
             const src =
