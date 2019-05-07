@@ -12,3 +12,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.quizBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.optionBox {
+  position: relative;
+}
+
+.gif {
+  display: inline-block;
+  max-width: 400px;
+  max-height: 300px;
+}
