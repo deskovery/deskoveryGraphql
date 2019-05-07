@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import YouTubePlayer from 'react-player/lib/players/YouTube';
-import captureVideoFrame from 'capture-video-frame';
+import { Capture } from './momentCapture';
+import axios from 'axios';
 // import {captureVideoFrame} from '../utils/capture'
 
 /**
@@ -14,18 +15,19 @@ class UserHome extends Component {
     super(props);
     this.state = {
       playing: true,
-      image: null
+      image: null,
+      videoSrc: null,
     };
     this.onCapture = this.onCapture.bind(this);
   }
 
-  onCapture() {
-    console.log(captureVideoFrame);
-    const video = this.player.getInternalPlayer();
-    console.log('video', video);
-    const frame = captureVideoFrame('video', 'png');
-    console.log('frame', frame);
-    this.setState({ image: frame.dataUri });
+  videoSrc = null;
+
+  async onCapture() {
+    const { data } = await axios.post('/api/videos');
+    const path = data.path.replace('./api/public', '');
+    this.setState({ videoSrc: `http://localhost:3000/api${path}` });
+    console.log('SET STATE:', this.state);
   }
   // const {email} = props
   ref = youtube => {
@@ -33,20 +35,19 @@ class UserHome extends Component {
   };
 
   render() {
-    let player = null;
     return (
       <div>
         <YouTubePlayer
-          url='https://www.youtube.com/watch?v=z5F1a7_dsrs'
+          url="https://www.youtube.com/watch?v=z5F1a7_dsrs"
           playing={this.state.playing}
           ref={this.ref}
           controls
         />
-        <button type='button' onClick={this.onCapture}>
+        <button type="button" onClick={this.onCapture}>
           {' '}
-          Capture{' '}
+          Capture Moment{' '}
         </button>
-        {this.state.image && <img src={this.state.image} width='320px' />}
+        {this.videoSrc ? <Capture videoSrc={this.videoSrc} /> : 'No capture'}
       </div>
     );
   }
