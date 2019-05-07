@@ -1,33 +1,19 @@
 const router = require('express').Router();
-const cors = require('cors');
+//const cors = require('cors');
 const fetch = require('node-fetch');
-const http = require('http');
 const youtubedl = require('@microlink/youtube-dl');
 const fs = require('fs');
 
-router.use(cors());
-// Allows us to make Cross-origin requests.
-
-router.use(function(req, res, next) {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.set('Access-Control-Expose-Headers', 'Content-Length');
-  next();
-});
-// Sets our cross-origin headers.
-
 function queryToJson(queryString) {
-  let res = {};
+  //let res = {};
   let params = queryString.split('&');
   let keyValuePair, key, value;
 
-  // eslint-disable-next-line guard-for-in
-  for (let i in params) {
-    keyValuePair = params[i].split('=');
-    key = keyValuePair[0];
-    value = keyValuePair[1];
-    res[key] = decodeURIComponent(value);
-  }
-  return res;
+  return params.reduce(function(currentRes, currentValue) {
+    [key, value] = currentValue.split('=');
+    currentRes[key] = decodeURIComponent(value);
+    return currentRes;
+  }, {});
 }
 // Parses the initial query from Youtube's Get Video Info and isolates key-value pairs.
 
@@ -35,22 +21,18 @@ function urlParse(data) {
   let tmp = data.adaptive_fmts;
   if (tmp) {
     tmp = tmp.split(',');
-    // eslint-disable-next-line guard-for-in
 
-    // eslint-disable-next-line guard-for-in
-    for (let i in tmp) {
-      tmp[i] = queryToJson(tmp[i]);
-
-      const filetype = tmp[i].type;
+    data.videos = tmp.map(video => {
+      video = queryToJson(video);
+      const filetype = video.type;
 
       if (filetype.includes('video')) {
-        tmp[i].ext = filetype
+        video.ext = filetype
           .match(/^video\/\w+(?=;)/g)[0]
           .replace(/^video\//, '');
       }
-    }
-
-    data.videos = tmp;
+      return video;
+    });
   }
   data.title = data.title.replace(/\+/g, ' ');
   return data;
@@ -58,7 +40,6 @@ function urlParse(data) {
 // Isolates URL and file type info from the key-value translated JSON object above.
 
 router.get('/', async (req, res, next) => {
-  console.log('GET ROUTE!!');
   const id = 'deWeERCVc2o';
   try {
     const response = await fetch(
@@ -78,7 +59,6 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-  console.log('**POST ROUTE!**');
   const id = 'deWeERCVc2o';
   // Will eventually be passed dyanamically to the user.
   try {
@@ -109,7 +89,6 @@ router.post('/', async (req, res, next) => {
     const videoFile = await video.pipe(
       fs.createWriteStream(`./api/public/${id}-${Date.now()}.mp4`)
     );
-
     // Writes video to our desired filepath.
 
     const fileDownloadPromise = new Promise((resolve, reject) => {
