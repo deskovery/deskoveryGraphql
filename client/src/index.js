@@ -19,6 +19,7 @@ import VideoPage from './components/Video/VideoPage';
 import QuizPage from './components/Quiz/QuizPage';
 import { Capture } from './components/momentCapture';
 import userHome from './components/user-home';
+import Quiz from './components/Quiz/quizMain';
 
 // Importing Apollo
 import ApolloClient from 'apollo-boost';
@@ -50,6 +51,7 @@ const Root = ({ refetch, session }) => (
       <Navbar session={session} />
       <Switch>
         <Route exact path="/" component={App} />
+        <Route path="/quiz" component={Quiz} />
         <Route path="/search" component={Search} />
         <Route path="/capture" component={Capture} />
         <Route path="/user" component={userHome} />
@@ -62,7 +64,7 @@ const Root = ({ refetch, session }) => (
         <Route path="/quizzes/:_id" component={QuizPage} />
         <Route path="/videos/:_id" component={VideoPage} />
         <Route path="/profile" render={() => <Profile session={session} />} />
-        {/* <Redirect to='/' /> */}
+        <Redirect to="/" />
       </Switch>
     </Fragment>
   </Router>

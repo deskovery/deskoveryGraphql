@@ -5,12 +5,13 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const path = require('path');
-app.use(cors('*'));
-// const corsOptions = {
-//   origin: 'http://localhost:3000',
-//   credentials: false
-// };
-// app.use(cors(corsOptions));
+
+app.use(cors());
+app.use(function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Expose-Headers', 'Content-Length');
+  next();
+});
 
 // connect your backend to mlab
 const mongoose = require('mongoose');
@@ -30,8 +31,6 @@ app.use(async (req, res, next) => {
   next();
 });
 
-//router.use('/videos', require('./api'));
-
 // allows to use different variables
 require('dotenv').config({ path: 'variables.env' });
 
@@ -50,7 +49,7 @@ const { resolvers } = require('./resolvers');
 // Creates graphql schema
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers
+  resolvers,
 });
 
 // Creates graphiql
