@@ -7,7 +7,7 @@ export const GET_ALL_VIDEOS = gql`
       _id
       name
       imageUrl
-      category
+      path
       description
       instructions
       createdDate
@@ -23,7 +23,7 @@ export const GET_VIDEO = gql`
       _id
       name
       imageUrl
-      category
+      path
       description
       instructions
       createdDate
@@ -91,7 +91,7 @@ export const ADD_VIDEO = gql`
     $name: String!
     $imageUrl: String!
     $description: String!
-    $category: String!
+    $path: String!
     $instructions: String!
     $username: String
   ) {
@@ -99,13 +99,13 @@ export const ADD_VIDEO = gql`
       name: $name
       imageUrl: $imageUrl
       description: $description
-      category: $category
+      path: $path
       instructions: $instructions
       username: $username
     ) {
       _id
       name
-      category
+      path
       description
       instructions
       createdDate

@@ -56,7 +56,7 @@ exports.resolvers = {
       return user;
     },
     // Get Quizzes
-    getAllQuizzes: async (root, args, { Video }) => {
+    getAllQuizzes: async (root, args, { Quiz }) => {
       const allQuizzes = await Quiz.find();
 
       return allQuizzes;
@@ -84,31 +84,28 @@ exports.resolvers = {
       }
     },
     getUserQuizzes: async (root, { username }, { Video }) => {
-      const userQuizzes = await Quiz.find({ username })
+      const userQuizzes = await Quiz.find({ username });
       return userQuizzes;
-    },
+    }
   },
   Mutation: {
     addVideo: async (
       root,
-      { name, imageUrl, description, category, instructions, username },
+      { name, imageUrl, description, path, instructions, username },
       { Video }
     ) => {
       const newVideo = await new Video({
         name,
         imageUrl,
         description,
-        category,
+        path,
         instructions,
         username
       }).save();
       return newVideo;
     },
     likeQuiz: async (root, { _id, username }, { Quiz, User }) => {
-      const quiz = await Quiz.findOneAndUpdate(
-        { _id },
-        { $inc: { likes: 1 } }
-      );
+      const quiz = await Quiz.findOneAndUpdate({ _id }, { $inc: { likes: 1 } });
       const user = await User.findOneAndUpdate(
         { username },
         { $addToSet: { favorites: _id } }

@@ -7,12 +7,12 @@ const VideoItem = posed.li({
   hidden: { opacity: 0 }
 });
 
-export default ({ _id, imageUrl, name, category }) => (
+export default ({ _id, imageUrl, name, path }) => (
   <VideoItem
     style={{ background: `url(${imageUrl}) center center / cover no-repeat` }}
     className='card'
   >
-    <span className={category}>{category}</span>
+    <span className={path}>{path}</span>
     <div className='card-text'>
       <Link to={`/videos/${_id}`}>
         <h4>{name}</h4>
