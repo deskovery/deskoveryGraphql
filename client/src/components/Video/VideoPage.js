@@ -30,7 +30,7 @@ const VideoPage = ({ match }) => {
                   <strong>{data.getVideo.name}</strong>
                 </h2>
                 <h5>
-                  <strong>{data.getVideo.category}</strong>
+                  <strong>{data.getVideo.path}</strong>
                 </h5>
                 <p>
                   Created by <strong>{data.getVideo.username}</strong>

@@ -11,7 +11,12 @@ const NextSchema = new Schema({
   gifs: {
     type: [String],
     required: true
+  },
+  video: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Video'
   }
+
 });
 
 NextSchema.index({

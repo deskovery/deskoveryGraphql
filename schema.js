@@ -4,7 +4,7 @@ type Video {
   _id: ID
   name: String!
   imageUrl: String!
-  category: String!
+  path: String!
   description: String!
   instructions: String!
   createdDate: String
@@ -24,6 +24,7 @@ type User {
 type Next {
   _id: ID
   name: String @unique
+  video: [Video]
   gifs: [String!]
 }
 
