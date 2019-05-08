@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import { GET_VIDEO } from '../../queries';
-import LikeVideo from './LikeVideo';
+// import LikeVideo from './LikeVideo';
 import Spinner from '../Spinner';
 
 const VideoPage = ({ match }) => {
@@ -52,7 +52,7 @@ const VideoPage = ({ match }) => {
                   __html: data.getVideo.instructions,
                 }}
               />
-              <LikeVideo _id={_id} />
+              {/* <LikeVideo _id={_id} /> */}
             </div>
           </div>
         );

@@ -18,16 +18,39 @@ type User {
   password: String!
   email: String!
   joinDate: String
-  favorites: [Video]
+  favorites: [Quiz]
 }
+
+type Next {
+  _id: ID
+  name: String @unique
+  gifs: [String!]
+}
+
+type Quiz {
+  _id: ID
+  name: String! @unique
+  username: String
+  likes: Int
+  gifs: [String!]
+  next: [Next]
+
+}
+
 
 type Query {
   getAllVideos: [Video]
   getVideo(_id: ID): Video
   searchVideos(searchTerm: String):[Video]
 
+  getAllQuizzes: [Quiz]
+  getQuiz: Quiz
+  searchQuizzes(searchTerm: String): [Quiz]
+
+  getQuizNext(name: String!): [Next]
+
   getCurrentUser: User
-  getUserVideos(username: String!): [Video]
+  getUserQuizzes(username: String!): [Quiz]
 }
 
 type Token {
@@ -37,9 +60,13 @@ type Token {
 type Mutation {
   addVideo(name: String!, imageUrl: String!, description: String!, category: String!, instructions: String!, username: String): Video
 
-  deleteUserVideo(_id: ID): Video
-  likeVideo(_id: ID!, username: String!): Video
-  unlikeVideo(_id: ID!, username: String!): Video
+  deleteUserQuiz(_id: ID!): Quiz
+  likeQuiz(_id: ID!, username: String!): Quiz
+  unlikeQuiz(_id: ID!, username: String!): Quiz
+
+  addQuiz(name: String!, gifs: String!): Quiz
+
+  addNext(name: String!, gifs: String!): Next
 
 
   signinUser(username: String!, password: String!): Token
