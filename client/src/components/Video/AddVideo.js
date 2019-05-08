@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
-import { ADD_VIDEO, GET_ALL_VIDEOS, GET_USER_VIDEOS } from '../../queries';
+import { ADD_VIDEO, GET_ALL_VIDEOS } from '../../queries';
 import Error from '../Error';
 import { withRouter } from 'react-router-dom';
 import withAuth from '../withAuth';
@@ -83,7 +83,7 @@ class AddVideo extends React.Component {
           username
         }}
         refetchQueries={() => [
-          { query: GET_USER_VIDEOS, variables: { username } }
+          { query: GET_ALL_VIDEOS, variables: { username } }
         ]}
         update={this.updateCache}
       >

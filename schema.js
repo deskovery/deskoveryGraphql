@@ -60,13 +60,13 @@ type Token {
 type Mutation {
   addVideo(name: String!, imageUrl: String!, description: String!, category: String!, instructions: String!, username: String): Video
 
-  deleteUserQuiz(_id: ID): Quiz
+  deleteUserQuiz(_id: ID!): Quiz
   likeQuiz(_id: ID!, username: String!): Quiz
   unlikeQuiz(_id: ID!, username: String!): Quiz
 
   addQuiz(name: String!, gifs: String!): Quiz
 
-  addNext(name: String!, gifs, String!): Next
+  addNext(name: String!, gifs: String!): Next
 
 
   signinUser(username: String!, password: String!): Token
