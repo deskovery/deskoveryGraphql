@@ -16,8 +16,8 @@ app.use(function(req, res, next) {
 // connect your backend to mlab
 const mongoose = require('mongoose');
 // const bodyParser = require('body-parser');
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 // Set up JWT authentication middleware
 app.use(async (req, res, next) => {
