@@ -37,7 +37,8 @@ require('dotenv').config({ path: 'variables.env' });
 
 const Video = require('./models/Video');
 const User = require('./models/User');
-const Quiz = require('./models/Quiz')
+const Quiz = require('./models/Quiz');
+const Next = require('./models/Next');
 
 // GraphQL-Express middleware
 const { graphiqlExpress, graphqlExpress } = require('apollo-server-express');
@@ -66,6 +67,7 @@ app.use(
       Video,
       User,
       Quiz,
+      Next,
       currentUser
     }
   }))

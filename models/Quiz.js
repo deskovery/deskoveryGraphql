@@ -11,6 +11,17 @@ const QuizSchema = new Schema({
   gifs: {
     type: [String],
     required: true
+  },
+  next: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Next'
+  },
+  username: {
+    type: String
+  },
+  likes: {
+    type: Number,
+    default: 0
   }
 });
 

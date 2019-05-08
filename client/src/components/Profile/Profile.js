@@ -1,12 +1,12 @@
 import React from 'react';
 import UserInfo from './UserInfo';
-import UserVideos from './UserVideos';
+import UserQuizzes from './UserQuizzes';
 import withAuth from '../withAuth';
 
 const Profile = ({ session }) => (
   <div className='App'>
     <UserInfo session={session} />
-    <UserVideos username={session.getCurrentUser.username} />
+    <UserQuizzes username={session.getCurrentUser.username} />
   </div>
 );
 

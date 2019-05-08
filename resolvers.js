@@ -40,12 +40,6 @@ exports.resolvers = {
         return videos;
       }
     },
-    getUserVideos: async (root, { username }, { Video }) => {
-      const userVideos = await Video.find({ username }).sort({
-        createdDate: 'desc'
-      });
-      return userVideos;
-    },
     // getCaptureVideo: async(root,'', ''),
 
     getCurrentUser: async (root, args, { currentUser, User }) => {
@@ -56,7 +50,7 @@ exports.resolvers = {
         username: currentUser.username
       }).populate({
         path: 'favorites',
-        model: 'Video'
+        model: 'Quiz'
       });
 
       return user;
@@ -88,7 +82,11 @@ exports.resolvers = {
         const quizzes = await Quiz.find();
         return quizzes;
       }
-    }
+    },
+    getUserQuizzes: async (root, { username }, { Video }) => {
+      const userQuizzes = await Quiz.find({ username })
+      return userQuizzes;
+    },
   },
   Mutation: {
     addVideo: async (
@@ -106,8 +104,8 @@ exports.resolvers = {
       }).save();
       return newVideo;
     },
-    likeVideo: async (root, { _id, username }, { Video, User }) => {
-      const video = await Video.findOneAndUpdate(
+    likeQuiz: async (root, { _id, username }, { Quiz, User }) => {
+      const quiz = await Quiz.findOneAndUpdate(
         { _id },
         { $inc: { likes: 1 } }
       );
@@ -115,10 +113,10 @@ exports.resolvers = {
         { username },
         { $addToSet: { favorites: _id } }
       );
-      return video;
+      return quiz;
     },
-    unlikeVideo: async (root, { _id, username }, { Video, User }) => {
-      const video = await Video.findOneAndUpdate(
+    unlikeQuiz: async (root, { _id, username }, { Quiz, User }) => {
+      const quiz = await Quiz.findOneAndUpdate(
         { _id },
         { $inc: { likes: -1 } }
       );
@@ -126,11 +124,11 @@ exports.resolvers = {
         { username },
         { $pull: { favorites: _id } }
       );
-      return video;
+      return quiz;
     },
-    deleteUserVideo: async (root, { _id }, { Video }) => {
-      const video = await Video.findOneAndRemove({ _id });
-      return video;
+    deleteUserQuiz: async (root, { _id }, { Quiz }) => {
+      const quiz = await Quiz.findOneAndRemove({ _id });
+      return quiz;
     },
     addQuiz: async (root, { name, gifs }, { Quiz }) => {
       const existingQuiz = await Quiz.findOne()
@@ -145,6 +143,21 @@ exports.resolvers = {
           gifs
         }).save();
         return newQuiz;
+      }
+    },
+    addNext: async (root, { name, gifs }, { Next }) => {
+      const existingNext = await Next.findOne()
+        .where('name')
+        .equals(name);
+      if (existingNext) {
+        existingNext.gifs.push(gifs);
+        return existingNext;
+      } else {
+        const newNext = await new Next({
+          name,
+          gifs
+        }).save();
+        return newNext;
       }
     },
     signinUser: async (root, { username, password }, { User }) => {
