@@ -88,7 +88,7 @@ class UserHome extends Component {
             {this.state.videoSrc ? (
               <Capture videoSrc={this.state.videoSrc} />
             ) : (
-              'No capture'
+              null
             )}
           </div>
         );
