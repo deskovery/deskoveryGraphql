@@ -15,7 +15,9 @@ app.use(function(req, res, next) {
 
 // connect your backend to mlab
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Set up JWT authentication middleware
 app.use(async (req, res, next) => {
@@ -58,7 +60,7 @@ app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 // Connects schemas
 app.use(
   '/graphql',
-  bodyParser.json(),
+  express.json(),
   graphqlExpress(({ currentUser }) => ({
     cors: false,
     schema,
@@ -67,8 +69,8 @@ app.use(
       User,
       Quiz,
       Next,
-      currentUser
-    }
+      currentUser,
+    },
   }))
 );
 
