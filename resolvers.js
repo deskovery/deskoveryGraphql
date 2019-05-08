@@ -60,6 +60,34 @@ exports.resolvers = {
       });
 
       return user;
+    },
+    // Get Quizzes
+    getAllQuizzes: async (root, args, { Video }) => {
+      const allQuizzes = await Quiz.find();
+
+      return allQuizzes;
+    },
+    getQuiz: async (root, { _id }, { Quiz }) => {
+      const quiz = await Quiz.findOne({ _id });
+      return quiz;
+    },
+    searchQuizzes: async (root, { searchTerm }, { Quiz }) => {
+      if (searchTerm) {
+        const searchResults = await Quiz.find(
+          {
+            $text: { $search: searchTerm }
+          },
+          {
+            score: { $meta: 'textScore' }
+          }
+        ).sort({
+          score: { $meta: 'textScore' }
+        });
+        return searchResults;
+      } else {
+        const quizzes = await Quiz.find();
+        return quizzes;
+      }
     }
   },
   Mutation: {
@@ -103,6 +131,21 @@ exports.resolvers = {
     deleteUserVideo: async (root, { _id }, { Video }) => {
       const video = await Video.findOneAndRemove({ _id });
       return video;
+    },
+    addQuiz: async (root, { name, gifs }, { Quiz }) => {
+      const existingQuiz = await Quiz.findOne()
+        .where('name')
+        .equals(name);
+      if (existingQuiz) {
+        existingQuiz.gifs.push(gifs);
+        return existingQuiz;
+      } else {
+        const newQuiz = await new Quiz({
+          name,
+          gifs
+        }).save();
+        return newQuiz;
+      }
     },
     signinUser: async (root, { username, password }, { User }) => {
       const user = await User.findOne({ username });

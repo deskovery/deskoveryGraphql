@@ -44,6 +44,37 @@ export const SEARCH_VIDEOS = gql`
   }
 `;
 
+/* Quiz queries */
+export const GET_ALL_QUIZZES = gql`
+  query {
+    getAllQuizzes {
+      _id
+      name
+      gifs
+    }
+  }
+`;
+
+export const GET_QUIZ = gql`
+  query($_id: ID!) {
+    getQuiz(_id: $_id) {
+      _id
+      name
+      gifs
+    }
+  }
+`;
+
+export const SEARCH_QUIZZES = gql`
+  query($searchTerm: String) {
+    searchQuizzes(searchTerm: $searchTerm) {
+      _id
+      name
+      gifs
+    }
+  }
+`;
+
 /* Video Mutations */
 
 export const ADD_VIDEO = gql`
@@ -97,6 +128,18 @@ export const DELETE_USER_VIDEO = gql`
   mutation($_id: ID) {
     deleteUserVideo(_id: $_id) {
       _id
+    }
+  }
+`;
+
+/* Quiz Mutations */
+
+export const ADD_QUIZ = gql`
+  mutation($name: String!, $gifs: [String!]) {
+    addQuiz(name: $name, gifs: $gifs) {
+      _id
+      name
+      gifs
     }
   }
 `;
