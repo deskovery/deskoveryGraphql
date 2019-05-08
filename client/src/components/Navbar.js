@@ -16,7 +16,7 @@ const NavbarAuth = ({ session }) => (
   <Fragment>
     <ul>
       <li>
-        <NavLink to='/ exact'>Home</NavLink>
+        <NavLink to='/' exact>Home</NavLink>
       </li>
       <li>
         <NavLink to='/search'>Search</NavLink>

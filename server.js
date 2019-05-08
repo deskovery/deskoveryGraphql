@@ -18,24 +18,26 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 // Set up JWT authentication middleware
-// app.use(async (req, res, next) => {
-//   const token = await req.headers['authorization'];
-//   if (token !== 'null') {
-//     try {
-//       const currentUser = await jwt.verify(token, process.env.SECRET);
-//       req.currentUser = currentUser;
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   }
-//   next();
-// });
+app.use(async (req, res, next) => {
+  const token = await req.headers['authorization'];
+  if (token !== 'null') {
+    try {
+      const currentUser = await jwt.verify(token, process.env.SECRET);
+      req.currentUser = currentUser;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  next();
+});
 
 // allows to use different variables
 require('dotenv').config({ path: 'variables.env' });
 
 const Video = require('./models/Video');
 const User = require('./models/User');
+const Quiz = require('./models/Quiz');
+const Next = require('./models/Next');
 
 // GraphQL-Express middleware
 const { graphiqlExpress, graphqlExpress } = require('apollo-server-express');
@@ -63,8 +65,10 @@ app.use(
     context: {
       Video,
       User,
-      currentUser,
-    },
+      Quiz,
+      Next,
+      currentUser
+    }
   }))
 );
 

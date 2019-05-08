@@ -16,6 +16,7 @@ import Search from './components/Video/Search';
 import AddVideo from './components/Video/AddVideo';
 import Profile from './components/Profile/Profile';
 import VideoPage from './components/Video/VideoPage';
+import QuizPage from './components/Quiz/QuizPage';
 import { Capture } from './components/momentCapture';
 import userHome from './components/user-home';
 import Quiz from './components/Quiz/quizMain';
@@ -60,6 +61,7 @@ const Root = ({ refetch, session }) => (
           path="/video/add"
           render={() => <AddVideo session={session} />}
         />
+        <Route path="/quizzes/:_id" component={QuizPage} />
         <Route path="/videos/:_id" component={VideoPage} />
         <Route path="/profile" render={() => <Profile session={session} />} />
         <Redirect to="/" />

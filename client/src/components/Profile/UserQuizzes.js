@@ -1,74 +1,74 @@
 import React from 'react';
 import { Query, Mutation } from 'react-apollo';
 import {
-  GET_USER_VIDEOS,
-  DELETE_USER_VIDEO,
-  GET_ALL_VIDEOS,
+  GET_USER_QUIZZES,
+  DELETE_USER_QUIZ,
+  GET_ALL_QUIZZES,
   GET_CURRENT_USER
 } from '../../queries';
 import { Link } from 'react-router-dom';
 import Spinner from '../Spinner';
 
-class UserVideos extends React.Component {
-  handleDelete = deleteUserVideo => {
+class UserQuizzes extends React.Component {
+  handleDelete = deleteUserQuiz => {
     const confirmDelete = window.confirm('Are you sure?');
     if (confirmDelete) {
-      deleteUserVideo().then(({ data }) => {});
+      deleteUserQuiz().then(({ data }) => {});
     }
   };
 
   render() {
     const { username } = this.props;
     return (
-      <Query query={GET_USER_VIDEOS} variables={{ username }}>
+      <Query query={GET_USER_QUIZZES} variables={{ username }}>
         {({ data, loading, error }) => {
           if (loading) return <Spinner />;
           if (error) return <div>Error</div>;
 
           return (
             <ul>
-              <h3>Your Videos</h3>
-              {!data.getUserVideos.length && (
+              <h3>Your Quizzes</h3>
+              {!data.getUserQuizzes.length && (
                 <strong>
-                  <p>You have not added any videos yet.</p>
+                  <p>You have not taken any quizzes yet.</p>
                 </strong>
               )}
-              {data.getUserVideos.map(video => (
-                <li key={video._id}>
-                  <Link to={`/videos/${video._id}`}>
-                    <p>{video.name}</p>
+              {data.getUserQuizzes.map(quiz => (
+                <li key={quiz._id}>
+                  <Link to={`/quizzes/${quiz._id}`}>
+                    <p>{quiz.name}</p>
                   </Link>
-                  <p style={{ marginBottom: '0' }}>Likes: {video.likes}</p>
+                  <p style={{ marginBottom: '0' }}>Likes: {quiz.likes}</p>
                   <Mutation
-                    mutation={DELETE_USER_VIDEO}
-                    variables={{ _id: video._id }}
+                    mutation={DELETE_USER_QUIZ}
+                    variables={{ _id: quiz._id }}
                     refetchQueries={() => [
-                      { query: GET_ALL_VIDEOS },
+                      { query: GET_ALL_QUIZZES },
                       { query: GET_CURRENT_USER }
                     ]}
-                    update={(cache, { data: { deleteUserVideo } }) => {
-                      const { getUserVideos } = cache.readQuery({
-                        query: GET_USER_VIDEOS,
+                    update={(cache, { data: { deleteUserQuiz } }) => {
+                      const { getUserQuizzes } = cache.readQuery({
+                        query: GET_USER_QUIZZES,
                         variables: { username }
                       });
 
                       cache.writeQuery({
-                        query: GET_USER_VIDEOS,
+                        query: GET_USER_QUIZZES,
                         variables: { username },
                         data: {
-                          getUserVideos: getUserVideos.filter(
-                            video => video._id !== deleteUserVideo._id
+                          getUserQuizzes: getUserQuizzes.filter(
+                            quiz => quiz._id !== deleteUserQuiz._id
                           )
                         }
                       });
                     }}
                   >
-                    {(deleteUserVideo, attrs = {}) => (
+                    {(deleteUserQuiz, attrs = {}) => (
                       <div>
                         <button className='button-primary'>Update</button>
                         <p
                           className='delete-button'
-                          onClick={() => this.handleDelete(deleteUserVideo)}
+                          onClick={() => this.handleDelete(deleteUserQuiz)}
                         >
                           {attrs.loading ? 'deleting...' : 'X'}
                         </p>
@@ -85,4 +85,4 @@ class UserVideos extends React.Component {
   }
 }
 
-export default UserVideos;
+export default UserQuizzes;
