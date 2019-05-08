@@ -15,18 +15,18 @@ const VideoPage = ({ match }) => {
         if (error) return <div>Error</div>;
 
         return (
-          <div className='App'>
+          <div className="App">
             <div
               style={{
                 background: `url(${
                   data.getVideo.imageUrl
-                }) center center / cover no-repeat`
+                }) center center / cover no-repeat`,
               }}
-              className='video-image'
+              className="video-image"
             />
-            <div className='video'>
-              <div className='video-header'>
-                <h2 className='video-name'>
+            <div className="video">
+              <div className="video-header">
+                <h2 className="video-name">
                   <strong>{data.getVideo.name}</strong>
                 </h2>
                 <h5>
@@ -37,19 +37,19 @@ const VideoPage = ({ match }) => {
                 </p>
                 <p>
                   {data.getVideo.likes}{' '}
-                  <span role='img' aria-label='heart'>
+                  <span role="img" aria-label="heart">
                     ❤️
                   </span>
                 </p>
               </div>
-              <blockquote className='video-description'>
+              <blockquote className="video-description">
                 {data.getVideo.description}
               </blockquote>
-              <h3 className='video-instructions__title'>Instructions</h3>
+              <h3 className="video-instructions__title">Instructions</h3>
               <div
-                className='video-instructions'
+                className="video-instructions"
                 dangerouslySetInnerHTML={{
-                  __html: data.getVideo.instructions
+                  __html: data.getVideo.instructions,
                 }}
               />
               {/* <LikeVideo _id={_id} /> */}

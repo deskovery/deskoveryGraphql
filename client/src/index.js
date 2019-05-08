@@ -50,11 +50,11 @@ const Root = ({ refetch, session }) => (
     <Fragment>
       <Navbar session={session} />
       <Switch>
-        <Route exact path="/" component={App} />
+        <Route exact path="/" component={Quiz} />
         <Route path="/quiz" component={Quiz} />
         <Route path="/search" component={Search} />
         <Route path="/capture" component={Capture} />
-        <Route path="/user" component={userHome} />
+        <Route path="/video" component={userHome} />
         <Route path="/signin" render={() => <Signin refetch={refetch} />} />
         <Route path="/signup" render={() => <Signup refetch={refetch} />} />
         <Route
