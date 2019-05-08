@@ -1,21 +1,23 @@
 // Bring in Express.
-const express = require('express');
+const express = require("express");
 // Initializes app
 const app = express();
-const jwt = require('jsonwebtoken');
-const cors = require('cors');
-const path = require('path');
+const jwt = require("jsonwebtoken");
+const cors = require("cors");
+const path = require("path");
 
 app.use(cors());
 app.use(function(req, res, next) {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.set('Access-Control-Expose-Headers', 'Content-Length');
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Expose-Headers", "Content-Length");
   next();
 });
 
 // connect your backend to mlab
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+// const bodyParser = require('body-parser');
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Set up JWT authentication middleware
 // app.use(async (req, res, next) => {
@@ -32,50 +34,50 @@ const bodyParser = require('body-parser');
 // });
 
 // allows to use different variables
-require('dotenv').config({ path: 'variables.env' });
+require("dotenv").config({ path: "variables.env" });
 
-const Video = require('./models/Video');
-const User = require('./models/User');
+const Video = require("./models/Video");
+const User = require("./models/User");
 
 // GraphQL-Express middleware
-const { graphiqlExpress, graphqlExpress } = require('apollo-server-express');
-const { makeExecutableSchema } = require('graphql-tools');
+const { graphiqlExpress, graphqlExpress } = require("apollo-server-express");
+const { makeExecutableSchema } = require("graphql-tools");
 
-const { typeDefs } = require('./schema');
-const { resolvers } = require('./resolvers');
+const { typeDefs } = require("./schema");
+const { resolvers } = require("./resolvers");
 
 // Creates graphql schema
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers,
+  resolvers
 });
 
 // Creates graphiql
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
 
 // Connects schemas
 app.use(
-  '/graphql',
-  bodyParser.json(),
+  "/graphql",
+  express.json(),
   graphqlExpress(({ currentUser }) => ({
     cors: false,
     schema,
     context: {
       Video,
       User,
-      currentUser,
-    },
+      currentUser
+    }
   }))
 );
 
 // api routes
-app.use('/api', require('./api/index'));
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use("/api", require("./api/index"));
+app.use(express.static(path.join(__dirname, "..", "public")));
 
 // actually connects to the database
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log('DB connected'))
+  .then(() => console.log("DB connected"))
   .catch(err => console.error(err));
 
 // Set up server.

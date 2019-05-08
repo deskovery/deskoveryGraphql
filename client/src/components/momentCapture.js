@@ -22,15 +22,16 @@ export class Capture extends Component {
   }
 
   async componentDidMount() {
-    if (!this.props.videoSrc) {
-      console.log('**MOUNT**');
-      const { data } = await axios.post('/api/videos');
-      console.log(data.path, ' is data.path');
-      const path = data.path.replace('./api/public', '');
-      this.setState({ videoSrc: `api${path}` });
-    } else {
+    // if (!this.props.videoSrc) {
+    //   console.log('**MOUNT**');
+    //   const { data } = await axios.post('/api/videos');
+    //   console.log(data.path, ' is data.path');
+    //   const path = data.path.replace('./api/public', '');
+    //   this.setState({ videoSrc: `api${path}` });
+    // } else {
+
       this.setState({ videoSrc: this.props.videoSrc });
-    }
+    // }
   }
 
   makeGif() {

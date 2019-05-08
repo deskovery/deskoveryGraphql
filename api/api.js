@@ -1,16 +1,16 @@
-const router = require('express').Router();
+const router = require("express").Router();
 //const cors = require('cors');
-const fetch = require('node-fetch');
-const youtubedl = require('@microlink/youtube-dl');
-const fs = require('fs');
+const fetch = require("node-fetch");
+const youtubedl = require("@microlink/youtube-dl");
+const fs = require("fs");
 
 function queryToJson(queryString) {
   //let res = {};
-  let params = queryString.split('&');
+  let params = queryString.split("&");
   let keyValuePair, key, value;
 
   return params.reduce(function(currentRes, currentValue) {
-    [key, value] = currentValue.split('=');
+    [key, value] = currentValue.split("=");
     currentRes[key] = decodeURIComponent(value);
     return currentRes;
   }, {});
@@ -20,27 +20,27 @@ function queryToJson(queryString) {
 function urlParse(data) {
   let tmp = data.adaptive_fmts;
   if (tmp) {
-    tmp = tmp.split(',');
+    tmp = tmp.split(",");
 
     data.videos = tmp.map(video => {
       video = queryToJson(video);
       const filetype = video.type;
 
-      if (filetype.includes('video')) {
+      if (filetype.includes("video")) {
         video.ext = filetype
           .match(/^video\/\w+(?=;)/g)[0]
-          .replace(/^video\//, '');
+          .replace(/^video\//, "");
       }
       return video;
     });
   }
-  data.title = data.title.replace(/\+/g, ' ');
+  data.title = data.title.replace(/\+/g, " ");
   return data;
 }
 // Isolates URL and file type info from the key-value translated JSON object above.
 
-router.get('/', async (req, res, next) => {
-  const id = 'deWeERCVc2o';
+router.get("/", async (req, res, next) => {
+  const id = "deWeERCVc2o";
   try {
     const response = await fetch(
       `http://www.youtube.com/get_video_info?html5=1&video_id=${id}`
@@ -58,12 +58,16 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
-  const id = 'deWeERCVc2o';
+router.post("/", async (req, res, next) => {
+  console.log(req.body, "what is req body inside post");
+  // const id = req.body.videoId;
+
   // Will eventually be passed dyanamically to the user.
   try {
     const response = await fetch(
-      `http://www.youtube.com/get_video_info?html5=1&video_id=${id}`
+      `http://www.youtube.com/get_video_info?html5=1&video_id=${
+        req.body.videoSrc
+      }`
     );
 
     const videoData = await response.text();
@@ -77,28 +81,30 @@ router.post('/', async (req, res, next) => {
     const video = await youtubedl(isolatedUrl);
     //Downloads file.
 
-    console.log('URL:', isolatedUrl);
+    console.log("URL:", isolatedUrl);
 
     // Will be called when the download starts.
-    video.on('info', function(info) {
-      console.log('Download started');
-      console.log('filename: ' + info._filename);
-      console.log('size: ' + info.size);
+    video.on("info", function(info) {
+      console.log("Download started");
+      console.log("filename: " + info._filename);
+      console.log("size: " + info.size);
     });
 
     const videoFile = await video.pipe(
-      fs.createWriteStream(`./api/public/${id}-${Date.now()}.mp4`)
+      fs.createWriteStream(
+        `./api/public/${req.body.videoSrc}-${Date.now()}.mp4`
+      )
     );
     // Writes video to our desired filepath.
 
     const fileDownloadPromise = new Promise((resolve, reject) => {
-      video.on('end', () => {
-        console.log('video download HAS FINISHED');
+      video.on("end", () => {
+        console.log("video download HAS FINISHED");
         resolve();
       });
 
-      video.on('error', error => {
-        console.log('video download ERRORED', error);
+      video.on("error", error => {
+        console.log("video download ERRORED", error);
         reject(error);
       });
     });

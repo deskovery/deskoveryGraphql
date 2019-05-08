@@ -22,9 +22,11 @@ class UserHome extends Component {
   }
 
   videoSrc = null;
-
+  // {videoSrc: this.state.videoSrc});
   async onCapture() {
-    const { data } = await axios.post("/api/videos");
+    const { data } = await axios.post("/api/videos", {
+      videoSrc: this.props.location.state.video
+    });
     const path = data.path.replace("./api/public", "");
     this.setState({ videoSrc: `http://localhost:3000/api${path}` });
     console.log("SET STATE:", this.state);
@@ -35,6 +37,7 @@ class UserHome extends Component {
   };
 
   render() {
+    console.log(this.state.videoSrc, "what is video src inside render");
     return (
       <div>
         <YouTubePlayer
@@ -49,7 +52,11 @@ class UserHome extends Component {
           {" "}
           Capture Moment{" "}
         </button>
-        {this.videoSrc ? <Capture videoSrc={this.videoSrc} /> : "No capture"}
+        {this.state.videoSrc ? (
+          <Capture videoSrc={this.state.videoSrc} />
+        ) : (
+          "No capture"
+        )}
       </div>
     );
   }
