@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
 import captureVideoFrame from 'capture-video-frame';
-import axios from 'axios';
 import gifshot from 'gifshot';
+import { SyncLoader } from 'react-spinners';
 
 export class Capture extends Component {
   constructor(props) {
@@ -16,22 +16,29 @@ export class Capture extends Component {
       gifTextFont: 'sans-serif',
       gifTextColor: '#ffffff',
     };
-
+    this.takeSnapshot = this.takeSnapshot.bind(this);
     this.makeGif = this.makeGif.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   async componentDidMount() {
-    // if (!this.props.videoSrc) {
-    //   console.log('**MOUNT**');
-    //   const { data } = await axios.post('/api/videos');
-    //   console.log(data.path, ' is data.path');
-    //   const path = data.path.replace('./api/public', '');
-    //   this.setState({ videoSrc: `api${path}` });
-    // } else {
+    this.setState({ videoSrc: this.props.videoSrc });
+  }
 
-      this.setState({ videoSrc: this.props.videoSrc });
-    // }
+  takeSnapshot() {
+    const frame = captureVideoFrame(this.player.getInternalPlayer());
+    this.setState({ image: frame.dataUri });
+  }
+
+  gifHelper(obj) {
+    if (!obj.error) {
+      var image = obj.image,
+        animatedImage = document.createElement('img');
+      console.log(animatedImage, 'animated image');
+      animatedImage.src = image;
+      this.setState({ gifLoading: false });
+      document.body.appendChild(animatedImage);
+    }
   }
 
   makeGif() {
@@ -55,8 +62,6 @@ export class Capture extends Component {
         if (!obj.error) {
           var image = obj.image,
             animatedImage = document.createElement('img');
-          console.log(animatedImage, 'animated image');
-          // console.log(saveRenderingContexts, 'saved')
           animatedImage.src = image;
           document.body.appendChild(animatedImage);
         }
@@ -83,17 +88,9 @@ export class Capture extends Component {
           ref={this.ref}
           controls
         />
-        <button
-          type="button"
-          onClick={() => {
-            console.log(this.player);
-            const frame = captureVideoFrame(this.player.getInternalPlayer());
-            console.log('captured frame', frame);
-            this.setState({ image: frame.dataUri });
-          }}
-        >
+        <button type="button" onClick={this.takeSnapshot}>
           {' '}
-          Capture{' '}
+          Take Snapshot{' '}
         </button>
         <button type="button" onClick={this.makeGif}>
           {' '}
@@ -118,7 +115,8 @@ export class Capture extends Component {
           <option value="#FFFFFF">White</option>
         </select>
 
-        {this.state.gif ? <img src={this.state.gif} width="320px" /> : null}
+        {this.state.gifLoading ? <SyncLoader /> : null}
+        {this.state.gif ? <img src={this.state.gif} alt={'Your gif!'} /> : null}
         {this.state.image && <img src={this.state.image} width="320px" />}
       </div>
     );
