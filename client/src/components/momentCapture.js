@@ -84,13 +84,13 @@ export class Capture extends Component {
 
   render() {
     return (
-      <div>
+      <div className="moments">
         <ReactPlayer
           url={this.state.videoSrc}
           playing={this.state.playing}
           ref={this.ref}
           controls
-        />
+        /> <div className="buttons">
         <button type="button" onClick={this.takeSnapshot}>
           {' '}
           Take Snapshot{' '}
@@ -117,17 +117,19 @@ export class Capture extends Component {
           <option value="#000000">Black</option>
           <option value="#FFFFFF">White</option>
         </select>
-
+        </div>
+      <div className="images">
         {this.state.gifLoading ? <SyncLoader /> : null}
         {this.state.gif ? (
           <div>
-            <img src={this.state.gif} alt={'Your gif!'} />
+            <img src={this.state.gif} className="img" alt={'Your gif!'} />
             <button type="button" onClick={this.getShareLink}>
               Share
             </button>
           </div>
         ) : null}
-        {this.state.image && <img src={this.state.image} width="320px" />}
+        {this.state.image && <img src={this.state.image} className="img" width="320px" />}
+      </div>
       </div>
     );
   }

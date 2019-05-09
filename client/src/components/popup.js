@@ -32,7 +32,7 @@ class ControlledPopup extends React.Component {
 
 render() {
   return (
-    <div>
+    <div className="modal">
       <button className="button" onClick={this.openModal}>
         Controlled Popup
       </button>
