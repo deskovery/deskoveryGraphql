@@ -4,6 +4,8 @@ const path = require('path');
 module.exports = router;
 
 router.use('/videos', require('./api'));
+router.use('/gifs', require('./gifs'));
+
 router.use(express.static(path.join(__dirname, 'public')));
 
 router.use((req, res, next) => {

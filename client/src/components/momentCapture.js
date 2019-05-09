@@ -3,6 +3,7 @@ import ReactPlayer from 'react-player';
 import captureVideoFrame from 'capture-video-frame';
 import gifshot from 'gifshot';
 import { SyncLoader } from 'react-spinners';
+import axios from 'axios';
 
 export class Capture extends Component {
   constructor(props) {
@@ -15,10 +16,12 @@ export class Capture extends Component {
       gifText: '',
       gifTextFont: 'sans-serif',
       gifTextColor: '#ffffff',
+      shareUrl: null,
     };
     this.takeSnapshot = this.takeSnapshot.bind(this);
     this.makeGif = this.makeGif.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.getShareLink = this.getShareLink.bind(this);
   }
 
   async componentDidMount() {
@@ -30,15 +33,14 @@ export class Capture extends Component {
     this.setState({ image: frame.dataUri });
   }
 
-  gifHelper(obj) {
-    if (!obj.error) {
-      var image = obj.image,
-      animatedImage = document.createElement('img');
-      animatedImage.src = image;
-      this.setState({ gifLoading: false });
-      document.body.appendChild(animatedImage);
-    }
+  async getShareLink() {
+    const { data } = await axios.post('/api/gifs', { imgData: this.state.gif });
+    console.log(data);
+    const shareUrl = data.replace('./api/public', 'api');
+    console.log(shareUrl);
+    this.setState({ shareUrl: shareUrl, gif: shareUrl });
   }
+
   makeGif() {
     gifshot.createGIF(
       {
@@ -57,14 +59,13 @@ export class Capture extends Component {
       obj => {
         if (!obj.error) {
           var image = obj.image,
-          animatedImage = document.createElement('img');
+            animatedImage = document.createElement('img');
           animatedImage.src = image;
           this.setState({ gif: image });
         }
       }
     );
   }
-
 
   ref = player => {
     this.player = player;
@@ -113,7 +114,14 @@ export class Capture extends Component {
         </select>
 
         {this.state.gifLoading ? <SyncLoader /> : null}
-        {this.state.gif ? <img src={this.state.gif} alt={'Your gif!'} /> : null}
+        {this.state.gif ? (
+          <div>
+            <img src={this.state.gif} alt={'Your gif!'} />
+            <button type="button" onClick={this.getShareLink}>
+              Share
+            </button>
+          </div>
+        ) : null}
         {this.state.image && <img src={this.state.image} width="320px" />}
       </div>
     );

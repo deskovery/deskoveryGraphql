@@ -81,6 +81,7 @@ typings/
 
 # misc
 *.mp4
+*.gif
 
 .DS_Store
 .env.local
