@@ -5,6 +5,8 @@ import gifshot from 'gifshot';
 import { SyncLoader } from 'react-spinners';
 import axios from 'axios';
 
+
+
 export class Capture extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,10 @@ export class Capture extends Component {
   }
 
   async componentDidMount() {
+    console.log(this.props.videoSrc, "Videosource")
+
     this.setState({ videoSrc: this.props.videoSrc });
+    console.log(this.state , "STATTTE")
   }
 
   takeSnapshot() {
