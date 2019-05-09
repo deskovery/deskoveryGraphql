@@ -2,14 +2,7 @@ import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import YouTubePlayer from 'react-player/lib/players/YouTube';
 import { Capture } from './momentCapture';
-import axios from 'axios';
 import ControlledPopup from './popup';
-// import {captureVideoFrame} from '../utils/capture'
-
-/**
- * COMPONENT
- *
- */
 
 class UserHome extends Component {
   constructor(props) {
@@ -22,21 +15,8 @@ class UserHome extends Component {
       takeoff: true,
       welcome: true,
     };
-    // this.onCapture = this.onCapture.bind(this);
   }
 
-  // videoSrc = null;
-  // // {videoSrc: this.state.videoSrc});
-  // async onCapture() {
-  //   this.setState({ loading: true });
-  //   const { data } = await axios.post('/api/videos', {
-  //     videoSrc: this.props.location.state.video,
-  //   });
-  //   const path = data.path.replace('./api/public', '');
-  //   this.setState({ videoSrc: `api${path}`, loading: false });
-  //   console.log('SET STATE:', this.state);
-  // }
-  // const {email} = props
   ref = youtube => {
     this.player = youtube;
   };
@@ -75,22 +55,9 @@ class UserHome extends Component {
               ref={this.ref}
               controls
             />
-            <button type="button" onClick={this.onCapture}>
-              {' '}
-              Capture Moment{' '}
-            </button>
-            {/* {this.state.loading ? (
-              <img
-                className="loading"
-                src="https://cdn.dribbble.com/users/206755/screenshots/4927172/error_404_animation_800x600.gif"
-                alt="Looking for your moment."
-              />
-            ) : null} */}
             {this.state.videoSrc ? (
               <Capture videoSrc={this.state.videoSrc} />
-            ) : (
-              null
-            )}
+            ) : null}
             <ControlledPopup videoSrc={this.props.location.state.video} />
           </div>
         );
@@ -98,10 +65,5 @@ class UserHome extends Component {
     }
   }
 }
-// const mapState = state => {
-//   return {
-//     email: state.user.email
-//   };
-// };
 
 export default UserHome;

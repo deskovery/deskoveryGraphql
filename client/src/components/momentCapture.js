@@ -5,8 +5,6 @@ import gifshot from 'gifshot';
 import { SyncLoader } from 'react-spinners';
 import axios from 'axios';
 
-
-
 export class Capture extends Component {
   constructor(props) {
     super(props);
@@ -27,10 +25,10 @@ export class Capture extends Component {
   }
 
   async componentDidMount() {
-    console.log(this.props.videoSrc, "Videosource")
+    console.log(this.props.videoSrc, 'Videosource');
 
     this.setState({ videoSrc: this.props.videoSrc });
-    console.log(this.state , "STATTTE")
+    console.log(this.state, 'STATTTE');
   }
 
   takeSnapshot() {
@@ -85,51 +83,67 @@ export class Capture extends Component {
   render() {
     return (
       <div className="moments">
-        <ReactPlayer
-          url={this.state.videoSrc}
-          playing={this.state.playing}
-          ref={this.ref}
-          controls
-        /> <div className="buttons">
-        <button type="button" onClick={this.takeSnapshot}>
-          {' '}
-          Take Snapshot{' '}
-        </button>
-        <button type="button" onClick={this.makeGif}>
-          {' '}
-          Make Gif{' '}
-        </button>
-        <input
-          type="text"
-          name="gifText"
-          value={this.state.gifText}
-          onChange={this.handleChange}
-        />
-        <select name="gifTextColor" onChange={this.handleChange}>
-          <option value="none">Choose gif text: </option>
+        <div className="momentsInner">
+          <ReactPlayer
+            url={this.state.videoSrc}
+            playing={this.state.playing}
+            ref={this.ref}
+            controls
+          />{' '}
+          <div className="buttons">
+            <div className="innerButtons">
+              <button type="button" onClick={this.takeSnapshot}>
+                {' '}
+                Take Snapshot{' '}
+              </button>
+              <button type="button" onClick={this.makeGif}>
+                {' '}
+                Make Gif{' '}
+              </button>
+              <br />
+              <input
+                type="text"
+                name="gifText"
+                value={this.state.gifText}
+                onChange={this.handleChange}
+              />
+              <select name="gifTextColor" onChange={this.handleChange}>
+                <option value="none">Choose gif text: </option>
 
-          <option value="#00BFFF">Blue</option>
-          <option value="#BA55D3">Purple</option>
-          <option value="#3CB371">Green</option>
-          <option value="#DC143C">Red</option>
-          <option value="#FF8C00">Orange</option>
-          <option value="#FFFF33">Yellow</option>
-          <option value="#000000">Black</option>
-          <option value="#FFFFFF">White</option>
-        </select>
-        </div>
-      <div className="images">
-        {this.state.gifLoading ? <SyncLoader /> : null}
-        {this.state.gif ? (
-          <div>
-            <img src={this.state.gif} className="img" alt={'Your gif!'} />
-            <button type="button" onClick={this.getShareLink}>
-              Share
-            </button>
+                <option value="#00BFFF">Blue</option>
+                <option value="#BA55D3">Purple</option>
+                <option value="#3CB371">Green</option>
+                <option value="#DC143C">Red</option>
+                <option value="#FF8C00">Orange</option>
+                <option value="#FFFF33">Yellow</option>
+                <option value="#000000">Black</option>
+                <option value="#FFFFFF">White</option>
+              </select>
+            </div>
           </div>
-        ) : null}
-        {this.state.image && <img src={this.state.image} className="img" width="320px" />}
-      </div>
+          <div className="images">
+            {this.state.gifLoading ? <SyncLoader /> : null}
+            {this.state.gif ? (
+              <div>
+                <img src={this.state.gif} className="img" alt={'Your gif!'} />
+              </div>
+            ) : null}
+            {this.state.image && (
+              <img
+                src={this.state.image}
+                className="img"
+                alt={'Your snapshot!'}
+              />
+            )}
+          </div>
+          {this.state.gif ? (
+            <div className="shareBox">
+              <button type="button" onClick={this.getShareLink}>
+                Share
+              </button>
+            </div>
+          ) : null}
+        </div>
       </div>
     );
   }
