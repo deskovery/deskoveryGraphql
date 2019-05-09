@@ -33,14 +33,12 @@ export class Capture extends Component {
   gifHelper(obj) {
     if (!obj.error) {
       var image = obj.image,
-        animatedImage = document.createElement('img');
-      console.log(animatedImage, 'animated image');
+      animatedImage = document.createElement('img');
       animatedImage.src = image;
       this.setState({ gifLoading: false });
       document.body.appendChild(animatedImage);
     }
   }
-
   makeGif() {
     gifshot.createGIF(
       {
@@ -49,25 +47,24 @@ export class Capture extends Component {
         gifHeight: 200,
         text: this.state.gifText,
         fontSize: '16px',
-        numFrames: 40,
         fontColor: this.state.gifTextColor,
-        // progressCallback: function(captureProgress) {
-        //   console.log('finished')
-        // },
-        // saveRenderingContexts: true,
-        // crossOrigin: 'Anonymous'
-        // savedRenderingContexts: ['Anonymous']
+        numFrames: 20,
+        interval: 0.1,
+        frameDuration: 1,
+        sampleInterval: 10,
+        numWorkers: 2,
       },
-      function(obj) {
+      obj => {
         if (!obj.error) {
           var image = obj.image,
-            animatedImage = document.createElement('img');
+          animatedImage = document.createElement('img');
           animatedImage.src = image;
-          document.body.appendChild(animatedImage);
+          this.setState({ gif: image });
         }
       }
     );
   }
+
 
   ref = player => {
     this.player = player;
@@ -103,7 +100,7 @@ export class Capture extends Component {
           onChange={this.handleChange}
         />
         <select name="gifTextColor" onChange={this.handleChange}>
-          <option value="none">Choose gif texr: </option>
+          <option value="none">Choose gif text: </option>
 
           <option value="#00BFFF">Blue</option>
           <option value="#BA55D3">Purple</option>
