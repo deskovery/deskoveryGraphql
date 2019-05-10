@@ -9,6 +9,7 @@ class ControlledPopup extends React.Component {
     this.state = { open: false, loading: null, videoSrc: null };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+
   }
   async componentDidMount() {
     this.setState({ loading: true });
@@ -27,6 +28,8 @@ class ControlledPopup extends React.Component {
   closeModal() {
     this.setState({ open: false });
   }
+
+
 
   render() {
     return (

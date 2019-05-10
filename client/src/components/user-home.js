@@ -4,6 +4,7 @@ import YouTubePlayer from 'react-player/lib/players/YouTube';
 import { Capture } from './momentCapture';
 import ControlledPopup from './popup';
 
+
 class UserHome extends Component {
   constructor(props) {
     super(props);
@@ -14,12 +15,29 @@ class UserHome extends Component {
       loading: false,
       takeoff: true,
       welcome: true,
+
+
     };
+    this.addToFavs= this.addToFavs.bind(this)
   }
 
   ref = youtube => {
     this.player = youtube;
   };
+
+  addToFavs() {
+    console.log(this.state.videoSrc, "FAVS" )
+    let itemsArray = localStorage.getItem('items')
+            ? JSON.parse(localStorage.getItem('items'))
+            : []
+
+          itemsArray.push(this.state.videoSrc)
+          localStorage.setItem('items', JSON.stringify(itemsArray))
+        console.log(localStorage, "localStorage")
+
+      }
+
+
 
   render() {
     setTimeout(() => {
@@ -63,6 +81,7 @@ class UserHome extends Component {
               <Capture videoSrc={this.state.videoSrc} />
             ) : null}
             <ControlledPopup videoSrc={this.props.location.state.video} />
+   <button className="Favorites" onClick={this.addToFavs}>Add To Favorites</button>
           </div>
         );
       }

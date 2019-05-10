@@ -231,7 +231,7 @@ nav a:link {
   background-image: url(https://bit.ly/2JqRbuI);
 }
 
-.video-header > p {
+.video-header>p {
   margin: 0;
 }
 
@@ -294,6 +294,10 @@ nav a:link {
   padding: 5em;
 }
 
+.favorites {
+  color: white;
+}
+
 .modal {
   font-size: 12px;
   display: flex;
@@ -301,24 +305,28 @@ nav a:link {
   align-content: center;
   width: 80%;
 }
-.modal > .header {
+
+.modal>.header {
   width: 100%;
   border-bottom: 1px solid lightcoral;
   font-size: 18px;
   text-align: center;
   padding: 5px;
 }
-.modal > .content {
+
+.modal>.content {
   width: 100%;
   padding: 10px 5px;
 }
-.modal > .actions {
+
+.modal>.actions {
   width: 100%;
   padding: 10px 5px;
   margin: auto;
   text-align: center;
 }
-.modal > .close {
+
+.modal>.close {
   cursor: pointer;
   position: absolute;
   display: block;
@@ -332,7 +340,7 @@ nav a:link {
   border: 1px solid lightcoral;
 }
 
-.modal > button {
+.modal>button {
   margin: 10px;
 }
 
@@ -366,7 +374,7 @@ nav a:link {
   justify-content: center;
 }
 
-momentsInner > video {
+momentsInner>video {
   width: 100%;
   padding: 0;
   margin: 0 auto;
@@ -476,6 +484,7 @@ button:hover {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
