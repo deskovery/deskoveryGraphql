@@ -17,7 +17,7 @@ const UserInfo = ({ session }) => (
     <p>Join Date: {formatDate(session.getCurrentUser.joinDate)}</p>
     <ul>
       <h3>Your Favorites</h3>
-      {/* {session.getCurrentUser.favorites.map(favorite => (
+      {session.getCurrentUser.favorites.map(favorite => (
         <li key={favorite._id}>
           <Link to={`/quizzes/${favorite._id}`}>
             <p>{favorite.name}</p>
@@ -28,7 +28,7 @@ const UserInfo = ({ session }) => (
         <p>
           <strong>You currently have no favorites. Go add some!</strong>
         </p>
-      )} */}
+      )}
       <h3>Your Gifs</h3>
     </ul>
   </div>
