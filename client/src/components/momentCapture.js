@@ -16,7 +16,7 @@ export class Capture extends Component {
       gifText: '',
       gifTextFont: 'sans-serif',
       gifTextColor: '#ffffff',
-      shareUrl: null,
+      shareUrl: null
     };
     this.takeSnapshot = this.takeSnapshot.bind(this);
     this.makeGif = this.makeGif.bind(this);
@@ -38,11 +38,13 @@ export class Capture extends Component {
     console.log(data);
     const shareUrl = data.replace('./api/public', 'api');
     this.setState({ shareUrl: shareUrl, gif: shareUrl });
-    // window.open(
-    //   `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-    //     `https://localhost:3000/${this.state.shareUrl}`
-    //   )}`
-    // );
+
+    //Facebook share functionality work in progress.
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+        `${this.state.shareUrl}`
+      )}`
+    );
     //Twitter share functionality work in progress.
   }
 
@@ -59,7 +61,7 @@ export class Capture extends Component {
         interval: 0.1,
         frameDuration: 1,
         sampleInterval: 10,
-        numWorkers: 2,
+        numWorkers: 2
       },
       obj => {
         if (!obj.error) {
@@ -78,69 +80,69 @@ export class Capture extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
   }
 
   render() {
     return (
-      <div className="moments">
-        <div className="momentsInner">
+      <div className='moments'>
+        <div className='momentsInner'>
           <ReactPlayer
             url={this.state.videoSrc}
             playing={this.state.playing}
             ref={this.ref}
             controls
           />{' '}
-          <div className="buttons">
-            <div className="innerButtons">
-              <button type="button" onClick={this.takeSnapshot}>
+          <div className='buttons'>
+            <div className='innerButtons'>
+              <button type='button' onClick={this.takeSnapshot}>
                 {' '}
                 Take Snapshot{' '}
               </button>
-              <button type="button" onClick={this.makeGif}>
+              <button type='button' onClick={this.makeGif}>
                 {' '}
                 Make Gif{' '}
               </button>
               <br />
               <input
-                type="text"
-                name="gifText"
+                type='text'
+                name='gifText'
                 value={this.state.gifText}
                 onChange={this.handleChange}
               />
-              <select name="gifTextColor" onChange={this.handleChange}>
-                <option value="none">text color: </option>
+              <select name='gifTextColor' onChange={this.handleChange}>
+                <option value='none'>text color: </option>
 
-                <option value="#00BFFF">Blue</option>
-                <option value="#BA55D3">Purple</option>
-                <option value="#3CB371">Green</option>
-                <option value="#DC143C">Red</option>
-                <option value="#FF8C00">Orange</option>
-                <option value="#FFFF33">Yellow</option>
-                <option value="#000000">Black</option>
-                <option value="#FFFFFF">White</option>
+                <option value='#00BFFF'>Blue</option>
+                <option value='#BA55D3'>Purple</option>
+                <option value='#3CB371'>Green</option>
+                <option value='#DC143C'>Red</option>
+                <option value='#FF8C00'>Orange</option>
+                <option value='#FFFF33'>Yellow</option>
+                <option value='#000000'>Black</option>
+                <option value='#FFFFFF'>White</option>
               </select>
             </div>
           </div>
-          <div className="images">
+          <div className='images'>
             {this.state.gifLoading ? <SyncLoader /> : null}
             {this.state.gif ? (
               <div>
-                <img src={this.state.gif} className="img" alt={'Your gif!'} />
+                <img src={this.state.gif} className='img' alt={'Your gif!'} />
               </div>
             ) : null}
             {this.state.image && (
               <img
                 src={this.state.image}
-                className="img"
+                className='img'
                 alt={'Your snapshot!'}
               />
             )}
           </div>
           {this.state.gif ? (
-            <div className="shareBox">
-              <button type="button" onClick={this.getShareLink}>
+            <div className='shareBox'>
+              <button type='button' onClick={this.getShareLink}>
                 Share
               </button>
             </div>
