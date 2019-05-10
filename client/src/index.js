@@ -20,6 +20,7 @@ import QuizPage from './components/Quiz/QuizPage';
 import { Capture } from './components/momentCapture';
 import userHome from './components/user-home';
 import Quiz from './components/Quiz/quizMain';
+import Favorites from './components/Favorites/favorites';
 
 // Importing Apollo
 import ApolloClient from 'apollo-boost';
@@ -52,6 +53,7 @@ const Root = ({ refetch, session }) => (
       <Switch>
         <Route exact path="/" component={Quiz} />
         <Route path="/quiz" component={Quiz} />
+        <Route path="/favorites" component={Favorites} />
         <Route path="/search" component={Search} />
         <Route path="/capture" component={Capture} />
         <Route path="/video" component={userHome} />
