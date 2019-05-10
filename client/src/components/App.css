@@ -396,6 +396,7 @@ momentsInner > video {
 .quizBox {
   display: flex;
   justify-content: space-evenly;
+  padding:10px;
 }
 
 .quizBox {
