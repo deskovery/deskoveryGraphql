@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import YouTubePlayer from 'react-player/lib/players/YouTube';
 import { Capture } from './momentCapture';
-import axios from 'axios';
-// import {captureVideoFrame} from '../utils/capture'
-
-/**
- * COMPONENT
- *
- */
+import ControlledPopup from './popup';
 
 class UserHome extends Component {
   constructor(props) {
@@ -21,21 +15,8 @@ class UserHome extends Component {
       takeoff: true,
       welcome: true,
     };
-    this.onCapture = this.onCapture.bind(this);
   }
 
-  videoSrc = null;
-  // {videoSrc: this.state.videoSrc});
-  async onCapture() {
-    this.setState({ loading: true });
-    const { data } = await axios.post('/api/videos', {
-      videoSrc: this.props.location.state.video,
-    });
-    const path = data.path.replace('./api/public', '');
-    this.setState({ videoSrc: `api${path}`, loading: false });
-    console.log('SET STATE:', this.state);
-  }
-  // const {email} = props
   ref = youtube => {
     this.player = youtube;
   };
@@ -46,8 +27,9 @@ class UserHome extends Component {
     }, 9000);
     if (this.state.takeoff) {
       return (
-        <div>
+        <div className="takeoff">
           <img
+            className="takeoffGif"
             src="https://cdn.dribbble.com/users/1303437/screenshots/3492466/plane_800x600.gif"
             alt="prepare for takeoff."
           />
@@ -65,41 +47,27 @@ class UserHome extends Component {
         );
       } else {
         return (
-          <div>
+          <div className="videoContainer">
             <YouTubePlayer
               url={`https://www.youtube.com/watch?v=${
                 this.props.location.state.video
               }`}
               playing={this.state.playing}
               ref={this.ref}
+              width="1000px"
+              max-width="100%"
+              height="800px"
               controls
             />
-            <button type="button" onClick={this.onCapture}>
-              {' '}
-              Capture Moment{' '}
-            </button>
-            {this.state.loading ? (
-              <img
-                className="loading"
-                src="https://cdn.dribbble.com/users/206755/screenshots/4927172/error_404_animation_800x600.gif"
-                alt="Looking for your moment."
-              />
-            ) : null}
             {this.state.videoSrc ? (
               <Capture videoSrc={this.state.videoSrc} />
-            ) : (
-              null
-            )}
+            ) : null}
+            <ControlledPopup videoSrc={this.props.location.state.video} />
           </div>
         );
       }
     }
   }
 }
-// const mapState = state => {
-//   return {
-//     email: state.user.email
-//   };
-// };
 
 export default UserHome;

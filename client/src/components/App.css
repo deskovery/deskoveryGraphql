@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+body {
+  height: 100%;
+}
+
+h1 {
+  color: white;
+}
+
 nav {
   text-align: center;
   padding-bottom: 0.2em;
@@ -92,7 +100,7 @@ nav a:link {
 }
 
 .card:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 100%;
@@ -172,7 +180,7 @@ nav a:link {
 }
 
 .video-image:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 60vh;
@@ -259,6 +267,168 @@ nav a:link {
   padding: 5em;
 }
 
+.modal {
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 80%;
+}
+.modal > .header {
+  width: 100%;
+  border-bottom: 1px solid lightcoral;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+.modal > .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid lightcoral;
+}
+
+.modal > button {
+  margin: 10px;
+}
+
+.popup-content {
+  width: 40% !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.images {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+}
+
+.img {
+  padding: 2px;
+  max-width: 320px;
+  max-height: 200px;
+  display: inline-block;
+}
+
+.popupButton {
+  display: inline-block;
+  align-self: left;
+}
+
+.moments {
+  display: flex;
+  justify-content: center;
+}
+
+momentsInner > video {
+  width: 100%;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.momentsInner {
+  display: inline;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.innerButtons {
+  display: inline-block;
+}
+
+.shareBox {
+  display: flex;
+  justify-content: center;
+}
+
+.takeoff {
+  position: relative;
+  height: 100%;
+  padding: 10px;
+}
+
+.takeoffGif {
+  margin-top: 10px;
+  width: 60%;
+  height: 80%;
+  display: block;
+  margin: 0 auto;
+}
+
+.videoContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.quizBox {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.quizBox {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  justify-content: space-evenly;
+}
+
+.optionBox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 5px;
+  padding: 20px;
+}
+
+.gif {
+  display: inline-block;
+  transition: transform 0.2s;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  position: relative;
+}
+
+.gif:hover {
+  transform: scale(1.15);
+  cursor: pointer;
+}
+
+button {
+  background-color: black;
+}
+
+button:hover {
+  color: whitesmoke;
+}
+
 /* User modals */
 
 .App-logo {
@@ -266,7 +436,6 @@ nav a:link {
   height: 40vmin;
   pointer-events: none;
 }
-
 
 @keyframes App-logo-spin {
   from {
