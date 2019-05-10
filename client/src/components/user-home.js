@@ -27,8 +27,9 @@ class UserHome extends Component {
     }, 9000);
     if (this.state.takeoff) {
       return (
-        <div>
+        <div className="takeoff">
           <img
+            className="takeoffGif"
             src="https://cdn.dribbble.com/users/1303437/screenshots/3492466/plane_800x600.gif"
             alt="prepare for takeoff."
           />
@@ -46,13 +47,16 @@ class UserHome extends Component {
         );
       } else {
         return (
-          <div>
+          <div className="videoContainer">
             <YouTubePlayer
               url={`https://www.youtube.com/watch?v=${
                 this.props.location.state.video
               }`}
               playing={this.state.playing}
               ref={this.ref}
+              width="1000px"
+              max-width="100%"
+              height="800px"
               controls
             />
             {this.state.videoSrc ? (

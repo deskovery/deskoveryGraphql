@@ -25,10 +25,7 @@ export class Capture extends Component {
   }
 
   async componentDidMount() {
-    console.log(this.props.videoSrc, 'Videosource');
-
     this.setState({ videoSrc: this.props.videoSrc });
-    console.log(this.state, 'STATTTE');
   }
 
   takeSnapshot() {
@@ -40,8 +37,13 @@ export class Capture extends Component {
     const { data } = await axios.post('/api/gifs', { imgData: this.state.gif });
     console.log(data);
     const shareUrl = data.replace('./api/public', 'api');
-    console.log(shareUrl);
     this.setState({ shareUrl: shareUrl, gif: shareUrl });
+    // window.open(
+    //   `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+    //     `https://localhost:3000/${this.state.shareUrl}`
+    //   )}`
+    // );
+    //Twitter share functionality work in progress.
   }
 
   makeGif() {
@@ -108,7 +110,7 @@ export class Capture extends Component {
                 onChange={this.handleChange}
               />
               <select name="gifTextColor" onChange={this.handleChange}>
-                <option value="none">Choose gif text: </option>
+                <option value="none">text color: </option>
 
                 <option value="#00BFFF">Blue</option>
                 <option value="#BA55D3">Purple</option>
