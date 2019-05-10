@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  color: rgb(167, 198, 204)
+  color: rgb(167, 198, 204);
 }
 
 body {
@@ -84,6 +84,31 @@ nav a:link {
   grid-auto-flow: row dense;
   grid-gap: 2em;
   grid-auto-rows: 300px;
+}
+
+.landing-gif {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  /* justify-content: center;
+  transition: transform 0.2s;
+  object-fit: cover;
+  object-position: center;
+  width: 60%;
+  position: relative; */
+}
+
+.landing-page-welcome {
+  text-align: center;
+  color: rgb(167, 198, 204);
+  font-size: 50px;
+}
+
+.landing-page-text {
+  text-align: center;
+  color: rgb(167, 198, 204);
+  font-size: 30px;
 }
 
 .card {
@@ -399,13 +424,14 @@ momentsInner>video {
 
 .quiz {
   font-weight: bold;
-  color: aliceblue;
+  
 }
 
 .quizBox {
   display: flex;
   justify-content: space-evenly;
   padding: 10px;
+  
 }
 
 .quizBox {
@@ -413,6 +439,7 @@ momentsInner>video {
   flex-direction: row;
   height: 100vh;
   justify-content: space-evenly;
+  
 }
 
 .optionBox {
