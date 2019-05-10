@@ -14,22 +14,22 @@ const Navbar = ({ session }) => (
 
 const NavbarAuth = ({ session }) => (
   <Fragment>
-    <ul>
+    <ul className="navbar">
       <li>
         <NavLink to='/' exact>Home</NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink to='/search'>Search</NavLink>
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <NavLink to='/user'>User-Home</NavLink>
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <NavLink to='/capture'>Capture</NavLink>
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <NavLink to='/video/add'>Add Video</NavLink>
-      </li>
+      </li> */}
       <li>
         <NavLink to='/profile'>Profile</NavLink>
       </li>
@@ -42,21 +42,21 @@ const NavbarAuth = ({ session }) => (
 );
 
 const NavbarUnAuth = () => (
-  <ul>
+  <ul className="navbar">
     <li>
       <NavLink to='/' exact>
         Home
       </NavLink>
     </li>
-    <li>
+    {/* <li>
       <NavLink to='/user'>User-Home</NavLink>
-    </li>
-    <li>
+    </li> */}
+    {/* <li>
       <NavLink to='/capture'>Capture</NavLink>
-    </li>
-    <li>
+    </li> */}
+    {/* <li>
       <NavLink to='/search'>Search</NavLink>
-    </li>
+    </li> */}
     <li>
       <NavLink to='/signin'>Signin</NavLink>
     </li>

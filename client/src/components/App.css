@@ -14,7 +14,7 @@ nav {
   text-align: center;
   padding-bottom: 0.2em;
   padding-top: 2em;
-  background-color: #efefef;
+  background-color: black;
   box-shadow: -3px 3px 10px 0px rgba(168, 168, 168, 0.7);
 }
 
@@ -23,6 +23,7 @@ nav ul {
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  font-weight: bold;
 }
 
 p,
@@ -68,7 +69,7 @@ nav a:link {
 
 .main-title {
   padding: 0.5em;
-  color: #1eaedb;
+  color: rgb(205, 231, 240);
   margin: 0;
   text-decoration-line: underline;
   text-decoration-style: dotted;
@@ -385,6 +386,11 @@ momentsInner > video {
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+
+.quiz{
+  font-weight: bold;
+  color: aliceblue;
 }
 
 .quizBox {
