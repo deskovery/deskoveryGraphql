@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: rgb(167, 198, 204)
 }
 
 body {
@@ -101,7 +102,7 @@ nav a:link {
 }
 
 .card:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 100%;
@@ -181,7 +182,7 @@ nav a:link {
 }
 
 .video-image:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 60vh;
@@ -388,7 +389,7 @@ momentsInner > video {
   width: 100%;
 }
 
-.quiz{
+.quiz {
   font-weight: bold;
   color: aliceblue;
 }
@@ -396,7 +397,7 @@ momentsInner > video {
 .quizBox {
   display: flex;
   justify-content: space-evenly;
-  padding:10px;
+  padding: 10px;
 }
 
 .quizBox {
