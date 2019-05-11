@@ -4,6 +4,18 @@ import captureVideoFrame from 'capture-video-frame';
 import gifshot from 'gifshot';
 import { SyncLoader } from 'react-spinners';
 import axios from 'axios';
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  EmailShareButton,
+  EmailIcon
+} from 'react-share';
 
 export class Capture extends Component {
   constructor(props) {
@@ -40,11 +52,11 @@ export class Capture extends Component {
     this.setState({ shareUrl: shareUrl, gif: shareUrl });
 
     //Facebook share functionality work in progress.
-    window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        `${this.state.shareUrl}`
-      )}`
-    );
+    // window.open(
+    //   `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+    //     `${this.state.shareUrl}`
+    //   )}`
+    // );
     //Twitter share functionality work in progress.
   }
 
@@ -85,6 +97,7 @@ export class Capture extends Component {
   }
 
   render() {
+    const { shareUrl } = this.state;
     return (
       <div className='moments'>
         <div className='momentsInner'>
@@ -145,6 +158,35 @@ export class Capture extends Component {
               <button type='button' onClick={this.getShareLink}>
                 Share
               </button>
+              <FacebookShareButton
+                url={shareUrl}
+                title='Facebook'
+                onClick={this.getShareLink}
+              >
+                <FacebookIcon size={32} round />
+              </FacebookShareButton>
+              <TwitterShareButton
+                url={shareUrl}
+                title='Twitter'
+                onClick={this.getShareLink}
+              >
+                <TwitterIcon size={32} round />
+              </TwitterShareButton>
+              <LinkedinShareButton
+                url={shareUrl}
+                title='Linkedin'
+                onClick={this.getShareLink}
+              >
+                <LinkedinIcon size={32} round />
+              </LinkedinShareButton>
+              <EmailShareButton
+                url={shareUrl}
+                subject='My Deskovery Gifs'
+                onClick={this.getShareLink}
+                body='body'
+              >
+                <EmailIcon size={32} round />
+              </EmailShareButton>
             </div>
           ) : null}
         </div>
