@@ -6,11 +6,7 @@ export const GET_ALL_VIDEOS = gql`
     getAllVideos {
       _id
       name
-      imageUrl
-      path
-      description
-      instructions
-      createdDate
+      gifs
       likes
       username
     }
@@ -21,12 +17,7 @@ export const GET_VIDEO = gql`
   query($_id: ID!) {
     getVideo(_id: $_id) {
       _id
-      name
-      imageUrl
-      path
-      description
-      instructions
-      createdDate
+      gifs
       likes
       username
     }
@@ -38,7 +29,6 @@ export const SEARCH_VIDEOS = gql`
     searchVideos(searchTerm: $searchTerm) {
       _id
       name
-      imageUrl
       likes
     }
   }
@@ -115,18 +105,18 @@ export const ADD_VIDEO = gql`
   }
 `;
 
-export const LIKE_QUIZ = gql`
+export const LIKE_VIDEO = gql`
   mutation($_id: ID!, $username: String!) {
-    likeQuiz(_id: $_id, username: $username) {
+    likeVideo(_id: $_id, username: $username) {
       _id
       likes
     }
   }
 `;
 
-export const UNLIKE_QUIZ = gql`
+export const UNLIKE_VIDEO = gql`
   mutation($_id: ID!, $username: String!) {
-    unlikeQuiz(_id: $_id, username: $username) {
+    unlikeVideo(_id: $_id, username: $username) {
       _id
       likes
     }
@@ -141,6 +131,18 @@ export const DELETE_USER_QUIZ = gql`
   }
 `;
 
+export const ADD_VIDEO_GIF = gql`
+  mutation($name: String!, $gifs: [String!]) {
+    addQuiz(name: $name, gifs: $gifs) {
+      _id
+      name
+      gifs
+      username
+      likes
+    }
+  }
+`;
+
 /* Quiz Mutations */
 
 export const ADD_QUIZ = gql`
@@ -151,7 +153,6 @@ export const ADD_QUIZ = gql`
       gifs
       username
       likes
-
     }
   }
 `;
@@ -171,9 +172,9 @@ export const GET_CURRENT_USER = gql`
   }
 `;
 
-export const GET_USER_QUIZZES = gql`
+export const GET_USER_VIDEOS = gql`
   query($username: String!) {
-    getUserQuizzes(username: $username) {
+    getUserVideos(username: $username) {
       _id
       name
       likes

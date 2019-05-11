@@ -1,15 +1,14 @@
 import React from 'react';
 import { Query, Mutation } from 'react-apollo';
 import {
-  GET_USER_QUIZZES,
-  DELETE_USER_QUIZ,
+  GET_USER_VIDEOS,
   GET_ALL_QUIZZES,
   GET_CURRENT_USER
 } from '../../queries';
 import { Link } from 'react-router-dom';
 import Spinner from '../Spinner';
 
-class UserQuizzes extends React.Component {
+class UserVideos extends React.Component {
   handleDelete = deleteUserQuiz => {
     const confirmDelete = window.confirm('Are you sure?');
     if (confirmDelete) {
@@ -20,25 +19,25 @@ class UserQuizzes extends React.Component {
   render() {
     const { username } = this.props;
     return (
-      <Query query={GET_USER_QUIZZES} variables={{ username }}>
+      <Query query={GET_USER_VIDEOS} variables={{ username }}>
         {({ data, loading, error }) => {
           if (loading) return <Spinner />;
           if (error) return <div>Error</div>;
 
           return (
             <ul>
-              <h3>Your Quizzes</h3>
-              {!data.getUserQuizzes.length && (
+              <h3>Your Videos</h3>
+              {!data.getUserVideos.length && (
                 <strong>
-                  <p>You have not taken any quizzes yet.</p>
+                  <p>You have not favorited any videos, yet.  Go favorite some!</p>
                 </strong>
               )}
-              {data.getUserQuizzes.map(quiz => (
-                <li key={quiz._id}>
-                  <Link to={`/quizzes/${quiz._id}`}>
-                    <p>{quiz.name}</p>
+              {data.getUserVideos.map(video => (
+                <li key={video._id}>
+                  <Link to={`/quizzes/${video._id}`}>
+                    <p>{video.name}</p>
                   </Link>
-                  <p style={{ marginBottom: '0' }}>Likes: {quiz.likes}</p>
+                  <p style={{ marginBottom: '0' }}>Likes: {video.likes}</p>
                   <Mutation
                     mutation={DELETE_USER_QUIZ}
                     variables={{ _id: quiz._id }}
@@ -85,4 +84,4 @@ class UserQuizzes extends React.Component {
   }
 }
 
-export default UserQuizzes;
+export default UserVideos;

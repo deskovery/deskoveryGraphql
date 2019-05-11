@@ -1,114 +1,116 @@
-// import React, { Component } from 'react';
+import React, { Component } from 'react';
 
-// import withSession from '../withSession';
-// import { Mutation } from 'react-apollo';
-// import { GET_VIDEO } from '../../queries';
+import withSession from '../withSession';
+import { Mutation } from 'react-apollo';
+import { GET_VIDEO, LIKE_VIDEO, UNLIKE_VIDEO } from '../../queries';
 
-// class LikeVideo extends Component {
-//   state = {
-//     username: '',
-//     liked: false
-//   };
+class LikeVideo extends Component {
+  state = {
+    username: '',
+    liked: false
+  };
 
-//   handleClick = (likeVideo, unlikeVideo) => {
-//     this.setState(
-//       prevState => ({
-//         liked: !prevState.liked
-//       }),
-//       () => this.handleLike(likeVideo, unlikeVideo)
-//     );
-//   };
+  handleClick = (likeVideo, unlikeVideo) => {
+    console.log('Inside clicked');
+    this.setState({ liked: true });
 
-//   handleLike = (likeVideo, unlikeVideo) => {
-//     if (this.state.liked) {
-//       likeVideo().then(async ({ data }) => {
-//         await this.props.refetch();
-//       });
-//     } else {
-//       // unlike Video mutation
-//       unlikeVideo().then(async ({ data }) => {
-//         await this.props.refetch();
-//       });
-//     }
-//   };
+    this.handleLike(likeVideo, unlikeVideo);
 
-//   componentDidMount() {
-//     if (this.props.session.getCurrentUser) {
-//       const { username, favorites } = this.props.session.getCurrentUser;
-//       const { _id } = this.props;
-//       const prevLiked =
-//         favorites.findIndex(favorite => favorite._id === _id) > -1;
-//       this.setState({
-//         liked: prevLiked,
-//         username
-//       });
-//     }
-//   }
+    console.log(this.state.liked, ' is state');
+  };
 
-//   updateLike = (cache, { data: { likeVideo } }) => {
-//     const { _id } = this.props;
-//     const { getVideo } = cache.readQuery({
-//       query: GET_VIDEO,
-//       variables: { _id }
-//     });
+  handleLike = (likeVideo, unlikeVideo) => {
+    if (this.state.liked === false) {
+      likeVideo().then(async ({ data }) => {
+        console.log('**** like video');
+        await this.props.refetch();
+      });
+    } else {
+      // unlike Video mutation
+      unlikeVideo().then(async ({ data }) => {
+        await this.props.refetch();
+      });
+    }
+  };
 
-//     cache.writeQuery({
-//       query: GET_VIDEO,
-//       variables: { _id },
-//       data: {
-//         getVideo: { ...getVideo, likes: likeVideo.likes + 1 }
-//       }
-//     });
-//   };
+  componentDidMount() {
+    console.log('props id', this.props._id);
+    if (this.props.session.getCurrentUser) {
+      const { username, favorites } = this.props.session.getCurrentUser;
+      const { _id } = this.props;
+      const prevLiked =
+        favorites.findIndex(favorite => favorite._id === _id) > -1;
+      this.setState({
+        liked: prevLiked,
+        username
+      });
+    }
+  }
 
-//   updateUnlike = (cache, { data: { unlikeVideo } }) => {
-//     const { _id } = this.props;
-//     const { getVideo } = cache.readQuery({
-//       query: GET_VIDEO,
-//       variables: { _id }
-//     });
+  updateLike = (cache, { data: { likeVideo } }) => {
+    const { _id } = this.props;
+    const { getVideo } = cache.readQuery({
+      query: GET_VIDEO,
+      variables: { _id }
+    });
 
-//     cache.writeQuery({
-//       query: GET_VIDEO,
-//       variables: { _id },
-//       data: {
-//         getVideo: { ...getVideo, likes: unlikeVideo.likes - 1 }
-//       }
-//     });
-//   };
+    cache.writeQuery({
+      query: GET_VIDEO,
+      variables: { _id },
+      data: {
+        getVideo: { ...getVideo, likes: likeVideo.likes + 1 }
+      }
+    });
+  };
 
-//   render() {
-//     const { liked, username } = this.state;
-//     const { _id } = this.props;
-//     return (
-//       <Mutation
-//         mutation={UNLIKE_VIDEO}
-//         variables={{ _id, username }}
-//         update={this.updateUnlike}
-//       >
-//         {unlikeVideo => (
-//           <Mutation
-//             mutation={LIKE_VIDEO}
-//             variables={{ _id, username }}
-//             update={this.updateLike}
-//           >
-//             {likeVideo => {
-//               return (
-//                 username && (
-//                   <button
-//                     onClick={() => this.handleClick(likeVideo, unlikeVideo)}
-//                     className='like-button'
-//                   >
-//                     {liked ? 'Unlike' : 'Like'}
-//                   </button>
-//                 )
-//               );
-//             }}
-//           </Mutation>
-//         )}
-//       </Mutation>
-//     );
-//   }
-// }
+  updateUnlike = (cache, { data: { unlikeVideo } }) => {
+    const { _id } = this.props;
+    const { getVideo } = cache.readQuery({
+      query: GET_VIDEO,
+      variables: { _id }
+    });
 
-// export default withSession(LikeVideo);
+    cache.writeQuery({
+      query: GET_VIDEO,
+      variables: { _id },
+      data: {
+        getVideo: { ...getVideo, likes: unlikeVideo.likes - 1 }
+      }
+    });
+  };
+
+  render() {
+    const { liked, username } = this.state;
+    const { _id } = this.props;
+    return (
+      <Mutation
+        mutation={UNLIKE_VIDEO}
+        variables={{ _id, username }}
+        update={this.updateUnlike}
+      >
+        {unlikeVideo => (
+          <Mutation
+            mutation={LIKE_VIDEO}
+            variables={{ _id, username }}
+            update={this.updateLike}
+          >
+            {likeVideo => {
+              return (
+                username && (
+                  <button
+                    onClick={() => this.handleClick(likeVideo, unlikeVideo)}
+                    className='like-button'
+                  >
+                    {liked ? 'Unlike' : 'Like'}
+                  </button>
+                )
+              );
+            }}
+          </Mutation>
+        )}
+      </Mutation>
+    );
+  }
+}
+
+export default withSession(LikeVideo);
