@@ -11,8 +11,6 @@ import {
   TwitterIcon,
   LinkedinShareButton,
   LinkedinIcon,
-  WhatsappShareButton,
-  WhatsappIcon,
   EmailShareButton,
   EmailIcon
 } from 'react-share';
@@ -158,35 +156,26 @@ export class Capture extends Component {
               <button type='button' onClick={this.getShareLink}>
                 Share
               </button>
-              <FacebookShareButton
-                url={shareUrl}
-                title='Facebook'
-                onClick={this.getShareLink}
-              >
-                <FacebookIcon size={32} round />
-              </FacebookShareButton>
-              <TwitterShareButton
-                url={shareUrl}
-                title='Twitter'
-                onClick={this.getShareLink}
-              >
-                <TwitterIcon size={32} round />
-              </TwitterShareButton>
-              <LinkedinShareButton
-                url={shareUrl}
-                title='Linkedin'
-                onClick={this.getShareLink}
-              >
-                <LinkedinIcon size={32} round />
-              </LinkedinShareButton>
-              <EmailShareButton
-                url={shareUrl}
-                subject='My Deskovery Gifs'
-                onClick={this.getShareLink}
-                body='body'
-              >
-                <EmailIcon size={32} round />
-              </EmailShareButton>
+              {shareUrl && (
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <FacebookShareButton url={shareUrl} quote='Facebook'>
+                    <FacebookIcon size={32} round />
+                  </FacebookShareButton>
+                  <TwitterShareButton url={shareUrl} title='Twitter'>
+                    <TwitterIcon size={32} round />
+                  </TwitterShareButton>
+                  <LinkedinShareButton url={shareUrl} title='Linkedin'>
+                    <LinkedinIcon size={32} round />
+                  </LinkedinShareButton>
+                  <EmailShareButton
+                    url={shareUrl}
+                    subject='My Deskovery Gifs'
+                    body='body'
+                  >
+                    <EmailIcon size={32} round />
+                  </EmailShareButton>
+                </div>
+              )}
             </div>
           ) : null}
         </div>
