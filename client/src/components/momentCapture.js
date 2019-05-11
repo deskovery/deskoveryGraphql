@@ -159,20 +159,20 @@ export class Capture extends Component {
               {shareUrl && (
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <FacebookShareButton url={shareUrl} quote='Facebook'>
-                    <FacebookIcon size={32} round />
+                    <FacebookIcon size={32} />
                   </FacebookShareButton>
                   <TwitterShareButton url={shareUrl} title='Twitter'>
-                    <TwitterIcon size={32} round />
+                    <TwitterIcon size={32} />
                   </TwitterShareButton>
                   <LinkedinShareButton url={shareUrl} title='Linkedin'>
-                    <LinkedinIcon size={32} round />
+                    <LinkedinIcon size={32} />
                   </LinkedinShareButton>
                   <EmailShareButton
                     url={shareUrl}
                     subject='My Deskovery Gifs'
                     body='body'
                   >
-                    <EmailIcon size={32} round />
+                    <EmailIcon size={32} />
                   </EmailShareButton>
                 </div>
               )}
