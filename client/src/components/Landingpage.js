@@ -18,7 +18,7 @@ class Landingpage extends React.Component {
               className='landing-gif'
               src='https://cdn.dribbble.com/users/2033130/screenshots/5418198/fox_jungle_dribbble.gif'
             />
-            <button className='button'>Your journey starts here</button>
+            <button className='button landing'>Your journey starts here</button>
           </Link>
         </div>
       </div>
