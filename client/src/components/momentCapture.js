@@ -161,7 +161,7 @@ export class Capture extends Component {
                   </LinkedinShareButton>
                   <EmailShareButton
                     url={shareUrl}
-                    subject='My Deskovery Gifs'
+                    subject='My Deskovery Gif'
                     body='body'
                   >
                     <EmailIcon size={32} />
