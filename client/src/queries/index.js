@@ -19,7 +19,7 @@ export const GET_VIDEO = gql`
       _id
       gifs
       likes
-      username
+      name
     }
   }
 `;
