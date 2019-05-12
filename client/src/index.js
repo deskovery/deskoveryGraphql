@@ -22,6 +22,7 @@ import userHome from './components/user-home';
 import Quiz from './components/Quiz/quizMain';
 import Favorites from './components/Favorites/favorites';
 import Landingpage from './components/Landingpage'
+import FactCarousel from './components/FactCarousel'
 
 // Importing Apollo
 import ApolloClient from 'apollo-boost';
@@ -58,6 +59,7 @@ const Root = ({ refetch, session }) => (
         <Route path="/search" component={Search} />
         <Route path="/capture" component={Capture} />
         <Route path="/video" component={userHome} />
+        <Route path="/facts" component={FactCarousel} />
         <Route path="/signin" render={() => <Signin refetch={refetch} />} />
         <Route path="/signup" render={() => <Signup refetch={refetch} />} />
         <Route

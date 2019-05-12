@@ -33,7 +33,9 @@ class ControlledPopup extends React.Component {
 
   render() {
     return (
+      
       <div className="modal">
+      
         <button className="popupButton" onClick={this.openModal}>
           Capture moment
         </button>

@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 // import { connect } from 'react-redux';
-import YouTubePlayer from 'react-player/lib/players/YouTube';
-import { Capture } from './momentCapture';
-import ControlledPopup from './popup';
-
+import YouTubePlayer from "react-player/lib/players/YouTube";
+import { Capture } from "./momentCapture";
+import ControlledPopup from "./popup";
+import FactCarousel from "./FactCarousel";
 
 class UserHome extends Component {
   constructor(props) {
@@ -15,10 +16,9 @@ class UserHome extends Component {
       loading: false,
       takeoff: true,
       welcome: true,
-
-
+      openFacts: false
     };
-    this.addToFavs= this.addToFavs.bind(this)
+    this.addToFavs = this.addToFavs.bind(this);
   }
 
   ref = youtube => {
@@ -26,18 +26,21 @@ class UserHome extends Component {
   };
 
   addToFavs() {
-    console.log(this.state.videoSrc, "FAVS" )
-    let itemsArray = localStorage.getItem('items')
-            ? JSON.parse(localStorage.getItem('items'))
-            : []
+    console.log(this.state.videoSrc, "FAVS");
+    let itemsArray = localStorage.getItem("items")
+      ? JSON.parse(localStorage.getItem("items"))
+      : [];
 
-          itemsArray.push(this.state.videoSrc)
-          localStorage.setItem('items', JSON.stringify(itemsArray))
-        console.log(localStorage, "localStorage")
+    itemsArray.push(this.state.videoSrc);
+    localStorage.setItem("items", JSON.stringify(itemsArray));
+    console.log(localStorage, "localStorage");
+  }
 
-      }
-
-
+  openFacts = () => {
+    this.setState({
+      openFacts: !this.state.openFacts
+    });
+  };
 
   render() {
     setTimeout(() => {
@@ -81,7 +84,13 @@ class UserHome extends Component {
               <Capture videoSrc={this.state.videoSrc} />
             ) : null}
             <ControlledPopup videoSrc={this.props.location.state.video} />
-   <button className="Favorites" onClick={this.addToFavs}>Add To Favorites</button>
+            <button className="Favorites" onClick={this.addToFavs}>
+              Add To Favorites
+            </button>
+            <button className="popupButton" onClick={this.openFacts}>
+              Facts
+            </button>
+            {this.state.openFacts ? <FactCarousel /> : null}
           </div>
         );
       }
