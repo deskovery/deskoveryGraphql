@@ -23,7 +23,15 @@ const UserSchema = new Schema({
     default: Date.now
   },
   favorites: {
-    type: [Schema.Types.ObjectId],
+    type: [
+      {
+        _id: Schema.Types.ObjectId,
+        name: String,
+        gifs: [String],
+        likes: Number,
+        videoId: String
+      }
+    ],
     ref: 'Video'
   }
 });

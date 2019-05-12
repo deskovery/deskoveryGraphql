@@ -54,7 +54,10 @@ exports.resolvers = {
       return user;
     },
     getUserVideos: async (root, { username }, { User }) => {
-      const {favorites} = await User.findOne({ username }, {favorites: true});
+      const { favorites } = await User.findOne(
+        { username },
+        { favorites: true }
+      );
       return favorites;
     }
   },
@@ -68,18 +71,16 @@ exports.resolvers = {
       return newVideo;
     },
     likeVideo: async (root, { _id, username }, { Video, User }) => {
-      console.log('id:', _id, 'username:', username);
       try {
+        const video = await Video.findOne({ videoId: _id });
         const user = await User.findOneAndUpdate(
           { username },
-          { $addToSet: { favorites: _id } }
+          { $push: { favorites: video } }
         );
-        console.log(user, 'is user !!!!!!!!!!!');
-        return video;
       } catch (err) {
-        console.log('~~~~~~~~~~~~~~~ERROR ERROR');
-        console.error(err);
+        console.error(err)
       }
+      return video;
     },
     unlikeVideo: async (root, { _id, username }, { Video, User }) => {
       const video = await Video.findOneAndUpdate(
