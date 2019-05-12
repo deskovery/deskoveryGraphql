@@ -25,6 +25,15 @@ type Next {
   gifs: [String]
 }
 
+type Quiz {
+  _id: ID
+  name: String! @unique
+  username: String
+  likes: Int
+  gifs: [String]
+  next: [Next]
+
+}
 
 
 type Query {

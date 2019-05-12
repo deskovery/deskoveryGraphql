@@ -38,6 +38,7 @@ require('dotenv').config({ path: 'variables.env' });
 
 const Video = require('./models/Video');
 const User = require('./models/User');
+const Quiz = require('./models/Quiz');
 const Next = require('./models/Next');
 
 // GraphQL-Express middleware
@@ -66,6 +67,7 @@ app.use(
     context: {
       Video,
       User,
+      Quiz,
       Next,
       currentUser,
     },

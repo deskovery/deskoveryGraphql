@@ -22,9 +22,9 @@ class UserVideos extends React.Component {
     return (
       <Query query={GET_USER_VIDEOS} variables={{ username }}>
         {({ data, loading, error }) => {
+          console.log('FAVORITES',data,  error)
           if (loading) return <Spinner />;
           if (error) return <div>Error</div>;
-
           return (
             <ul>
               <h3>Your Videos</h3>

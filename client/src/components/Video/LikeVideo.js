@@ -16,7 +16,7 @@ class LikeVideo extends Component {
 
 
     this.handleLike(likeVideo, unlikeVideo);
-    this.setState({ liked: !this.state.liked });this.setState({ liked: !this.state.liked });
+    this.setState({ liked: !this.state.liked }); this.setState({ liked: !this.state.liked });
 
     console.log(this.state.liked, ' is state');
   };
@@ -31,10 +31,14 @@ class LikeVideo extends Component {
       });
     } else {
       // unlike Video mutation
-      likeVideo().then(async ({ data }) => {
-        console.log('**** like video is being called');
-        await this.props.refetch();
-      });
+      likeVideo()
+        .then(async ({ data }) => {
+          console.log('**** like video is being called');
+          await this.props.refetch();
+        })
+        .catch(err => {
+          console.log('err', err)
+        })
     }
   };
 
@@ -87,6 +91,7 @@ class LikeVideo extends Component {
   render() {
     const { liked, username } = this.state;
     const { _id } = this.props;
+    // console.log(_id, this.props)
     return (
       <Mutation
         mutation={UNLIKE_VIDEO}

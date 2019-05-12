@@ -7,7 +7,7 @@ import Spinner from '../Spinner';
 
 const VideoPage = ({ match }) => {
   const { _id } = match.params;
-
+  console.log('~~~~~', _id, match)
   return (
     <Query query={GET_VIDEO} variables={{ _id }}>
       {({ data, loading, error }) => {

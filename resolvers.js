@@ -53,6 +53,25 @@ exports.resolvers = {
 
       return user;
     },
+    // More Videos
+    // searchVideos: async (root, { searchTerm }, { Video }) => {
+    //   if (searchTerm) {
+    //     const searchResults = await Video.find(
+    //       {
+    //         $text: { $search: searchTerm }
+    //       },
+    //       {
+    //         score: { $meta: 'textScore' }
+    //       }
+    //     ).sort({
+    //       score: { $meta: 'textScore' }
+    //     });
+    //     return searchResults;
+    //   } else {
+    //     const videos = await Video.find();
+    //     return videos;
+    //   }
+    // },
     getUserVideos: async (root, { username }, { User }) => {
       const { favorites } = await User.findOne(
         { username },
@@ -78,7 +97,7 @@ exports.resolvers = {
           { $push: { favorites: video } }
         );
       } catch (err) {
-        console.error(err)
+        debugger
       }
       return video;
     },
