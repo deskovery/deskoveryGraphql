@@ -80,6 +80,9 @@ class UserHome extends Component {
               height="800px"
               controls
             />
+            {this.state.openFacts ? (
+              <FactCarousel destination={this.props.location.state.video} />
+            ) : null}
             {this.state.videoSrc ? (
               <Capture videoSrc={this.state.videoSrc} />
             ) : null}
@@ -90,7 +93,6 @@ class UserHome extends Component {
             <button className="popupButton" onClick={this.openFacts}>
               Facts
             </button>
-            {this.state.openFacts ? <FactCarousel /> : null}
           </div>
         );
       }

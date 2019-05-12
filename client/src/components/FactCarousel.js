@@ -8,8 +8,15 @@ import Slide from "react-reveal/Slide";
 // but you can use any other styling options ( like plain old css )
 import styled, { css } from "styled-components";
 
-const width = "300px",
-  height = "150px";
+//pass down which cam on props... make facts into an object, find by key, each key will have a facts array on it.
+let factsObj = {
+  deWeERCVc2o: ["yay eagles", "I heart eagles", "baby Grace is growing up!"],
+  uj3FqkflC7g: ["outer space cam!", "I love NASA", "I want to be an astronaut"],
+  CEzSXX3tcmU: ["scuba cam", "under the sea"]
+};
+
+const width = "400px",
+  height = "80px";
 
 const Container = styled.div`
   border: 1px solid white;
@@ -24,9 +31,8 @@ const Children = styled.div`
   position: relative;
   height: ${height};
 `;
-
+//   text-shadow: 1px 1px 1px #fff;
 const Arrow = styled.div`
-  text-shadow: 1px 1px 1px #fff;
   z-index: 100;
   line-height: ${height};
   text-align: center;
@@ -88,57 +94,42 @@ const CarouselUI = ({ position, total, handleClick, children }) => (
 
 const Carousel = makeCarousel(CarouselUI);
 
-const FactCarousel = props => {
-  console.log(props.defaultWait, "what is default wait time");
-  return (
-    <Carousel>
-      <Slide right>
-        <div>
-          <h1>Fact 1</h1>
-          {/* <p>Slide Description</p> */}
-        </div>
-      </Slide>
-      <Slide right>
-        <div>
-          <h1>Fact 2</h1>
-          {/* <p>Slide Description</p> */}
-        </div>
-      </Slide>
-      <Slide right>
-        <div>
-          <h1>Fact 3</h1>
-          {/* <p>Slide Description</p> */}
-        </div>
-      </Slide>
-    </Carousel>
-  );
-};
+class FactCarousel extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      facts: []
+    };
+  }
 
-// const Container = styled.div`
-//   border: 1px solid red;
-//   position: relative;
-//   overflow: hidden;
-//   width: 300px;
-//   height: 150px;
-// `;
-// const CarouselUI = ({ children }) => <Container>{children}</Container>;
-// const Carousel = makeCarousel(CarouselUI);
+  componentDidMount() {
+    console.log(factsObj, "FACTS OBJ");
+    for (let key in factsObj) {
+      if (key === this.props.destination) {
+        let theseFacts = factsObj[key];
+        this.setState({
+          facts: theseFacts
+        });
+      }
+    }
+    console.log(this.state.facts, "FACTS ON STATE");
+  }
 
-// render(
-//   <Carousel defaultWait={1000} /*wait for 1000 milliseconds*/>
-//     <Slide right>
-//       <div>
-//         <h1>Slide 1</h1>
-//         <p>Slide Description</p>
-//       </div>
-//     </Slide>
-//     <Slide right>
-//       <div>
-//         <h1>Slide 2</h1>
-//         <p>Slide Description</p>
-//       </div>
-//     </Slide>
-//   </Carousel>
-// );
+  render() {
+    return (
+      <div className="carousel">
+        <Carousel>
+          {this.state.facts.map(fact => (
+            <Slide right>
+              <div className="facts">
+                <p>{fact}</p>
+              </div>
+            </Slide>
+          ))}
+        </Carousel>
+      </div>
+    );
+  }
+}
 
 export default FactCarousel;
