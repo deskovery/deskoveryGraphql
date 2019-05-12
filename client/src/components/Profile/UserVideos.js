@@ -2,17 +2,18 @@ import React from 'react';
 import { Query, Mutation } from 'react-apollo';
 import {
   GET_USER_VIDEOS,
-  GET_ALL_QUIZZES,
+  GET_ALL_VIDEOS,
+  DELETE_USER_VIDEO,
   GET_CURRENT_USER
 } from '../../queries';
 import { Link } from 'react-router-dom';
 import Spinner from '../Spinner';
 
 class UserVideos extends React.Component {
-  handleDelete = deleteUserQuiz => {
+  handleDelete = deleteUserVideo => {
     const confirmDelete = window.confirm('Are you sure?');
     if (confirmDelete) {
-      deleteUserQuiz().then(({ data }) => {});
+      deleteUserVideo().then(({ data }) => {});
     }
   };
 
@@ -34,40 +35,40 @@ class UserVideos extends React.Component {
               )}
               {data.getUserVideos.map(video => (
                 <li key={video._id}>
-                  <Link to={`/quizzes/${video._id}`}>
+                  <Link to={`/videos/${video._id}`}>
                     <p>{video.name}</p>
                   </Link>
                   <p style={{ marginBottom: '0' }}>Likes: {video.likes}</p>
                   <Mutation
-                    mutation={DELETE_USER_QUIZ}
-                    variables={{ _id: quiz._id }}
+                    mutation={DELETE_USER_VIDEO}
+                    variables={{ _id: video._id }}
                     refetchQueries={() => [
-                      { query: GET_ALL_QUIZZES },
+                      { query: GET_ALL_VIDEOS },
                       { query: GET_CURRENT_USER }
                     ]}
-                    update={(cache, { data: { deleteUserQuiz } }) => {
-                      const { getUserQuizzes } = cache.readQuery({
-                        query: GET_USER_QUIZZES,
+                    update={(cache, { data: { deleteUserVideo } }) => {
+                      const { getUserVideos } = cache.readQuery({
+                        query: GET_USER_VIDEOS,
                         variables: { username }
                       });
 
                       cache.writeQuery({
-                        query: GET_USER_QUIZZES,
+                        query: GET_USER_VIDEOS,
                         variables: { username },
                         data: {
-                          getUserQuizzes: getUserQuizzes.filter(
-                            quiz => quiz._id !== deleteUserQuiz._id
+                          getUserVideos: getUserVideos.filter(
+                            video => video._id !== deleteUserVideo._id
                           )
                         }
                       });
                     }}
                   >
-                    {(deleteUserQuiz, attrs = {}) => (
+                    {(deleteUserVideo, attrs = {}) => (
                       <div>
                         <button className='button-primary'>Update</button>
                         <p
                           className='delete-button'
-                          onClick={() => this.handleDelete(deleteUserQuiz)}
+                          onClick={() => this.handleDelete(deleteUserVideo)}
                         >
                           {attrs.loading ? 'deleting...' : 'X'}
                         </p>

@@ -30,46 +30,7 @@ export const SEARCH_VIDEOS = gql`
       _id
       name
       likes
-    }
-  }
-`;
-
-/* Quiz queries */
-export const GET_ALL_QUIZZES = gql`
-  query {
-    getAllQuizzes {
-      _id
-      name
-      gifs
-      next
-      username
-      likes
-    }
-  }
-`;
-
-export const GET_QUIZ = gql`
-  query($_id: ID!) {
-    getQuiz(_id: $_id) {
-      _id
-      name
-      gifs
-      username
-      next
-      likes
-    }
-  }
-`;
-
-export const SEARCH_QUIZZES = gql`
-  query($searchTerm: String) {
-    searchQuizzes(searchTerm: $searchTerm) {
-      _id
-      name
-      gifs
-      username
-      next
-      likes
+      videoId
     }
   }
 `;
@@ -77,28 +38,12 @@ export const SEARCH_QUIZZES = gql`
 /* Video Mutations */
 
 export const ADD_VIDEO = gql`
-  mutation(
-    $name: String!
-    $imageUrl: String!
-    $description: String!
-    $path: String!
-    $instructions: String!
-    $username: String
-  ) {
-    addVideo(
-      name: $name
-      imageUrl: $imageUrl
-      description: $description
-      path: $path
-      instructions: $instructions
-      username: $username
-    ) {
+  mutation($name: String!, $gifs: String, $videoId: String) {
+    addVideo(name: $name, gifs: $gifs, videoId: $videoId) {
       _id
       name
-      path
-      description
-      instructions
-      createdDate
+      gifs
+      videoId
       likes
       username
     }
@@ -123,29 +68,15 @@ export const UNLIKE_VIDEO = gql`
   }
 `;
 
-export const DELETE_USER_QUIZ = gql`
+export const DELETE_USER_VIDEO = gql`
   mutation($_id: ID) {
-    deleteUserQuiz(_id: $_id) {
+    deleteUserVideo(_id: $_id) {
       _id
     }
   }
 `;
 
 export const ADD_VIDEO_GIF = gql`
-  mutation($name: String!, $gifs: [String!]) {
-    addQuiz(name: $name, gifs: $gifs) {
-      _id
-      name
-      gifs
-      username
-      likes
-    }
-  }
-`;
-
-/* Quiz Mutations */
-
-export const ADD_QUIZ = gql`
   mutation($name: String!, $gifs: [String!]) {
     addQuiz(name: $name, gifs: $gifs) {
       _id
@@ -167,6 +98,8 @@ export const GET_CURRENT_USER = gql`
       favorites {
         _id
         name
+        videoId
+        gifs
       }
     }
   }

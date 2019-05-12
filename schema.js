@@ -25,15 +25,6 @@ type Next {
   gifs: [String]
 }
 
-type Quiz {
-  _id: ID
-  name: String! @unique
-  username: String
-  likes: Int
-  gifs: [String]
-  next: [Next]
-
-}
 
 
 type Query {
@@ -41,9 +32,6 @@ type Query {
   getVideo(_id: ID): Video
   searchVideos(searchTerm: String):[Video]
 
-  getAllQuizzes: [Quiz]
-  getQuiz: Quiz
-  searchQuizzes(searchTerm: String): [Quiz]
 
   getQuizNext(name: String!): [Next]
 
@@ -57,13 +45,10 @@ type Token {
 
 type Mutation {
   addVideo(name: String!, gifs: [String], videoId: String!): Video
-
-  deleteUserQuiz(_id: ID!): Quiz
-
-
-  addQuiz(name: String!, gifs: String!): Quiz
-
   addVideoGif(name: String!, gifs: String!): Video
+
+  deleteUserVideo(_id: ID!): Video
+
 
   likeVideo(_id: ID!, username: String!): Video
   unlikeVideo(_id: ID!, username: String!): Video

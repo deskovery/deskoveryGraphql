@@ -21,17 +21,17 @@ const NavbarAuth = ({ session }) => (
         </NavLink>
       </li>
       <li>
+        <NavLink to='/search'>Search</NavLink>
+      </li>
+      <li>
         <NavLink to='/favorites'>Favorites</NavLink>
       </li>
-      {/* <li>
+      <li>
         <NavLink to='/user'>User-Home</NavLink>
-      </li> */}
-      {/* <li>
-        <NavLink to='/capture'>Capture</NavLink>
-      </li> */}
-      {/* <li>
-        <NavLink to='/video/add'>Add Video</NavLink>
-      </li> */}
+      </li>
+      <li>
+        <NavLink to='/quiz'>Back to Quiz</NavLink>
+      </li>
       <li>
         <NavLink to='/profile'>Profile</NavLink>
       </li>
@@ -56,12 +56,10 @@ const NavbarUnAuth = () => (
     <li>
       <NavLink to='/user'>User-Home</NavLink>
     </li>
-    {/* <li>
-      <NavLink to='/capture'>Capture</NavLink>
-    </li> */}
-    {/* <li>
+
+    <li>
       <NavLink to='/search'>Search</NavLink>
-    </li> */}
+    </li>
     <li>
       <NavLink to='/signin'>Signin</NavLink>
     </li>

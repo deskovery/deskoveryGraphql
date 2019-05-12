@@ -9,9 +9,7 @@ const createToken = (user, secret, expiresIn) => {
 exports.resolvers = {
   Query: {
     getAllVideos: async (root, args, { Video }) => {
-      const allVideos = await Video.find().sort({
-        createdDate: 'desc'
-      });
+      const allVideos = await Video.find();
 
       return allVideos;
     },
@@ -50,42 +48,14 @@ exports.resolvers = {
         username: currentUser.username
       }).populate({
         path: 'favorites',
-        model: 'Quiz'
+        model: 'Video'
       });
 
       return user;
     },
-    // Get Quizzes
-    getAllQuizzes: async (root, args, { Quiz }) => {
-      const allQuizzes = await Quiz.find();
-
-      return allQuizzes;
-    },
-    getQuiz: async (root, { _id }, { Quiz }) => {
-      const quiz = await Quiz.findOne({ _id });
-      return quiz;
-    },
-    searchQuizzes: async (root, { searchTerm }, { Quiz }) => {
-      if (searchTerm) {
-        const searchResults = await Quiz.find(
-          {
-            $text: { $search: searchTerm }
-          },
-          {
-            score: { $meta: 'textScore' }
-          }
-        ).sort({
-          score: { $meta: 'textScore' }
-        });
-        return searchResults;
-      } else {
-        const quizzes = await Quiz.find();
-        return quizzes;
-      }
-    },
-    getUserVideos: async (root, { username }, { Video }) => {
-      const userVideos = await Video.find({ username });
-      return userVideos;
+    getUserVideos: async (root, { username }, { User }) => {
+      const {favorites} = await User.findOne({ username }, {favorites: true});
+      return favorites;
     }
   },
   Mutation: {
@@ -98,12 +68,18 @@ exports.resolvers = {
       return newVideo;
     },
     likeVideo: async (root, { _id, username }, { Video, User }) => {
-      const video = await Video.findOneAndUpdate({ _id });
-      const user = await User.findOneAndUpdate(
-        { username },
-        { $addToSet: { favorites: _id } }
-      );
-      return video;
+      console.log('id:', _id, 'username:', username);
+      try {
+        const user = await User.findOneAndUpdate(
+          { username },
+          { $addToSet: { favorites: _id } }
+        );
+        console.log(user, 'is user !!!!!!!!!!!');
+        return video;
+      } catch (err) {
+        console.log('~~~~~~~~~~~~~~~ERROR ERROR');
+        console.error(err);
+      }
     },
     unlikeVideo: async (root, { _id, username }, { Video, User }) => {
       const video = await Video.findOneAndUpdate(
@@ -116,24 +92,9 @@ exports.resolvers = {
       );
       return video;
     },
-    deleteUserQuiz: async (root, { _id }, { Quiz }) => {
-      const quiz = await Quiz.findOneAndRemove({ _id });
-      return quiz;
-    },
-    addQuiz: async (root, { name, gifs }, { Quiz }) => {
-      const existingQuiz = await Quiz.findOne()
-        .where('name')
-        .equals(name);
-      if (existingQuiz) {
-        existingQuiz.gifs.push(gifs);
-        return existingQuiz;
-      } else {
-        const newQuiz = await new Quiz({
-          name,
-          gifs
-        }).save();
-        return newQuiz;
-      }
+    deleteUserVideo: async (root, { _id }, { Video }) => {
+      const video = await Video.findOneAndRemove({ _id });
+      return video;
     },
     addVideoGif: async (root, { name, gifs }, { Video }) => {
       const existingVideo = await Video.findOne()
@@ -159,7 +120,7 @@ exports.resolvers = {
       if (!isValidPassword) {
         throw new Error('Invalid password');
       } else {
-        return { token: createToken(user, process.env.SECRET, '1hr') };
+        return { token: createToken(user, process.env.SECRET, '24hr') };
       }
     },
 
@@ -174,7 +135,7 @@ exports.resolvers = {
         password
       }).save();
 
-      return { token: createToken(newUser, process.env.SECRET, '1hr') };
+      return { token: createToken(newUser, process.env.SECRET, '24hr') };
     }
   }
 };

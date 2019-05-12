@@ -15,43 +15,38 @@ const VideoPage = ({ match }) => {
         if (error) return <div>Error</div>;
 
         return (
-          <div className="App">
+          <div className='App'>
             <div
-              style={{
-                background: `url(${
-                  data.getVideo.imageUrl
-                }) center center / cover no-repeat`,
-              }}
-              className="video-image"
+              // style={{
+              //   background: `url(${
+              //     data.getVideo.name
+              //   }) center center / cover no-repeat`,
+              // }}
+              className='video-image'
             />
-            <div className="video">
-              <div className="video-header">
-                <h2 className="video-name">
+            <div className='video'>
+              <div className='video-header'>
+                <h2 className='video-name'>
                   <strong>{data.getVideo.name}</strong>
                 </h2>
                 <h5>
-                  <strong>{data.getVideo.path}</strong>
+                  <strong>{data.getVideo.gifs}</strong>
                 </h5>
                 <p>
                   Created by <strong>{data.getVideo.username}</strong>
                 </p>
                 <p>
-                  {data.getVideo.likes}{' '}
-                  <span role="img" aria-label="heart">
+                  {data.getVideo.likes}
+                  <span role='img' aria-label='heart'>
                     ❤️
                   </span>
                 </p>
               </div>
-              <blockquote className="video-description">
+              <blockquote className='video-description'>
                 {data.getVideo.description}
               </blockquote>
-              <h3 className="video-instructions__title">Instructions</h3>
-              <div
-                className="video-instructions"
-                dangerouslySetInnerHTML={{
-                  __html: data.getVideo.instructions,
-                }}
-              />
+              <h3 className='video-instructions__title'>Instructions</h3>
+              <div className='video-instructions' />
               <LikeVideo _id={_id} />
             </div>
           </div>

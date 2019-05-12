@@ -9,6 +9,7 @@ const formatDate = date => {
 
 const UserInfo = ({ session }) => (
   <div className='App'>
+  {console.log(session, ' is session')}
     <br />
     <br />
     <h3>Your Info</h3>
@@ -29,7 +30,6 @@ const UserInfo = ({ session }) => (
           <strong>You currently have no favorites. Go add some!</strong>
         </p>
       )}
-      <h3>Your Gifs</h3>
     </ul>
   </div>
 );
