@@ -19,7 +19,6 @@ import VideoPage from './components/Video/VideoPage';
 import { Capture } from './components/momentCapture';
 import userHome from './components/user-home';
 import Quiz from './components/Quiz/quizMain';
-import Favorites from './components/Favorites/favorites';
 import Landingpage from './components/Landingpage';
 
 // Importing Apollo
@@ -53,7 +52,7 @@ const Root = ({ refetch, session }) => (
       <Switch>
         <Route exact path='/' component={Landingpage} />
         <Route path='/quiz' component={Quiz} />
-        <Route path='/favorites' component={Favorites} />
+        <Route path='/app' component={App} />
         <Route path='/search' component={Search} />
         <Route path='/capture' component={Capture} />
         <Route path='/video' component={userHome} />

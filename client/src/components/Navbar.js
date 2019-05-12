@@ -24,7 +24,7 @@ const NavbarAuth = ({ session }) => (
         <NavLink to='/search'>Search</NavLink>
       </li>
       <li>
-        <NavLink to='/favorites'>Favorites</NavLink>
+        <NavLink to='/app'>About</NavLink>
       </li>
       <li>
         <NavLink to='/user'>User-Home</NavLink>
@@ -51,12 +51,11 @@ const NavbarUnAuth = () => (
       </NavLink>
     </li>
     <li>
-      <NavLink to='/quiz'>Back to Quiz</NavLink>
+      <NavLink to='/app'>About</NavLink>
     </li>
     <li>
-      <NavLink to='/user'>User-Home</NavLink>
+      <NavLink to='/quiz'>Back to Quiz</NavLink>
     </li>
-
     <li>
       <NavLink to='/search'>Search</NavLink>
     </li>
