@@ -6,11 +6,7 @@ export const GET_ALL_VIDEOS = gql`
     getAllVideos {
       _id
       name
-      imageUrl
-      path
-      description
-      instructions
-      createdDate
+      gifs
       likes
       username
     }
@@ -21,14 +17,9 @@ export const GET_VIDEO = gql`
   query($_id: ID!) {
     getVideo(_id: $_id) {
       _id
-      name
-      imageUrl
-      path
-      description
-      instructions
-      createdDate
+      gifs
       likes
-      username
+      name
     }
   }
 `;
@@ -38,48 +29,8 @@ export const SEARCH_VIDEOS = gql`
     searchVideos(searchTerm: $searchTerm) {
       _id
       name
-      imageUrl
       likes
-    }
-  }
-`;
-
-/* Quiz queries */
-export const GET_ALL_QUIZZES = gql`
-  query {
-    getAllQuizzes {
-      _id
-      name
-      gifs
-      next
-      username
-      likes
-    }
-  }
-`;
-
-export const GET_QUIZ = gql`
-  query($_id: ID!) {
-    getQuiz(_id: $_id) {
-      _id
-      name
-      gifs
-      username
-      next
-      likes
-    }
-  }
-`;
-
-export const SEARCH_QUIZZES = gql`
-  query($searchTerm: String) {
-    searchQuizzes(searchTerm: $searchTerm) {
-      _id
-      name
-      gifs
-      username
-      next
-      likes
+      videoId
     }
   }
 `;
@@ -87,63 +38,45 @@ export const SEARCH_QUIZZES = gql`
 /* Video Mutations */
 
 export const ADD_VIDEO = gql`
-  mutation(
-    $name: String!
-    $imageUrl: String!
-    $description: String!
-    $path: String!
-    $instructions: String!
-    $username: String
-  ) {
-    addVideo(
-      name: $name
-      imageUrl: $imageUrl
-      description: $description
-      path: $path
-      instructions: $instructions
-      username: $username
-    ) {
+  mutation($name: String!, $gifs: String, $videoId: String) {
+    addVideo(name: $name, gifs: $gifs, videoId: $videoId) {
       _id
       name
-      path
-      description
-      instructions
-      createdDate
+      gifs
+      videoId
       likes
       username
     }
   }
 `;
 
-export const LIKE_QUIZ = gql`
+export const LIKE_VIDEO = gql`
   mutation($_id: ID!, $username: String!) {
-    likeQuiz(_id: $_id, username: $username) {
+    likeVideo(_id: $_id, username: $username) {
       _id
       likes
     }
   }
 `;
 
-export const UNLIKE_QUIZ = gql`
+export const UNLIKE_VIDEO = gql`
   mutation($_id: ID!, $username: String!) {
-    unlikeQuiz(_id: $_id, username: $username) {
+    unlikeVideo(_id: $_id, username: $username) {
       _id
       likes
     }
   }
 `;
 
-export const DELETE_USER_QUIZ = gql`
+export const DELETE_USER_VIDEO = gql`
   mutation($_id: ID) {
-    deleteUserQuiz(_id: $_id) {
+    deleteUserVideo(_id: $_id) {
       _id
     }
   }
 `;
 
-/* Quiz Mutations */
-
-export const ADD_QUIZ = gql`
+export const ADD_VIDEO_GIF = gql`
   mutation($name: String!, $gifs: [String!]) {
     addQuiz(name: $name, gifs: $gifs) {
       _id
@@ -151,7 +84,6 @@ export const ADD_QUIZ = gql`
       gifs
       username
       likes
-
     }
   }
 `;
@@ -166,14 +98,16 @@ export const GET_CURRENT_USER = gql`
       favorites {
         _id
         name
+        videoId
+        gifs
       }
     }
   }
 `;
 
-export const GET_USER_QUIZZES = gql`
+export const GET_USER_VIDEOS = gql`
   query($username: String!) {
-    getUserQuizzes(username: $username) {
+    getUserVideos(username: $username) {
       _id
       name
       likes

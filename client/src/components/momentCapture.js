@@ -48,14 +48,6 @@ export class Capture extends Component {
     console.log(data);
     const shareUrl = data.replace('./api/public', 'api');
     this.setState({ shareUrl: shareUrl, gif: shareUrl });
-
-    //Facebook share functionality work in progress.
-    // window.open(
-    //   `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-    //     `${this.state.shareUrl}`
-    //   )}`
-    // );
-    //Twitter share functionality work in progress.
   }
 
   makeGif() {
@@ -140,7 +132,7 @@ export class Capture extends Component {
             {this.state.gifLoading ? <SyncLoader /> : null}
             {this.state.gif ? (
               <div>
-                <img src={this.state.gif} className='img' alt={'Your gif!'} />
+                <img src={this.state.gif} className='img' alt='Your gif!'/>
               </div>
             ) : null}
             {this.state.image && (
@@ -169,7 +161,7 @@ export class Capture extends Component {
                   </LinkedinShareButton>
                   <EmailShareButton
                     url={shareUrl}
-                    subject='My Deskovery Gifs'
+                    subject='My Deskovery Gif'
                     body='body'
                   >
                     <EmailIcon size={32} />

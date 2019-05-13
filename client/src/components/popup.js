@@ -9,12 +9,11 @@ class ControlledPopup extends React.Component {
     this.state = { open: false, loading: null, videoSrc: null };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-
   }
   async componentDidMount() {
     this.setState({ loading: true });
     const { data } = await axios.post('/api/videos', {
-      videoSrc: this.props.videoSrc,
+      videoSrc: this.props.videoSrc
     });
     const path = data.path.replace('./api/public', '');
     this.setState({ videoSrc: `api${path}`, loading: false });
@@ -29,29 +28,27 @@ class ControlledPopup extends React.Component {
     this.setState({ open: false });
   }
 
-
-
   render() {
     return (
-      <div className="modal">
-        <button className="popupButton" onClick={this.openModal}>
-          Capture moment
+      <div className='modal'>
+        <button className='popupButton' onClick={this.openModal}>
+          Capture the moment
         </button>
         <Popup
           open={this.state.open}
           closeOnDocumentClick
           onClose={this.closeModal}
         >
-          <div className="modal">
-            <a className="close" onClick={this.closeModal}>
+          <div className='modal'>
+            <a className='close' onClick={this.closeModal}>
               &times;
             </a>
 
             {this.state.loading ? (
               <img
-                className="loading"
-                src="https://cdn.dribbble.com/users/206755/screenshots/4927172/error_404_animation_800x600.gif"
-                alt="Looking for your moment."
+                className='loading'
+                src='https://cdn.dribbble.com/users/206755/screenshots/4927172/error_404_animation_800x600.gif'
+                alt='Looking for your moment.'
               />
             ) : (
               <Capture videoSrc={this.state.videoSrc} />

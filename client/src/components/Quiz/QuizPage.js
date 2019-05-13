@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import { GET_QUIZ } from '../../queries';
-import LikeQuiz from './LikeQuiz';
+// import LikeQuiz from './LikeQuiz';
 import Spinner from '../Spinner';
 
 const QuizPage = ({ match }) => {
@@ -61,4 +61,4 @@ const QuizPage = ({ match }) => {
   );
 };
 
-export default withRouter(QuizPage);
+// export default withRouter(QuizPage);

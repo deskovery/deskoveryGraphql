@@ -49,6 +49,7 @@
     "node-fetch": "^2.5.0",
     "react": "^16.8.6",
     "react-apollo": "^2.5.5",
+    "react-balloon": "^0.2.5",
     "react-ckeditor-component": "^1.1.0",
     "react-custom-share": "^0.4.8",
     "react-dom": "^16.8.6",

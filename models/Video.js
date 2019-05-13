@@ -7,31 +7,18 @@ const VideoSchema = new Schema({
     type: String,
     required: true
   },
-  imageUrl: {
-    type: String,
+  gifs: {
+    type: [String],
     required: true
-  },
-  path: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  instructions: {
-    type: String,
-    required: true
-  },
-  createdDate: {
-    type: Date,
-    default: Date.now
   },
   likes: {
     type: Number,
     default: 0
   },
   username: {
+    type: String
+  },
+  videoId: {
     type: String
   }
 });
@@ -41,3 +28,4 @@ VideoSchema.index({
 });
 
 module.exports = mongoose.model('Video', VideoSchema);
+
