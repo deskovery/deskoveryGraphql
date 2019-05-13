@@ -7,9 +7,16 @@ import {
   GET_CURRENT_USER
 } from '../../queries';
 import { Link } from 'react-router-dom';
+import { Redirect, History } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import Spinner from '../Spinner';
 
 class UserVideos extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
   handleDelete = deleteUserVideo => {
     const confirmDelete = window.confirm('Are you sure?');
     if (confirmDelete) {
@@ -17,12 +24,23 @@ class UserVideos extends React.Component {
     }
   };
 
+  handleClick = id => {
+    console.log(id, 'is id of UserVideo');
+    this.props.history.push({
+      pathname: '/video',
+      state: {
+        video: id
+      }
+    });
+  };
+
   render() {
     const { username } = this.props;
+    console.log(this.props, ' is props inside the render');
     return (
       <Query query={GET_USER_VIDEOS} variables={{ username }}>
         {({ data, loading, error }) => {
-          console.log('FAVORITES',data,  error)
+          console.log('FAVORITES', data, error);
           if (loading) return <Spinner />;
           if (error) return <div>Error</div>;
           return (
@@ -30,14 +48,16 @@ class UserVideos extends React.Component {
               <h3>Your Videos</h3>
               {!data.getUserVideos.length && (
                 <strong>
-                  <p>You have not favorited any videos, yet.  Go favorite some!</p>
+                  <p>
+                    You have not favorited any videos, yet. Go favorite some!
+                  </p>
                 </strong>
               )}
               {data.getUserVideos.map(video => (
                 <li key={video._id}>
-                  <Link to={`/videos/${video._id}`}>
-                    <p>{video.name}</p>
-                  </Link>
+                  <p onClick={e => this.handleClick(video.videoId)}>
+                    {video.name}
+                  </p>
                   <p style={{ marginBottom: '0' }}>Likes: {video.likes}</p>
                   <Mutation
                     mutation={DELETE_USER_VIDEO}
@@ -85,4 +105,4 @@ class UserVideos extends React.Component {
   }
 }
 
-export default UserVideos;
+export default withRouter(UserVideos);

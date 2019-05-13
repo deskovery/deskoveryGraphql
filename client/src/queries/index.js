@@ -111,6 +111,7 @@ export const GET_USER_VIDEOS = gql`
       _id
       name
       likes
+      videoId
       username
       gifs
     }
