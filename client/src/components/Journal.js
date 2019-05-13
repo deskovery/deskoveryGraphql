@@ -20,12 +20,12 @@ class Journal extends Component {
     // Code goes here...
   }
   onChange(notes) {
-    console.log(notes, "what are notes");
+    console.log(notes[0].text, "what are notes");
     this.setState({
       notes
     });
   }
-// colors={[D3D3D3]
+  // colors={[D3D3D3]
   render() {
     return <ReactStickies notes={this.state.notes} onChange={this.onChange} />;
   }
