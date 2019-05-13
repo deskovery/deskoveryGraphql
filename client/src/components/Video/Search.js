@@ -1,16 +1,16 @@
 import React from 'react';
 import { ApolloConsumer } from 'react-apollo';
 
-import { SEARCH_VIDEOS, SEARCH_QUIZZES } from '../../queries';
+import { SEARCH_VIDEOS} from '../../queries';
 import SearchItem from './SearchItem';
 
 class Search extends React.Component {
   state = {
     searchResults: []
   };
-  handleChange = ({ searchQuizzes }) => {
+  handleChange = ({ searchVideos }) => {
     this.setState({
-      searchResults: searchQuizzes
+      searchResults: searchVideos
     });
   };
   render() {
@@ -22,19 +22,19 @@ class Search extends React.Component {
             <input
               type='search'
               className='search'
-              placeholder='Search for Quizzes'
+              placeholder='Search for Live Streams'
               onChange={async event => {
                 event.persist();
                 const { data } = await client.query({
-                  query: SEARCH_QUIZZES,
+                  query: SEARCH_VIDEOS,
                   variables: { searchTerm: event.target.value }
                 });
                 this.handleChange(data);
               }}
             />
             <ul>
-              {searchResults.map(quiz => (
-                <SearchItem key={quiz._id} {...quiz} />
+              {searchResults.map(video => (
+                <SearchItem key={video._id} {...video} />
               ))}
             </ul>
           </div>

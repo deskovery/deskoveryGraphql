@@ -4,6 +4,16 @@ import captureVideoFrame from 'capture-video-frame';
 import gifshot from 'gifshot';
 import { SyncLoader } from 'react-spinners';
 import axios from 'axios';
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  EmailShareButton,
+  EmailIcon
+} from 'react-share';
 
 export class Capture extends Component {
   constructor(props) {
@@ -38,14 +48,6 @@ export class Capture extends Component {
     console.log(data);
     const shareUrl = data.replace('./api/public', 'api');
     this.setState({ shareUrl: shareUrl, gif: shareUrl });
-
-    //Facebook share functionality work in progress.
-    window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        `${this.state.shareUrl}`
-      )}`
-    );
-    //Twitter share functionality work in progress.
   }
 
   makeGif() {
@@ -85,6 +87,7 @@ export class Capture extends Component {
   }
 
   render() {
+    const { shareUrl } = this.state;
     return (
       <div className='moments'>
         <div className='momentsInner'>
@@ -129,7 +132,7 @@ export class Capture extends Component {
             {this.state.gifLoading ? <SyncLoader /> : null}
             {this.state.gif ? (
               <div>
-                <img src={this.state.gif} className='img' alt={'Your gif!'} />
+                <img src={this.state.gif} className='img' alt='Your gif!'/>
               </div>
             ) : null}
             {this.state.image && (
@@ -145,6 +148,26 @@ export class Capture extends Component {
               <button type='button' onClick={this.getShareLink}>
                 Share
               </button>
+              {shareUrl && (
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <FacebookShareButton url={shareUrl} quote='Facebook'>
+                    <FacebookIcon size={32} />
+                  </FacebookShareButton>
+                  <TwitterShareButton url={shareUrl} title='Twitter'>
+                    <TwitterIcon size={32} />
+                  </TwitterShareButton>
+                  <LinkedinShareButton url={shareUrl} title='Linkedin'>
+                    <LinkedinIcon size={32} />
+                  </LinkedinShareButton>
+                  <EmailShareButton
+                    url={shareUrl}
+                    subject='My Deskovery Gif'
+                    body='body'
+                  >
+                    <EmailIcon size={32} />
+                  </EmailShareButton>
+                </div>
+              )}
             </div>
           ) : null}
         </div>

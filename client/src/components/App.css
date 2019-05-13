@@ -56,6 +56,19 @@ nav a:link {
   font-weight: 100;
 }
 
+/* .landing-page-text {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing {
+  height: 20px;
+  width: 100px;
+} */
+
 .active {
   font-weight: bold;
 }
@@ -145,7 +158,7 @@ nav a:link {
 }
 
 .card:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 100%;
@@ -225,7 +238,7 @@ nav a:link {
 }
 
 .video-image:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 60vh;

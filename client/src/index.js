@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
+  Redirect
 } from 'react-router-dom';
 import './index.css';
 import App from './components/App';
@@ -13,10 +13,9 @@ import Signup from './components/Auth/Signup';
 import withSession from './components/withSession';
 import Navbar from './components/Navbar';
 import Search from './components/Video/Search';
-import AddVideo from './components/Video/AddVideo';
+
 import Profile from './components/Profile/Profile';
 import VideoPage from './components/Video/VideoPage';
-import QuizPage from './components/Quiz/QuizPage';
 import { Capture } from './components/momentCapture';
 import userHome from './components/user-home';
 import Quiz from './components/Quiz/quizMain';
@@ -31,21 +30,21 @@ import { ApolloProvider } from 'react-apollo';
 const client = new ApolloClient({
   uri: `http://localhost:4444/graphql`,
   fetchOptions: {
-    credentials: 'include',
+    credentials: 'include'
   },
   request: operation => {
     const token = localStorage.getItem('token');
     operation.setContext({
       headers: {
-        authorization: token,
-      },
+        authorization: token
+      }
     });
   },
   onError: ({ networkError }) => {
     if (networkError) {
       console.log(networkError);
     }
-  },
+  }
 });
 
 const Root = ({ refetch, session }) => (
@@ -62,11 +61,6 @@ const Root = ({ refetch, session }) => (
         <Route path="/facts" component={FactCarousel} />
         <Route path="/signin" render={() => <Signin refetch={refetch} />} />
         <Route path="/signup" render={() => <Signup refetch={refetch} />} />
-        <Route
-          path="/video/add"
-          render={() => <AddVideo session={session} />}
-        />
-        <Route path="/quizzes/:_id" component={QuizPage} />
         <Route path="/videos/:_id" component={VideoPage} />
         <Route path="/profile" render={() => <Profile session={session} />} />
         <Redirect to="/" />

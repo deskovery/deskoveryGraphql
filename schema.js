@@ -3,13 +3,10 @@ exports.typeDefs = `
 type Video {
   _id: ID
   name: String!
-  imageUrl: String!
-  path: String!
-  description: String!
-  instructions: String!
-  createdDate: String
+  gifs: [String]
   likes: Int
   username: String
+  videoId: String!
 }
 
 type User {
@@ -18,14 +15,14 @@ type User {
   password: String!
   email: String!
   joinDate: String
-  favorites: [Quiz]
+  favorites: [Video]
 }
 
 type Next {
   _id: ID
   name: String @unique
   video: [Video]
-  gifs: [String!]
+  gifs: [String]
 }
 
 type Quiz {
@@ -33,7 +30,7 @@ type Quiz {
   name: String! @unique
   username: String
   likes: Int
-  gifs: [String!]
+  gifs: [String]
   next: [Next]
 
 }
@@ -44,14 +41,11 @@ type Query {
   getVideo(_id: ID): Video
   searchVideos(searchTerm: String):[Video]
 
-  getAllQuizzes: [Quiz]
-  getQuiz: Quiz
-  searchQuizzes(searchTerm: String): [Quiz]
 
   getQuizNext(name: String!): [Next]
 
   getCurrentUser: User
-  getUserQuizzes(username: String!): [Quiz]
+  getUserVideos(username: String!): [Video]
 }
 
 type Token {
@@ -59,16 +53,14 @@ type Token {
 }
 
 type Mutation {
-  addVideo(name: String!, imageUrl: String!, description: String!, category: String!, instructions: String!, username: String): Video
+  addVideo(name: String!, gifs: [String], videoId: String!): Video
+  addVideoGif(name: String!, gifs: String!): Video
 
-  deleteUserQuiz(_id: ID!): Quiz
-  likeQuiz(_id: ID!, username: String!): Quiz
-  unlikeQuiz(_id: ID!, username: String!): Quiz
+  deleteUserVideo(_id: ID!): Video
 
-  addQuiz(name: String!, gifs: String!): Quiz
 
-  addNext(name: String!, gifs: String!): Next
-
+  likeVideo(_id: ID!, username: String!): Video
+  unlikeVideo(_id: ID!, username: String!): Video
 
   signinUser(username: String!, password: String!): Token
 

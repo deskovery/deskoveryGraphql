@@ -1,14 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const formatDate = date => {
-  const newDate = new Date(date).toLocaleDateString("en-US");
-  const newTime = new Date(date).toLocaleTimeString("en-US");
+  const newDate = new Date(date).toLocaleDateString('en-US');
+  const newTime = new Date(date).toLocaleTimeString('en-US');
   return `${newDate} at ${newTime}`;
 };
 
 const UserInfo = ({ session }) => (
-  <div className="App">
+  <div className='App'>
+  {console.log(session, ' is session')}
     <br />
     <br />
     <h3>Your Info</h3>
@@ -19,7 +20,7 @@ const UserInfo = ({ session }) => (
       <h3>Your Favorites</h3>
       {session.getCurrentUser.favorites.map(favorite => (
         <li key={favorite._id}>
-          <Link to={`/quizzes/${favorite._id}`}>
+          <Link to={`/videos/${favorite._id}`}>
             <p>{favorite.name}</p>
           </Link>
         </li>
@@ -29,7 +30,6 @@ const UserInfo = ({ session }) => (
           <strong>You currently have no favorites. Go add some!</strong>
         </p>
       )}
-      <h3>Your Gifs</h3>
     </ul>
   </div>
 );

@@ -14,49 +14,51 @@ const Navbar = ({ session }) => (
 
 const NavbarAuth = ({ session }) => (
   <Fragment>
-    <ul className="navbar">
+    <ul className='navbar'>
       <li>
-        <NavLink to='/' exact>Home</NavLink>
+        <NavLink to='/' exact>
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to='/favorites'>Favorites</NavLink>
+        <NavLink to='/search'>Search</NavLink>
       </li>
-      {/* <li>
+      <li>
+        <NavLink to='/app'>About</NavLink>
+      </li>
+      <li>
         <NavLink to='/user'>User-Home</NavLink>
-      </li> */}
-      {/* <li>
-        <NavLink to='/capture'>Capture</NavLink>
-      </li> */}
-      {/* <li>
-        <NavLink to='/video/add'>Add Video</NavLink>
-      </li> */}
+      </li>
+      <li>
+        <NavLink to='/quiz'>Back to Quiz</NavLink>
+      </li>
       <li>
         <NavLink to='/profile'>Profile</NavLink>
       </li>
       <Signout />
     </ul>
-    <h4>
-      Welcome, <strong>{session.getCurrentUser.username}</strong>
+    <h4 style={{ color: 'grey' }}>
+      Hello, <strong>{session.getCurrentUser.username}</strong>
     </h4>
   </Fragment>
 );
 
 const NavbarUnAuth = () => (
-  <ul className="navbar">
+  <ul className='navbar'>
     <li>
       <NavLink to='/' exact>
         Home
       </NavLink>
     </li>
     <li>
-      <NavLink to='/user'>User-Home</NavLink>
+      <NavLink to='/app'>About</NavLink>
     </li>
-    {/* <li>
-      <NavLink to='/capture'>Capture</NavLink>
-    </li> */}
-    {/* <li>
+    <li>
+      <NavLink to='/quiz'>Back to Quiz</NavLink>
+    </li>
+    <li>
       <NavLink to='/search'>Search</NavLink>
-    </li> */}
+    </li>
     <li>
       <NavLink to='/signin'>Signin</NavLink>
     </li>

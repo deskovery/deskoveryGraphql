@@ -23,6 +23,7 @@ class UserHome extends Component {
     this.addToFavs = this.addToFavs.bind(this);
   }
 
+  }
   ref = youtube => {
     this.player = youtube;
   };
@@ -51,16 +52,17 @@ class UserHome extends Component {
   };
 
   render() {
+    console.log(this.props)
     setTimeout(() => {
       this.setState({ takeoff: false });
-    }, 9000);
+    }, 6000);
     if (this.state.takeoff) {
       return (
-        <div className="takeoff">
+        <div className='takeoff'>
           <img
-            className="takeoffGif"
-            src="https://cdn.dribbble.com/users/1303437/screenshots/3492466/plane_800x600.gif"
-            alt="prepare for takeoff."
+            className='takeoffGif'
+            src='https://cdn.dribbble.com/users/1303437/screenshots/3492466/plane_800x600.gif'
+            alt='prepare for takeoff.'
           />
         </div>
       );
@@ -76,16 +78,16 @@ class UserHome extends Component {
         );
       } else {
         return (
-          <div className="videoContainer">
+          <div className='videoContainer'>
             <YouTubePlayer
               url={`https://www.youtube.com/watch?v=${
                 this.props.location.state.video
               }`}
               playing={this.state.playing}
               ref={this.ref}
-              width="1000px"
-              max-width="100%"
-              height="800px"
+              width='1000px'
+              max-width='100%'
+              height='800px'
               controls
             />
             {this.state.openFacts ? (
@@ -110,6 +112,5 @@ class UserHome extends Component {
       }
     }
   }
-}
 
 export default UserHome;

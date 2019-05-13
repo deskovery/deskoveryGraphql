@@ -51,11 +51,11 @@ const { resolvers } = require('./resolvers');
 // Creates graphql schema
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers,
+  resolvers
 });
 
 // Creates graphiql
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+// app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 // Connects schemas
 app.use(
@@ -69,8 +69,8 @@ app.use(
       User,
       Quiz,
       Next,
-      currentUser,
-    },
+      currentUser
+    }
   }))
 );
 
@@ -83,6 +83,14 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log('DB connected'))
   .catch(err => console.error(err));
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 // Set up server.
 const PORT = process.env.PORT || 4444;
