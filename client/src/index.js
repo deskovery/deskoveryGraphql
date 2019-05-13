@@ -19,7 +19,9 @@ import VideoPage from './components/Video/VideoPage';
 import { Capture } from './components/momentCapture';
 import userHome from './components/user-home';
 import Quiz from './components/Quiz/quizMain';
+import Favorites from './components/Favorites/favorites';
 import Landingpage from './components/Landingpage';
+import FactCarousel from './components/FactCarousel';
 
 // Importing Apollo
 import ApolloClient from 'apollo-boost';
@@ -52,18 +54,16 @@ const Root = ({ refetch, session }) => (
       <Switch>
         <Route exact path='/' component={Landingpage} />
         <Route path='/quiz' component={Quiz} />
-        <Route path='/app' component={App} />
+        <Route path='/about' component={App} />
         <Route path='/search' component={Search} />
         <Route path='/capture' component={Capture} />
+        <Route path='/favorites' component={Favorites} />
+        <Route path='/facts' component={FactCarousel} />
         <Route path='/video' component={userHome} />
         <Route path='/signin' render={() => <Signin refetch={refetch} />} />
         <Route path='/signup' render={() => <Signup refetch={refetch} />} />
-        <Route path='/app' component={App} />
         <Route path='/videos/:_id' component={userHome} />
-        <Route
-          path='/profile'
-          render={() => <Profile session={session} />}
-        />
+        <Route path='/profile' render={() => <Profile session={session} />} />
         <Redirect to='/' />
       </Switch>
     </Fragment>

@@ -24,16 +24,6 @@ class UserVideos extends React.Component {
     }
   };
 
-  handleClick = id => {
-    console.log(id, 'is id of UserVideo');
-    this.props.history.push({
-      pathname: '/video',
-      state: {
-        video: id
-      }
-    });
-  };
-
   render() {
     const { username } = this.props;
     console.log(this.props, ' is props inside the render');
@@ -55,9 +45,9 @@ class UserVideos extends React.Component {
               )}
               {data.getUserVideos.map(video => (
                 <li key={video._id}>
-                  <p onClick={e => this.handleClick(video.videoId)}>
-                    {video.name}
-                  </p>
+                  <Link to={`/videos/${video.videoId}`}>
+                    <h4>{video.name}</h4>
+                  </Link>
                   <p style={{ marginBottom: '0' }}>Likes: {video.likes}</p>
                   <Mutation
                     mutation={DELETE_USER_VIDEO}
