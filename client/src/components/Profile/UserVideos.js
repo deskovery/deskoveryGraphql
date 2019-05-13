@@ -14,7 +14,6 @@ import Spinner from '../Spinner';
 class UserVideos extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
   handleDelete = deleteUserVideo => {

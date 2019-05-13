@@ -24,7 +24,7 @@ const NavbarAuth = ({ session }) => (
         <NavLink to='/search'>Search</NavLink>
       </li>
       <li>
-        <NavLink to='/app'>About</NavLink>
+        <NavLink to='/about'>About</NavLink>
       </li>
       <li>
         <NavLink to='/user'>User-Home</NavLink>
