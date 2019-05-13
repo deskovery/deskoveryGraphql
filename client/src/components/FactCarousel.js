@@ -8,7 +8,7 @@ import Slide from "react-reveal/Slide";
 // but you can use any other styling options ( like plain old css )
 import styled, { css } from "styled-components";
 
-//pass down which cam on props... make facts into an object, find by key, each key will have a facts array on it.
+
 let factsObj = {
   deWeERCVc2o: ["yay eagles", "I heart eagles", "baby Grace is growing up!"],
   uj3FqkflC7g: ["outer space cam!", "I love NASA", "I want to be an astronaut"],

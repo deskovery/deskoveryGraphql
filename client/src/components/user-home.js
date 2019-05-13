@@ -5,6 +5,7 @@ import YouTubePlayer from "react-player/lib/players/YouTube";
 import { Capture } from "./momentCapture";
 import ControlledPopup from "./popup";
 import FactCarousel from "./FactCarousel";
+import Journal from "./Journal";
 
 class UserHome extends Component {
   constructor(props) {
@@ -16,7 +17,8 @@ class UserHome extends Component {
       loading: false,
       takeoff: true,
       welcome: true,
-      openFacts: false
+      openFacts: false,
+      openJournal: false
     };
     this.addToFavs = this.addToFavs.bind(this);
   }
@@ -39,6 +41,12 @@ class UserHome extends Component {
   openFacts = () => {
     this.setState({
       openFacts: !this.state.openFacts
+    });
+  };
+
+  openJournal = () => {
+    this.setState({
+      openJournal: !this.state.openJournal
     });
   };
 
@@ -83,12 +91,16 @@ class UserHome extends Component {
             {this.state.openFacts ? (
               <FactCarousel destination={this.props.location.state.video} />
             ) : null}
+            {this.state.openJournal ? <Journal /> : null}
             {this.state.videoSrc ? (
               <Capture videoSrc={this.state.videoSrc} />
             ) : null}
             <ControlledPopup videoSrc={this.props.location.state.video} />
             <button className="Favorites" onClick={this.addToFavs}>
               Add To Favorites
+            </button>
+            <button className="popupButton" onClick={this.openJournal}>
+              Journal
             </button>
             <button className="popupButton" onClick={this.openFacts}>
               Facts
