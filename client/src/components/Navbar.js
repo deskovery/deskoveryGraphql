@@ -37,7 +37,7 @@ const NavbarAuth = ({ session }) => (
       </li>
       <Signout />
     </ul>
-    <h4>
+    <h4 style={{ color: 'grey' }}>
       Hello, <strong>{session.getCurrentUser.username}</strong>
     </h4>
   </Fragment>
