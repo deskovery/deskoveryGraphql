@@ -5,9 +5,8 @@ import withAuth from '../withAuth';
 
 class Profile extends React.Component {
   render() {
-    console.log(this.props, ' is props inside Profile');
     return (
-      <div className='App'>
+      <div className="App">
         <UserInfo session={this.props.session} />
         <UserVideos
           username={this.props.session.getCurrentUser.username}

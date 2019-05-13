@@ -1,6 +1,6 @@
-import React, {Component} from "react"
-import ls from 'local-storage'
-import { renderGraphiQL } from "apollo-server-module-graphiql";
+import React, { Component } from 'react';
+import ls from 'local-storage';
+import { renderGraphiQL } from 'apollo-server-module-graphiql';
 //import ControlledPopup from '../components/popup'
 
 // var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -30,37 +30,25 @@ import { renderGraphiQL } from "apollo-server-module-graphiql";
 
 class Favorites extends Component {
   constructor(props) {
-    super (props)
+    super(props);
   }
   // this.state = {
   //   video: []
   // }
 
   render() {
-    console.log(localStorage.items, 'local storage in favorites')
-    // console.log(localStorage.split(''), "split")
-
-
-
-    let items = localStorage.getItem("items");
-    console.log(items)
-    console.log(localStorage, "locall")
-    let items2= JSON.parse(items)
-    console.log(items2, "ITEMMMMM")
+    let items = localStorage.getItem('items');
+    let items2 = JSON.parse(items);
 
     return (
-      // <h1>HELLO</h1>
-      <div className = 'favorites'>
-      <ul className='faveItemList'>
-        {items2.map(item => {
-          return (
-            <li key={item.id}>{item}</li>
-          )
-        })}
+      <div className="favorites">
+        <ul className="faveItemList">
+          {items2.map(item => {
+            return <li key={item.id}>{item}</li>;
+          })}
         </ul>
-        </div>
-    )
+      </div>
+    );
   }
-
 }
-export default Favorites
+export default Favorites;

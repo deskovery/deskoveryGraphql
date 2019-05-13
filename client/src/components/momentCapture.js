@@ -12,7 +12,7 @@ import {
   LinkedinShareButton,
   LinkedinIcon,
   EmailShareButton,
-  EmailIcon
+  EmailIcon,
 } from 'react-share';
 
 export class Capture extends Component {
@@ -22,11 +22,11 @@ export class Capture extends Component {
       videoSrc: null,
       playing: true,
       image: null,
-      gif: null,
       gifText: '',
       gifTextFont: 'sans-serif',
       gifTextColor: '#ffffff',
-      shareUrl: null
+      shareUrl: null,
+      gifLoading: false,
     };
     this.takeSnapshot = this.takeSnapshot.bind(this);
     this.makeGif = this.makeGif.bind(this);
@@ -44,13 +44,15 @@ export class Capture extends Component {
   }
 
   async getShareLink() {
-    const { data } = await axios.post('/api/gifs', { imgData: this.state.gif });
-    console.log(data);
+    const { data } = await axios.post('/api/gifs', {
+      imgData: this.state.image,
+    });
     const shareUrl = data.replace('./api/public', 'api');
-    this.setState({ shareUrl: shareUrl, gif: shareUrl });
+    this.setState({ shareUrl: shareUrl, image: shareUrl });
   }
 
   makeGif() {
+    this.setState({ gifLoading: true });
     gifshot.createGIF(
       {
         video: [this.state.videoSrc],
@@ -63,14 +65,14 @@ export class Capture extends Component {
         interval: 0.1,
         frameDuration: 1,
         sampleInterval: 10,
-        numWorkers: 2
+        numWorkers: 2,
       },
       obj => {
         if (!obj.error) {
           var image = obj.image,
             animatedImage = document.createElement('img');
           animatedImage.src = image;
-          this.setState({ gif: image });
+          this.setState({ image: image, gifLoading: false });
         }
       }
     );
@@ -82,86 +84,87 @@ export class Capture extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   }
 
   render() {
     const { shareUrl } = this.state;
+    const disableSnap = this.state.gifText;
     return (
-      <div className='moments'>
-        <div className='momentsInner'>
+      <div className="moments">
+        <div className="momentsInner">
           <ReactPlayer
             url={this.state.videoSrc}
             playing={this.state.playing}
             ref={this.ref}
             controls
           />{' '}
-          <div className='buttons'>
-            <div className='innerButtons'>
-              <button type='button' onClick={this.takeSnapshot}>
-                {' '}
-                Take Snapshot{' '}
-              </button>
-              <button type='button' onClick={this.makeGif}>
+          <div className="buttons">
+            <div className="innerButtons">
+              <input
+                type="text"
+                name="gifText"
+                value={this.state.gifText}
+                onChange={this.handleChange}
+              />
+              <select name="gifTextColor" onChange={this.handleChange}>
+                <option value="none">text color: </option>
+
+                <option value="#00BFFF">Blue</option>
+                <option value="#BA55D3">Purple</option>
+                <option value="#3CB371">Green</option>
+                <option value="#DC143C">Red</option>
+                <option value="#FF8C00">Orange</option>
+                <option value="#FFFF33">Yellow</option>
+                <option value="#000000">Black</option>
+                <option value="#FFFFFF">White</option>
+              </select>
+              <button type="button" onClick={this.makeGif}>
                 {' '}
                 Make Gif{' '}
               </button>
               <br />
-              <input
-                type='text'
-                name='gifText'
-                value={this.state.gifText}
-                onChange={this.handleChange}
-              />
-              <select name='gifTextColor' onChange={this.handleChange}>
-                <option value='none'>text color: </option>
-
-                <option value='#00BFFF'>Blue</option>
-                <option value='#BA55D3'>Purple</option>
-                <option value='#3CB371'>Green</option>
-                <option value='#DC143C'>Red</option>
-                <option value='#FF8C00'>Orange</option>
-                <option value='#FFFF33'>Yellow</option>
-                <option value='#000000'>Black</option>
-                <option value='#FFFFFF'>White</option>
-              </select>
+              <button
+                type="button"
+                onClick={this.takeSnapshot}
+                disabled={disableSnap}
+              >
+                {' '}
+                Take Snapshot{' '}
+              </button>
+              <br />
             </div>
           </div>
-          <div className='images'>
+          <div className="images">
             {this.state.gifLoading ? <SyncLoader /> : null}
-            {this.state.gif ? (
-              <div>
-                <img src={this.state.gif} className='img' alt='Your gif!' />
-              </div>
-            ) : null}
             {this.state.image && (
               <img
                 src={this.state.image}
-                className='img'
+                className="img"
                 alt={'Your snapshot!'}
               />
             )}
           </div>
-          {this.state.gif ? (
-            <div className='shareBox'>
-              <button type='button' onClick={this.getShareLink}>
+          {this.state.image ? (
+            <div className="shareBox">
+              <button type="button" onClick={this.getShareLink}>
                 Share
               </button>
               {shareUrl && (
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <FacebookShareButton url={shareUrl} quote='Facebook'>
+                  <FacebookShareButton url={shareUrl} quote="Facebook">
                     <FacebookIcon size={32} />
                   </FacebookShareButton>
-                  <TwitterShareButton url={shareUrl} title='Twitter'>
+                  <TwitterShareButton url={shareUrl} title="Twitter">
                     <TwitterIcon size={32} />
                   </TwitterShareButton>
-                  <LinkedinShareButton url={shareUrl} title='Linkedin'>
+                  <LinkedinShareButton url={shareUrl} title="Linkedin">
                     <LinkedinIcon size={32} />
                   </LinkedinShareButton>
                   <EmailShareButton
                     url={shareUrl}
-                    subject='My Deskovery Gif'
+                    subject="My Deskovery Gif"
                     body={shareUrl}
                   >
                     <EmailIcon size={32} />

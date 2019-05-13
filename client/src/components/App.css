@@ -529,6 +529,12 @@ button:hover {
   color: whitesmoke;
 }
 
+button:disabled {
+  text-decoration: none;
+  color: #2e2d2d;
+  cursor: default;
+}
+
 /* User modals */
 
 .App-logo {
@@ -546,5 +552,3 @@ button:hover {
     transform: rotate(360deg);
   }
 }
-
-

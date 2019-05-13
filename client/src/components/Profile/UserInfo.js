@@ -8,8 +8,7 @@ const formatDate = date => {
 };
 
 const UserInfo = ({ session }) => (
-  <div className='App'>
-  {console.log(session, ' is session')}
+  <div className="App">
     <br />
     <br />
     <h3>Your Info</h3>
