@@ -132,7 +132,7 @@ export class Capture extends Component {
             {this.state.gifLoading ? <SyncLoader /> : null}
             {this.state.gif ? (
               <div>
-                <img src={this.state.gif} className='img' alt='Your gif!'/>
+                <img src={this.state.gif} className='img' alt='Your gif!' />
               </div>
             ) : null}
             {this.state.image && (
@@ -162,7 +162,7 @@ export class Capture extends Component {
                   <EmailShareButton
                     url={shareUrl}
                     subject='My Deskovery Gif'
-                    body='body'
+                    body={shareUrl}
                   >
                     <EmailIcon size={32} />
                   </EmailShareButton>

@@ -5,7 +5,6 @@ import { Capture } from './momentCapture';
 import ControlledPopup from './popup';
 import LikeVideo from './Video/LikeVideo';
 
-
 class UserHome extends Component {
   constructor(props) {
     super(props);
@@ -17,13 +16,12 @@ class UserHome extends Component {
       takeoff: true,
       welcome: true
     };
-
   }
   ref = youtube => {
     this.player = youtube;
   };
   render() {
-    console.log(this.props)
+    console.log(this.props);
     setTimeout(() => {
       this.setState({ takeoff: false });
     }, 6000);
@@ -66,7 +64,7 @@ class UserHome extends Component {
                 <Capture videoSrc={this.state.videoSrc} />
               ) : null}
               <ControlledPopup videoSrc={this.props.location.state.video} />
-              <LikeVideo _id={this.props.location.state.video}/>
+              <LikeVideo _id={this.props.location.state.video} />
             </div>
           </div>
         );
