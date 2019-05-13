@@ -76,8 +76,6 @@ router.post('/', async (req, res, next) => {
     const video = await youtubedl(isolatedUrl);
     //Downloads file.
 
-    console.log('URL:', isolatedUrl);
-
     // Will be called when the download starts.
     video.on('info', function(info) {
       console.log('Download started');
@@ -99,7 +97,7 @@ router.post('/', async (req, res, next) => {
       });
 
       video.on('error', error => {
-        console.log('video download ERRORED', error);
+        console.log('video download ERROR', error);
         reject(error);
       });
     });

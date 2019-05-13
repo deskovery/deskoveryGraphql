@@ -10,7 +10,6 @@ import Spinner from '../Spinner';
 
 const VideoPage = ({ match }) => {
   const { _id } = match.params;
-  console.log('~~~~~', _id);
 
   const ref = youtube => {
     let player = youtube;
@@ -26,9 +25,9 @@ const VideoPage = ({ match }) => {
         }
 
         return (
-          <div className='App'>
-            <div className='video-header'>
-              <h2 className='video-name'>
+          <div className="App">
+            <div className="video-header">
+              <h2 className="video-name">
                 <strong>{data.getVideo.name}</strong>
               </h2>
               {/* <div className='videoContainer'>
@@ -47,17 +46,17 @@ const VideoPage = ({ match }) => {
                   <LikeVideo _id={_id} />
                 </div>
               </div> */}
-              <img src={data.getVideo.gifs[0]} alt='gif' />
+              <img src={data.getVideo.gifs[0]} alt="gif" />
               <p>
                 Created by <strong>{data.getVideo.name}</strong>
               </p>
               <p>
-                <span role='img' aria-label='heart'>
+                <span role="img" aria-label="heart">
                   ❤️
                 </span>
               </p>
             </div>
-            <div className='video-instructions' />
+            <div className="video-instructions" />
             <LikeVideo _id={_id} />
           </div>
         );

@@ -1,18 +1,17 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import makeCarousel from "react-reveal/makeCarousel";
-import Slide from "react-reveal/Slide";
-import styled, { css } from "styled-components";
-
+import makeCarousel from 'react-reveal/makeCarousel';
+import Slide from 'react-reveal/Slide';
+import styled, { css } from 'styled-components';
 
 let factsObj = {
-  deWeERCVc2o: ["yay eagles", "I heart eagles", "baby Grace is growing up!"],
-  uj3FqkflC7g: ["outer space cam!", "I love NASA", "I want to be an astronaut"],
-  CEzSXX3tcmU: ["scuba cam", "under the sea"]
+  deWeERCVc2o: ['yay eagles', 'I heart eagles', 'baby Grace is growing up!'],
+  uj3FqkflC7g: ['outer space cam!', 'I love NASA', 'I want to be an astronaut'],
+  CEzSXX3tcmU: ['scuba cam', 'under the sea'],
 };
 
-const width = "400px",
-  height = "80px";
+const width = '400px',
+  height = '80px';
 
 const Container = styled.div`
   border: 1px solid white;
@@ -67,10 +66,10 @@ const CarouselUI = ({ position, total, handleClick, children }) => (
     <Children>
       {children}
       <Arrow onClick={handleClick} data-position={position - 1}>
-        {"<"}
+        {'<'}
       </Arrow>
       <Arrow right onClick={handleClick} data-position={position + 1}>
-        {">"}
+        {'>'}
       </Arrow>
     </Children>
     <Dots>
@@ -81,7 +80,7 @@ const CarouselUI = ({ position, total, handleClick, children }) => (
           onClick={handleClick}
           data-position={index}
         >
-          {index === position ? "● " : "○ "}
+          {index === position ? '● ' : '○ '}
         </Dot>
       ))}
     </Dots>
@@ -94,21 +93,19 @@ class FactCarousel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      facts: []
+      facts: [],
     };
   }
 
   componentDidMount() {
-    console.log(factsObj, "FACTS OBJ");
     for (let key in factsObj) {
       if (key === this.props.destination) {
         let theseFacts = factsObj[key];
         this.setState({
-          facts: theseFacts
+          facts: theseFacts,
         });
       }
     }
-    console.log(this.state.facts, "FACTS ON STATE");
   }
 
   render() {
