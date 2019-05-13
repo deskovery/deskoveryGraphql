@@ -48,6 +48,13 @@ class App extends React.Component {
           Deskovery channel, we hope you enjoy the sounds of nature and are
           reminded of its beauty.
         </p>
+        <div className='card-container'>
+          <div className='card-image'>
+            <h1 className='front'>hello</h1>
+            <h1 className='back'>goodbye</h1>
+          </div>
+        </div>
+        <h3>Oh, the places you will go...</h3>
         <Query query={GET_ALL_VIDEOS}>
           {({ data, loading, error }) => {
             if (loading) return <Spinner />;

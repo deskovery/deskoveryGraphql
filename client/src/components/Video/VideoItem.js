@@ -15,7 +15,7 @@ export default ({ _id, username, name, likes }) => (
     <div className='card-text'>
       <Link to={`/videos/${_id}`}>
         <h4>{name}</h4>
-        <h4>{likes}</h4>
+        <h4>Likes: {likes}</h4>
         <h4>{username}</h4>
       </Link>
     </div>
