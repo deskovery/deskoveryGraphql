@@ -16,6 +16,9 @@ const NavbarAuth = ({ session }) => (
   <Fragment>
     <ul className='navbar'>
       <li>
+        <NavLink to='/quiz'>{'<'}</NavLink>
+      </li>
+      <li>
         <NavLink to='/' exact>
           Home
         </NavLink>
@@ -30,9 +33,6 @@ const NavbarAuth = ({ session }) => (
         <NavLink to='/user'>User-Home</NavLink>
       </li>
       <li>
-        <NavLink to='/quiz'>Back to Quiz</NavLink>
-      </li>
-      <li>
         <NavLink to='/profile'>Profile</NavLink>
       </li>
       <Signout />
@@ -45,6 +45,9 @@ const NavbarAuth = ({ session }) => (
 
 const NavbarUnAuth = () => (
   <ul className='navbar'>
+    <li>
+      <NavLink to='/quiz'>{'<'}</NavLink>
+    </li>
     <li>
       <NavLink to='/' exact>
         Home
