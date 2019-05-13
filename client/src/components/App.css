@@ -11,6 +11,12 @@ h1 {
   color: white;
 }
 
+h3 {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
 nav {
   text-align: center;
   padding-bottom: 0.2em;
@@ -110,6 +116,18 @@ nav a:link {
   object-position: center;
   width: 60%;
   position: relative; */
+}
+
+.facts {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .landing-page-welcome {
@@ -499,3 +517,5 @@ button:hover {
     transform: rotate(360deg);
   }
 }
+
+

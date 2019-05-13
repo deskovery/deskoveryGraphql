@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 // import { connect } from 'react-redux';
-import YouTubePlayer from 'react-player/lib/players/YouTube';
-import { Capture } from './momentCapture';
-import ControlledPopup from './popup';
-import LikeVideo from './Video/LikeVideo';
-
+import YouTubePlayer from "react-player/lib/players/YouTube";
+import { Capture } from "./momentCapture";
+import ControlledPopup from "./popup";
+import FactCarousel from "./FactCarousel";
+import Journal from "./Journal";
 
 class UserHome extends Component {
   constructor(props) {
@@ -15,13 +16,41 @@ class UserHome extends Component {
       videoSrc: null,
       loading: false,
       takeoff: true,
-      welcome: true
+      welcome: true,
+      openFacts: false,
+      openJournal: false
     };
+    this.addToFavs = this.addToFavs.bind(this);
+  }
 
   }
   ref = youtube => {
     this.player = youtube;
   };
+
+  addToFavs() {
+    console.log(this.state.videoSrc, "FAVS");
+    let itemsArray = localStorage.getItem("items")
+      ? JSON.parse(localStorage.getItem("items"))
+      : [];
+
+    itemsArray.push(this.state.videoSrc);
+    localStorage.setItem("items", JSON.stringify(itemsArray));
+    console.log(localStorage, "localStorage");
+  }
+
+  openFacts = () => {
+    this.setState({
+      openFacts: !this.state.openFacts
+    });
+  };
+
+  openJournal = () => {
+    this.setState({
+      openJournal: !this.state.openJournal
+    });
+  };
+
   render() {
     console.log(this.props)
     setTimeout(() => {
@@ -61,18 +90,27 @@ class UserHome extends Component {
               height='800px'
               controls
             />
-            <div className='buttonDiv'>
-              {this.state.videoSrc ? (
-                <Capture videoSrc={this.state.videoSrc} />
-              ) : null}
-              <ControlledPopup videoSrc={this.props.location.state.video} />
-              <LikeVideo _id={this.props.location.state.video}/>
-            </div>
+            {this.state.openFacts ? (
+              <FactCarousel destination={this.props.location.state.video} />
+            ) : null}
+            {this.state.openJournal ? <Journal /> : null}
+            {this.state.videoSrc ? (
+              <Capture videoSrc={this.state.videoSrc} />
+            ) : null}
+            <ControlledPopup videoSrc={this.props.location.state.video} />
+            <button className="Favorites" onClick={this.addToFavs}>
+              Add To Favorites
+            </button>
+            <button className="popupButton" onClick={this.openJournal}>
+              Journal
+            </button>
+            <button className="popupButton" onClick={this.openFacts}>
+              Facts
+            </button>
           </div>
         );
       }
     }
   }
-}
 
 export default UserHome;
