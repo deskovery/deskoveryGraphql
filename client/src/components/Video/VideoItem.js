@@ -7,7 +7,7 @@ const VideoItem = posed.li({
   hidden: { opacity: 0 }
 });
 
-export default ({ _id, username, name, likes, imageUrl }) => (
+export default ({ _id, name, likes, imageUrl }) => (
   <VideoItem
     style={{ background: `url(${imageUrl}) center center / cover no-repeat` }}
     className='card'
