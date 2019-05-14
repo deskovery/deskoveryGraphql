@@ -57,9 +57,6 @@ const NavbarUnAuth = () => (
       <NavLink to='/app'>About</NavLink>
     </li>
     <li>
-      <NavLink to='/quiz'>Back to Quiz</NavLink>
-    </li>
-    <li>
       <NavLink to='/search'>Search</NavLink>
     </li>
     <li>
