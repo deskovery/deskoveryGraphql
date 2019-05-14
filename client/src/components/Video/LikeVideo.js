@@ -43,16 +43,23 @@ class LikeVideo extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props.session.getCurrentUser.favorites, ' is FAV"SSSSS');
+    console.log(
+      this.props.session.getCurrentUser.favorites.pop(),
+      ' is FAV"SSSSS AFTER POP'
+    );
     console.log('props id', this.props._id);
     if (this.props.session.getCurrentUser) {
       const { username, favorites } = this.props.session.getCurrentUser;
       const { _id } = this.props;
-      const prevLiked =
-        favorites.findIndex(favorite => favorite._id === _id) > -1;
-      this.setState({
-        liked: prevLiked,
-        username
-      });
+      if (favorites[0] !== null) {
+        const prevLiked =
+          favorites.findIndex(favorite => favorite._id === _id) > -1;
+        this.setState({
+          liked: prevLiked,
+          username
+        });
+      }
     }
   }
 

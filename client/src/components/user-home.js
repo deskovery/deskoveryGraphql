@@ -53,7 +53,7 @@ class UserHome extends Component {
   };
 
   render() {
-    console.log(this.props);
+    console.log(this.state.playVideo, ' is play Video');
     setTimeout(() => {
       this.setState({ takeoff: false });
     }, 6000);
