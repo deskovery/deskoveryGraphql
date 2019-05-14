@@ -48,7 +48,8 @@ exports.resolvers = {
         username: currentUser.username
       }).populate({
         path: 'favorites',
-        model: 'Video'
+        model: 'Video',
+        options: { retainNullValues: false }
       });
 
       return user;
@@ -75,17 +76,19 @@ exports.resolvers = {
     getUserVideos: async (root, { username }, { User }) => {
       const { favorites } = await User.findOne(
         { username },
-        { favorites: true }
+        { favorites: true },
+        { options: { retainNullValues: false } }
       );
       return favorites;
     }
   },
   Mutation: {
-    addVideo: async (root, { name, gifs, videoId }, { Video }) => {
+    addVideo: async (root, { name, gifs, videoId, imageUrl }, { Video }) => {
       const newVideo = await new Video({
         name,
         gifs,
-        videoId
+        videoId,
+        imageUrl
       }).save();
       return newVideo;
     },
@@ -126,7 +129,7 @@ exports.resolvers = {
       } else {
         const newVideo = await new Video({
           name,
-          gifs
+          imageUrl
         }).save();
         return newVideo;
       }
