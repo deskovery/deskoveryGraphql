@@ -29,14 +29,15 @@ const UserSchema = new Schema({
         name: String,
         gifs: [String],
         likes: Number,
-        videoId: String
+        videoId: String,
+        imageUrl: String
       }
     ],
     ref: 'Video'
   }
 });
 
-UserSchema.pre('save', function (next) {
+UserSchema.pre('save', function(next) {
   if (!this.isModified('password')) {
     return next();
   }

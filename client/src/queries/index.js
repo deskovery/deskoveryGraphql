@@ -8,7 +8,8 @@ export const GET_ALL_VIDEOS = gql`
       name
       gifs
       likes
-      username
+      imageUrl
+      videoId
     }
   }
 `;
@@ -20,6 +21,8 @@ export const GET_VIDEO = gql`
       gifs
       likes
       name
+      imageUrl
+      videoId
     }
   }
 `;
@@ -45,7 +48,7 @@ export const ADD_VIDEO = gql`
       gifs
       videoId
       likes
-      username
+      imageUrl
     }
   }
 `;
@@ -76,13 +79,25 @@ export const DELETE_USER_VIDEO = gql`
   }
 `;
 
-export const ADD_VIDEO_GIF = gql`
-  mutation($name: String!, $gifs: [String!]) {
-    addQuiz(name: $name, gifs: $gifs) {
+export const ADD_VIDEO_IMAGE = gql`
+  mutation($name: String!, $imageUrl: String!) {
+    addVideoImage(name: $name, imageUrl: $imageUrl) {
       _id
       name
       gifs
-      username
+      imageUrl
+      likes
+    }
+  }
+`;
+
+export const ADD_VIDEO_GIF = gql`
+  mutation($name: String!, $gifs: [String!]) {
+    addVideoGif(name: $name, gifs: $gifs) {
+      _id
+      name
+      gifs
+      imageUrl
       likes
     }
   }
@@ -100,6 +115,7 @@ export const GET_CURRENT_USER = gql`
         name
         videoId
         gifs
+        imageUrl
       }
     }
   }
@@ -112,7 +128,7 @@ export const GET_USER_VIDEOS = gql`
       name
       likes
       videoId
-      username
+      imageUrl
       gifs
     }
   }

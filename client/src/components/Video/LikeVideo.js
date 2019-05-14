@@ -14,9 +14,9 @@ class LikeVideo extends Component {
     console.log(likeVideo);
     console.log('Inside clicked');
 
-
     this.handleLike(likeVideo, unlikeVideo);
-    this.setState({ liked: !this.state.liked }); this.setState({ liked: !this.state.liked });
+    this.setState({ liked: !this.state.liked });
+    this.setState({ liked: !this.state.liked });
 
     console.log(this.state.liked, ' is state');
   };
@@ -37,8 +37,8 @@ class LikeVideo extends Component {
           await this.props.refetch();
         })
         .catch(err => {
-          console.log('err', err)
-        })
+          console.log('err', err);
+        });
     }
   };
 
@@ -111,7 +111,7 @@ class LikeVideo extends Component {
                     onClick={() => this.handleClick(likeVideo, unlikeVideo)}
                     className='like-button'
                   >
-                    {liked ? 'Unlike' : 'Like'}
+                    {liked ? 'Added to Favorites' : 'Like'}
                   </button>
                 )
               );

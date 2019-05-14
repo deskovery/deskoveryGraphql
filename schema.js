@@ -5,7 +5,7 @@ type Video {
   name: String!
   gifs: [String]
   likes: Int
-  username: String
+  imageUrl: String
   videoId: String!
 }
 
@@ -55,6 +55,7 @@ type Token {
 type Mutation {
   addVideo(name: String!, gifs: [String], videoId: String!): Video
   addVideoGif(name: String!, gifs: String!): Video
+  addVideoImage(name: String!, imageUrl: String!): Video
 
   deleteUserVideo(_id: ID!): Video
 

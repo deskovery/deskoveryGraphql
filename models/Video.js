@@ -15,7 +15,7 @@ const VideoSchema = new Schema({
     type: Number,
     default: 0
   },
-  username: {
+  imageUrl: {
     type: String
   },
   videoId: {
@@ -28,4 +28,3 @@ VideoSchema.index({
 });
 
 module.exports = mongoose.model('Video', VideoSchema);
-

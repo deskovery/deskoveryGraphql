@@ -4,7 +4,7 @@ import {
   GET_USER_VIDEOS,
   GET_ALL_VIDEOS,
   DELETE_USER_VIDEO,
-  GET_CURRENT_USER,
+  GET_CURRENT_USER
 } from '../../queries';
 import { Link } from 'react-router-dom';
 import { Redirect, History } from 'react-router-dom';
@@ -32,7 +32,7 @@ class UserVideos extends React.Component {
           if (error) return <div>Error</div>;
           return (
             <ul>
-              <h3>Your Videos</h3>
+              <h3>Your Favorites</h3>
               {!data.getUserVideos.length && (
                 <strong>
                   <p>
@@ -51,12 +51,12 @@ class UserVideos extends React.Component {
                     variables={{ _id: video._id }}
                     refetchQueries={() => [
                       { query: GET_ALL_VIDEOS },
-                      { query: GET_CURRENT_USER },
+                      { query: GET_CURRENT_USER }
                     ]}
                     update={(cache, { data: { deleteUserVideo } }) => {
                       const { getUserVideos } = cache.readQuery({
                         query: GET_USER_VIDEOS,
-                        variables: { username },
+                        variables: { username }
                       });
 
                       cache.writeQuery({
@@ -65,16 +65,16 @@ class UserVideos extends React.Component {
                         data: {
                           getUserVideos: getUserVideos.filter(
                             video => video._id !== deleteUserVideo._id
-                          ),
-                        },
+                          )
+                        }
                       });
                     }}
                   >
                     {(deleteUserVideo, attrs = {}) => (
                       <div>
-                        <button className="button-primary">Update</button>
+                        <button className='button-primary'>Update</button>
                         <p
-                          className="delete-button"
+                          className='delete-button'
                           onClick={() => this.handleDelete(deleteUserVideo)}
                         >
                           {attrs.loading ? 'deleting...' : 'X'}

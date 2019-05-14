@@ -97,7 +97,7 @@ exports.resolvers = {
           { $push: { favorites: video } }
         );
       } catch (err) {
-        debugger
+        console.error(err);
       }
       return video;
     },
@@ -108,13 +108,28 @@ exports.resolvers = {
       );
       const user = await User.findOneAndUpdate(
         { username },
-        { $pull: { favorites: _id } }
+        { $pull: { favorites: video } }
       );
       return video;
     },
     deleteUserVideo: async (root, { _id }, { Video }) => {
       const video = await Video.findOneAndRemove({ _id });
       return video;
+    },
+    addVideoImage: async (root, { name, imageUrl }, { Video }) => {
+      const existingVideo = await Video.findOne()
+        .where('name')
+        .equals(name);
+      if (existingVideo) {
+        existingVideo.imageUrl = imageUrl;
+        return existingVideo;
+      } else {
+        const newVideo = await new Video({
+          name,
+          gifs
+        }).save();
+        return newVideo;
+      }
     },
     addVideoGif: async (root, { name, gifs }, { Video }) => {
       const existingVideo = await Video.findOne()
