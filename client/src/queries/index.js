@@ -41,8 +41,8 @@ export const SEARCH_VIDEOS = gql`
 /* Video Mutations */
 
 export const ADD_VIDEO = gql`
-  mutation($name: String!, $gifs: String, $videoId: String) {
-    addVideo(name: $name, gifs: $gifs, videoId: $videoId) {
+  mutation($name: String!, $gifs: String, $videoId: String, $imageUrl: String) {
+    addVideo(name: $name, gifs: $gifs, videoId: $videoId, imageUrl: $imageUrl) {
       _id
       name
       gifs

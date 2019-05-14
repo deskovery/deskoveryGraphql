@@ -81,11 +81,12 @@ exports.resolvers = {
     }
   },
   Mutation: {
-    addVideo: async (root, { name, gifs, videoId }, { Video }) => {
+    addVideo: async (root, { name, gifs, videoId, imageUrl }, { Video }) => {
       const newVideo = await new Video({
         name,
         gifs,
-        videoId
+        videoId,
+        imageUrl
       }).save();
       return newVideo;
     },

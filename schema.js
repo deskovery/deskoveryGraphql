@@ -53,7 +53,7 @@ type Token {
 }
 
 type Mutation {
-  addVideo(name: String!, gifs: [String], videoId: String!): Video
+  addVideo(name: String!, gifs: [String], videoId: String!, imageUrl: String!): Video
   addVideoGif(name: String!, gifs: String!): Video
   addVideoImage(name: String!, imageUrl: String!): Video
 
