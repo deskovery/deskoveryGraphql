@@ -8,7 +8,8 @@ export const GET_ALL_VIDEOS = gql`
       name
       gifs
       likes
-      username
+      imageUrl
+      videoId
     }
   }
 `;
@@ -20,6 +21,8 @@ export const GET_VIDEO = gql`
       gifs
       likes
       name
+      imageUrl
+      videoId
     }
   }
 `;
@@ -45,7 +48,7 @@ export const ADD_VIDEO = gql`
       gifs
       videoId
       likes
-      username
+      imageUrl
     }
   }
 `;
@@ -82,7 +85,7 @@ export const ADD_VIDEO_GIF = gql`
       _id
       name
       gifs
-      username
+      imageUrl
       likes
     }
   }
@@ -100,6 +103,7 @@ export const GET_CURRENT_USER = gql`
         name
         videoId
         gifs
+        imageUrl
       }
     }
   }
@@ -112,7 +116,7 @@ export const GET_USER_VIDEOS = gql`
       name
       likes
       videoId
-      username
+      imageUrl
       gifs
     }
   }

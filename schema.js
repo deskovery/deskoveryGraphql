@@ -5,7 +5,7 @@ type Video {
   name: String!
   gifs: [String]
   likes: Int
-  username: String
+  imageUrl: String
   videoId: String!
 }
 
