@@ -474,16 +474,21 @@ nav a:link {
 
 .images {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  position: relative;
+  padding: 5px;
+  margin: 0 auto;
 }
 
 .img {
   padding: 2px;
   max-width: 320px;
   max-height: 200px;
-  display: inline-block;
+  margin: 0 auto;
+}
+
+.loader {
+  margin: 0 auto;
 }
 
 .popupButton {
@@ -493,8 +498,7 @@ nav a:link {
 
 .moments {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  display: block;
 }
 
 #popupPlayer {
@@ -509,14 +513,17 @@ nav a:link {
   text-align: center;
 }
 
-.buttons {
+.rowHolder {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: row;
 }
 
-.innerButtons {
-  display: inline-block;
+.buttons {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .shareBox {
@@ -609,6 +616,10 @@ button:disabled {
   text-decoration: none;
   color: #2e2d2d;
   cursor: default;
+}
+
+button:disabled:hover {
+  border: none;
 }
 
 /* User modals */

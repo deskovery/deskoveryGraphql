@@ -4,6 +4,8 @@ import captureVideoFrame from 'capture-video-frame';
 import gifshot from 'gifshot';
 import { SyncLoader } from 'react-spinners';
 import axios from 'axios';
+import { GithubPicker } from 'react-color';
+
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -59,13 +61,14 @@ export class Capture extends Component {
         gifWidth: 300,
         gifHeight: 200,
         text: this.state.gifText,
-        fontSize: '16px',
+        fontSize: '18px',
         fontColor: this.state.gifTextColor,
         numFrames: 20,
         interval: 0.1,
         frameDuration: 1,
         sampleInterval: 10,
         numWorkers: 2,
+        fontWeight: 'bold',
       },
       obj => {
         if (!obj.error) {
@@ -83,47 +86,48 @@ export class Capture extends Component {
   };
 
   handleChange(event) {
+    console.log(event, 'what is event');
     this.setState({
       [event.target.name]: event.target.value,
     });
   }
+
+  handleColorChange = color => {
+    this.setState({
+      gifTextColor: color.hex,
+    });
+  };
 
   render() {
     const { shareUrl } = this.state;
     const disableSnap = this.state.gifText;
     return (
       <div className="moments">
-        <div id="popupPlayer">
-          <ReactPlayer
-            url={this.state.videoSrc}
-            playing={this.state.playing}
-            ref={this.ref}
-            width="90%"
-            height="auto"
-            controls
-          />{' '}
-        </div>
-        <div className="momentsInner">
+        <div className="rowHolder">
+          <div id="popupPlayer">
+            <ReactPlayer
+              url={this.state.videoSrc}
+              playing={this.state.playing}
+              ref={this.ref}
+              width="90%"
+              height="auto"
+              controls
+            />{' '}
+          </div>
           <div className="buttons">
             <div className="innerButtons">
               <input
                 type="text"
                 name="gifText"
+                placeHolder="gif text here"
                 value={this.state.gifText}
                 onChange={this.handleChange}
               />
-              <select name="gifTextColor" onChange={this.handleChange}>
-                <option value="none">text color: </option>
-
-                <option value="#00BFFF">Blue</option>
-                <option value="#BA55D3">Purple</option>
-                <option value="#3CB371">Green</option>
-                <option value="#DC143C">Red</option>
-                <option value="#FF8C00">Orange</option>
-                <option value="#FFFF33">Yellow</option>
-                <option value="#000000">Black</option>
-                <option value="#FFFFFF">White</option>
-              </select>
+              <GithubPicker
+                onClick={this.handleChange}
+                color={this.state.color}
+                onChange={this.handleColorChange}
+              />
               <button type="button" onClick={this.makeGif}>
                 {' '}
                 Make Gif{' '}
@@ -140,18 +144,21 @@ export class Capture extends Component {
               <br />
             </div>
           </div>
-          <div className="images">
+        </div>
+        <div className="images">
+          <div className="loader">
             {this.state.gifLoading ? <SyncLoader /> : null}
-            {this.state.image && (
-              <img
-                src={this.state.image}
-                className="img"
-                alt={'Your snapshot!'}
-              />
-            )}
           </div>
+          {this.state.image && (
+            <img
+              src={this.state.image}
+              className="img"
+              alt={'Your snapshot!'}
+            />
+          )}
           {this.state.image ? (
             <div className="shareBox">
+              <br />
               <button type="button" onClick={this.getShareLink}>
                 Share
               </button>
