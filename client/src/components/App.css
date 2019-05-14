@@ -463,7 +463,7 @@ nav a:link {
 }
 
 .popup-content {
-  width: 40% !important;
+  width: 50% !important;
   display: flex !important;
   justify-content: center !important;
 }
@@ -488,17 +488,19 @@ nav a:link {
 }
 
 .moments {
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
-momentsInner > video {
-  width: 100%;
-  padding: 0;
-  margin: 0 auto;
+#popupPlayer {
+  display: inline;
 }
 
 .momentsInner {
+  margin: 0 auto;
+  padding: 0;
+  margin: 0 auto;
   display: inline;
   text-align: center;
 }
