@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import ReactPlayer from "react-player";
-import captureVideoFrame from "capture-video-frame";
-import gifshot from "gifshot";
-import { SyncLoader } from "react-spinners";
-import axios from "axios";
-import { GithubPicker } from "react-color";
+import React, { Component } from 'react';
+import ReactPlayer from 'react-player';
+import captureVideoFrame from 'capture-video-frame';
+import gifshot from 'gifshot';
+import { SyncLoader } from 'react-spinners';
+import axios from 'axios';
+import { GithubPicker } from 'react-color';
 
 import {
   FacebookShareButton,
@@ -14,8 +14,8 @@ import {
   LinkedinShareButton,
   LinkedinIcon,
   EmailShareButton,
-  EmailIcon
-} from "react-share";
+  EmailIcon,
+} from 'react-share';
 
 export class Capture extends Component {
   constructor(props) {
@@ -24,11 +24,11 @@ export class Capture extends Component {
       videoSrc: null,
       playing: true,
       image: null,
-      gifText: "",
-      gifTextFont: "sans-serif",
-      gifTextColor: "#ffffff",
+      gifText: '',
+      gifTextFont: 'sans-serif',
+      gifTextColor: '#ffffff',
       shareUrl: null,
-      gifLoading: false
+      gifLoading: false,
     };
     this.takeSnapshot = this.takeSnapshot.bind(this);
     this.makeGif = this.makeGif.bind(this);
@@ -46,10 +46,10 @@ export class Capture extends Component {
   }
 
   async getShareLink() {
-    const { data } = await axios.post("/api/gifs", {
-      imgData: this.state.image
+    const { data } = await axios.post('/api/gifs', {
+      imgData: this.state.image,
     });
-    const shareUrl = data.replace("./api/public", "api");
+    const shareUrl = data.replace('./api/public', 'api');
     this.setState({ shareUrl: shareUrl, image: shareUrl });
   }
 
@@ -61,19 +61,19 @@ export class Capture extends Component {
         gifWidth: 300,
         gifHeight: 200,
         text: this.state.gifText,
-        fontSize: "18px",
+        fontSize: '18px',
         fontColor: this.state.gifTextColor,
         numFrames: 20,
         interval: 0.1,
         frameDuration: 1,
         sampleInterval: 10,
         numWorkers: 2,
-        fontWeight: "bold"
+        fontWeight: 'bold',
       },
       obj => {
         if (!obj.error) {
           var image = obj.image,
-            animatedImage = document.createElement("img");
+            animatedImage = document.createElement('img');
           animatedImage.src = image;
           this.setState({ image: image, gifLoading: false });
         }
@@ -86,15 +86,15 @@ export class Capture extends Component {
   };
 
   handleChange(event) {
-    console.log(event, "what is event");
+    console.log(event, 'what is event');
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   }
 
   handleColorChange = color => {
     this.setState({
-      gifTextColor: color.hex
+      gifTextColor: color.hex,
     });
   };
 
@@ -103,22 +103,23 @@ export class Capture extends Component {
     const disableSnap = this.state.gifText;
     return (
       <div className="moments">
-        <div id="popupPlayer">
-          <ReactPlayer
-            url={this.state.videoSrc}
-            playing={this.state.playing}
-            ref={this.ref}
-            width="90%"
-            height="auto"
-            controls
-          />{" "}
-        </div>
-        <div className="momentsInner">
+        <div className="rowHolder">
+          <div id="popupPlayer">
+            <ReactPlayer
+              url={this.state.videoSrc}
+              playing={this.state.playing}
+              ref={this.ref}
+              width="90%"
+              height="auto"
+              controls
+            />{' '}
+          </div>
           <div className="buttons">
             <div className="innerButtons">
               <input
                 type="text"
                 name="gifText"
+                placeHolder="gif text here"
                 value={this.state.gifText}
                 onChange={this.handleChange}
               />
@@ -127,21 +128,9 @@ export class Capture extends Component {
                 color={this.state.color}
                 onChange={this.handleColorChange}
               />
-              {/* <select name="gifTextColor" onChange={this.handleChange}>
-                <option value="none">text color: </option>
-
-                <option value="#00BFFF">Blue</option>
-                <option value="#BA55D3">Purple</option>
-                <option value="#3CB371">Green</option>
-                <option value="#DC143C">Red</option>
-                <option value="#FF8C00">Orange</option>
-                <option value="#FFFF33">Yellow</option>
-                <option value="#000000">Black</option>
-                <option value="#FFFFFF">White</option>
-              </select> */}
               <button type="button" onClick={this.makeGif}>
-                {" "}
-                Make Gif{" "}
+                {' '}
+                Make Gif{' '}
               </button>
               <br />
               <button
@@ -149,29 +138,32 @@ export class Capture extends Component {
                 onClick={this.takeSnapshot}
                 disabled={disableSnap}
               >
-                {" "}
-                Take Snapshot{" "}
+                {' '}
+                Take Snapshot{' '}
               </button>
               <br />
             </div>
           </div>
-          <div className="images">
+        </div>
+        <div className="images">
+          <div className="loader">
             {this.state.gifLoading ? <SyncLoader /> : null}
-            {this.state.image && (
-              <img
-                src={this.state.image}
-                className="img"
-                alt={"Your snapshot!"}
-              />
-            )}
           </div>
+          {this.state.image && (
+            <img
+              src={this.state.image}
+              className="img"
+              alt={'Your snapshot!'}
+            />
+          )}
           {this.state.image ? (
             <div className="shareBox">
+              <br />
               <button type="button" onClick={this.getShareLink}>
                 Share
               </button>
               {shareUrl && (
-                <div style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <FacebookShareButton url={shareUrl} quote="Facebook">
                     <FacebookIcon size={32} />
                   </FacebookShareButton>
