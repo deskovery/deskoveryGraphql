@@ -97,7 +97,7 @@ class UserHome extends Component {
               <Capture videoSrc={this.state.videoSrc} />
             ) : null}
             <ControlledPopup videoSrc={this.state.playVideo} />
-            <LikeVideo _id={this.state.playVideo} />
+            {/* <LikeVideo _id={this.state.playVideo} /> */}
             <button className='Favorites' onClick={this.addToFavs}>
               Add To Favorites
             </button>
