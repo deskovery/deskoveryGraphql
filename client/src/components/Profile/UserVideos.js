@@ -42,46 +42,55 @@ class UserVideos extends React.Component {
               )}
               {data.getUserVideos.map(video => (
                 <li key={video._id}>
-                  <Link to={`/videos/${video.videoId}`}>
-                    <h4>{video.name}</h4>
-                  </Link>
-                  <p style={{ marginBottom: '0' }}>Likes: {video.likes}</p>
-                  <Mutation
-                    mutation={DELETE_USER_VIDEO}
-                    variables={{ _id: video._id }}
-                    refetchQueries={() => [
-                      { query: GET_ALL_VIDEOS },
-                      { query: GET_CURRENT_USER }
-                    ]}
-                    update={(cache, { data: { deleteUserVideo } }) => {
-                      const { getUserVideos } = cache.readQuery({
-                        query: GET_USER_VIDEOS,
-                        variables: { username }
-                      });
-
-                      cache.writeQuery({
-                        query: GET_USER_VIDEOS,
-                        variables: { username },
-                        data: {
-                          getUserVideos: getUserVideos.filter(
-                            video => video._id !== deleteUserVideo._id
-                          )
-                        }
-                      });
+                  <div
+                    style={{
+                      background: `url(${
+                        video.imageUrl
+                      }) center center / cover no-repeat`
                     }}
+                    className='card'
                   >
-                    {(deleteUserVideo, attrs = {}) => (
-                      <div>
-                        <button className='button-primary'>Update</button>
-                        <p
-                          className='delete-button'
-                          onClick={() => this.handleDelete(deleteUserVideo)}
-                        >
-                          {attrs.loading ? 'deleting...' : 'X'}
-                        </p>
-                      </div>
-                    )}
-                  </Mutation>
+                    <Link to={`/videos/${video.videoId}`}>
+                      <h4>{video.name}</h4>
+                    </Link>
+                    <p style={{ marginBottom: '0' }}>Likes: {video.likes}</p>
+                    <Mutation
+                      mutation={DELETE_USER_VIDEO}
+                      variables={{ _id: video._id }}
+                      refetchQueries={() => [
+                        { query: GET_ALL_VIDEOS },
+                        { query: GET_CURRENT_USER }
+                      ]}
+                      update={(cache, { data: { deleteUserVideo } }) => {
+                        const { getUserVideos } = cache.readQuery({
+                          query: GET_USER_VIDEOS,
+                          variables: { username }
+                        });
+
+                        cache.writeQuery({
+                          query: GET_USER_VIDEOS,
+                          variables: { username },
+                          data: {
+                            getUserVideos: getUserVideos.filter(
+                              video => video._id !== deleteUserVideo._id
+                            )
+                          }
+                        });
+                      }}
+                    >
+                      {(deleteUserVideo, attrs = {}) => (
+                        <div>
+                          <button className='button-primary'>Update</button>
+                          <p
+                            className='delete-button'
+                            onClick={() => this.handleDelete(deleteUserVideo)}
+                          >
+                            {attrs.loading ? 'deleting...' : 'X'}
+                          </p>
+                        </div>
+                      )}
+                    </Mutation>
+                  </div>
                 </li>
               ))}
             </ul>
