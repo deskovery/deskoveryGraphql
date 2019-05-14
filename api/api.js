@@ -39,7 +39,6 @@ function urlParse(data) {
 // Isolates URL and file type info from the key-value translated JSON object above.
 
 router.get('/', async (req, res, next) => {
-  const id = 'deWeERCVc2o';
   try {
     const response = await fetch(
       `http://www.youtube.com/get_video_info?html5=1&video_id=${id}`
@@ -85,7 +84,7 @@ router.post('/', async (req, res, next) => {
 
     const videoFile = await video.pipe(
       fs.createWriteStream(
-        `./api/public/${req.body.videoSrc}-${Date.now()}.mp4`
+        `./videos/public/${req.body.videoSrc}-${Date.now()}.mp4`
       )
     );
     // Writes video to our desired filepath.

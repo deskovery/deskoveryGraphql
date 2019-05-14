@@ -30,14 +30,12 @@ class UserHome extends Component {
   };
 
   addToFavs() {
-    console.log(this.state.videoSrc, 'FAVS');
     let itemsArray = localStorage.getItem('items')
       ? JSON.parse(localStorage.getItem('items'))
       : [];
 
     itemsArray.push(this.state.videoSrc);
     localStorage.setItem('items', JSON.stringify(itemsArray));
-    console.log(localStorage, 'localStorage');
   }
 
   openFacts = () => {
@@ -53,7 +51,6 @@ class UserHome extends Component {
   };
 
   render() {
-    console.log(this.state.videoSrc, 'video???');
     setTimeout(() => {
       this.setState({ takeoff: false });
     }, 6000);
@@ -98,10 +95,9 @@ class UserHome extends Component {
             </div>
             <div className="user-home-buttons">
               <ControlledPopup videoSrc={this.state.playVideo} />
-              <LikeVideo _id={this.state.playVideo} />
-              {this.state.videoSrc ? (
-                <Capture videoSrc={this.state.videoSrc} />
-              ) : null}
+              {/* {this.state.videoSrc ? (
+                <Capture videoSrc={this.state.playVideo} />
+              ) : null} */}
 
               <button className="user-home-buttons" onClick={this.openJournal}>
                 Journal
@@ -109,9 +105,10 @@ class UserHome extends Component {
               <button className="user-home-buttons" onClick={this.openFacts}>
                 Facts
               </button>
-              <button className="user-home-buttons" onClick={this.addToFavs}>
-                Add To Favorites
-              </button>
+              <LikeVideo
+                _id={this.state.playVideo}
+                className="user-home-buttons"
+              />
             </div>
           </div>
         );
