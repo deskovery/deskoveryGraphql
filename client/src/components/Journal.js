@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import ReactStickies from "react-stickies"; //ES6
+import React, { Component } from 'react';
+import ReactStickies from 'react-stickies'; //ES6
 
 class Journal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: []
+      notes: [],
     };
     this.onChange = this.onChange.bind(this);
     this.onSave = this.onSave.bind(this);
@@ -20,9 +20,8 @@ class Journal extends Component {
     // Code goes here...
   }
   onChange(notes) {
-    console.log(notes[0].text, "what are notes");
     this.setState({
-      notes
+      notes,
     });
   }
   // colors={[D3D3D3]

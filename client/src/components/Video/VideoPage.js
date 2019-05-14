@@ -11,7 +11,6 @@ const VideoPage = ({ match }) => {
   return (
     <Query query={GET_VIDEO} variables={{ _id }}>
       {({ data, loading, error }) => {
-        console.log(data, ' is data~~~~~');
         if (loading) return <Spinner />;
         if (error) {
           console.log(error);
