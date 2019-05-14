@@ -93,13 +93,17 @@ export class Capture extends Component {
     const disableSnap = this.state.gifText;
     return (
       <div className="moments">
-        <div className="momentsInner">
+        <div id="popupPlayer">
           <ReactPlayer
             url={this.state.videoSrc}
             playing={this.state.playing}
             ref={this.ref}
+            width="90%"
+            height="auto"
             controls
           />{' '}
+        </div>
+        <div className="momentsInner">
           <div className="buttons">
             <div className="innerButtons">
               <input

@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
 // import { connect } from 'react-redux';
-import YouTubePlayer from "react-player/lib/players/YouTube";
-import { Capture } from "./momentCapture";
-import ControlledPopup from "./popup";
-import LikeVideo from "./Video/LikeVideo";
-import FactCarousel from "./FactCarousel";
-import Journal from "./Journal";
+import YouTubePlayer from 'react-player/lib/players/YouTube';
+import { Capture } from './momentCapture';
+import ControlledPopup from './popup';
+import LikeVideo from './Video/LikeVideo';
+import FactCarousel from './FactCarousel';
+import Journal from './Journal';
 
 class UserHome extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class UserHome extends Component {
       welcome: true,
       openFacts: false,
       openJournal: false,
-      playVideo: this.props.match.params._id || this.props.location.state.video
+      playVideo: this.props.match.params._id || this.props.location.state.video,
     };
     this.addToFavs = this.addToFavs.bind(this);
   }
@@ -30,30 +30,30 @@ class UserHome extends Component {
   };
 
   addToFavs() {
-    console.log(this.state.videoSrc, "FAVS");
-    let itemsArray = localStorage.getItem("items")
-      ? JSON.parse(localStorage.getItem("items"))
+    console.log(this.state.videoSrc, 'FAVS');
+    let itemsArray = localStorage.getItem('items')
+      ? JSON.parse(localStorage.getItem('items'))
       : [];
 
     itemsArray.push(this.state.videoSrc);
-    localStorage.setItem("items", JSON.stringify(itemsArray));
-    console.log(localStorage, "localStorage");
+    localStorage.setItem('items', JSON.stringify(itemsArray));
+    console.log(localStorage, 'localStorage');
   }
 
   openFacts = () => {
     this.setState({
-      openFacts: !this.state.openFacts
+      openFacts: !this.state.openFacts,
     });
   };
 
   openJournal = () => {
     this.setState({
-      openJournal: !this.state.openJournal
+      openJournal: !this.state.openJournal,
     });
   };
 
   render() {
-    console.log(this.state.videoSrc, "video???");
+    console.log(this.state.videoSrc, 'video???');
     setTimeout(() => {
       this.setState({ takeoff: false });
     }, 6000);
@@ -74,7 +74,7 @@ class UserHome extends Component {
       if (this.state.welcome) {
         return (
           <div>
-            <h1>Welcome to your destination!</h1>
+            <h1 id="welcomeHeader">Welcome to your destination!</h1>
           </div>
         );
       } else {
@@ -88,13 +88,12 @@ class UserHome extends Component {
                 url={`https://www.youtube.com/watch?v=${this.state.playVideo}`}
                 playing={this.state.playing}
                 ref={this.ref}
-                width="1000px"
-                max-width="100%"
-                height="800px"
+                width="70vw"
+                height="70vh"
                 controls
               />
             </div>
-            <div className='journal'>
+            <div className="journal">
               {this.state.openJournal ? <Journal /> : null}
             </div>
             <div className="user-home-buttons">
@@ -103,7 +102,7 @@ class UserHome extends Component {
               {this.state.videoSrc ? (
                 <Capture videoSrc={this.state.videoSrc} />
               ) : null}
-              
+
               <button className="user-home-buttons" onClick={this.openJournal}>
                 Journal
               </button>

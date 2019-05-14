@@ -10,8 +10,8 @@ class Landingpage extends React.Component {
   render() {
     return (
       <div className="content">
-        <h1 className="landing-page-welcome">Welcome to Deskovery!</h1>
-        <div className="landing-page-text">
+        <h1 id="journeyHeader">Welcome to Deskovery!</h1>
+        <div id="landing-page-text">
           <Link to={`/quiz`} id="journeyLink">
             {/* <img
               className="landing-gif"
