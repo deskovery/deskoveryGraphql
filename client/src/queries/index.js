@@ -79,9 +79,21 @@ export const DELETE_USER_VIDEO = gql`
   }
 `;
 
+export const ADD_VIDEO_IMAGE = gql`
+  mutation($name: String!, $imageUrl: String!) {
+    addVideoImage(name: $name, imageUrl: $imageUrl) {
+      _id
+      name
+      gifs
+      imageUrl
+      likes
+    }
+  }
+`;
+
 export const ADD_VIDEO_GIF = gql`
   mutation($name: String!, $gifs: [String!]) {
-    addQuiz(name: $name, gifs: $gifs) {
+    addVideoGif(name: $name, gifs: $gifs) {
       _id
       name
       gifs

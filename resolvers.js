@@ -116,6 +116,21 @@ exports.resolvers = {
       const video = await Video.findOneAndRemove({ _id });
       return video;
     },
+    addVideoImage: async (root, { name, imageUrl }, { Video }) => {
+      const existingVideo = await Video.findOne()
+        .where('name')
+        .equals(name);
+      if (existingVideo) {
+        existingVideo.imageUrl = imageUrl;
+        return existingVideo;
+      } else {
+        const newVideo = await new Video({
+          name,
+          gifs
+        }).save();
+        return newVideo;
+      }
+    },
     addVideoGif: async (root, { name, gifs }, { Video }) => {
       const existingVideo = await Video.findOne()
         .where('name')
