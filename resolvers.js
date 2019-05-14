@@ -97,7 +97,7 @@ exports.resolvers = {
           { $push: { favorites: video } }
         );
       } catch (err) {
-        debugger
+        console.error(err);
       }
       return video;
     },
@@ -108,7 +108,7 @@ exports.resolvers = {
       );
       const user = await User.findOneAndUpdate(
         { username },
-        { $pull: { favorites: _id } }
+        { $pull: { favorites: video } }
       );
       return video;
     },

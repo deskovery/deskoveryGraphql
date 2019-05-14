@@ -55,7 +55,7 @@ const schema = makeExecutableSchema({
 });
 
 // Creates graphiql
-// app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 // Connects schemas
 app.use(
