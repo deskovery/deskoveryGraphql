@@ -51,9 +51,7 @@ class UserVideos extends React.Component {
                       }}
                       className='card'
                     >
-                      <h4>{video.name}</h4>
-
-                      <p style={{ marginBottom: '0' }}>Likes: {video.likes}</p>
+                      <h4 style={{ color: 'black' }}>{video.name}</h4>
                       <Mutation
                         mutation={DELETE_USER_VIDEO}
                         variables={{ _id: video._id }}
