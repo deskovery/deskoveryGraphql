@@ -20,7 +20,7 @@ class UserHome extends Component {
       welcome: true,
       openFacts: false,
       openJournal: false,
-      playVideo: this.props.match.params._id || this.props.location.state.video
+      playVideo: this.props.match.params._id || this.props.location.state.video,
     };
     this.addToFavs = this.addToFavs.bind(this);
   }
@@ -42,13 +42,13 @@ class UserHome extends Component {
 
   openFacts = () => {
     this.setState({
-      openFacts: !this.state.openFacts
+      openFacts: !this.state.openFacts,
     });
   };
 
   openJournal = () => {
     this.setState({
-      openJournal: !this.state.openJournal
+      openJournal: !this.state.openJournal,
     });
   };
 
@@ -59,11 +59,11 @@ class UserHome extends Component {
     }, 6000);
     if (this.state.takeoff) {
       return (
-        <div className='takeoff'>
+        <div className="takeoff">
           <img
-            className='takeoffGif'
-            src='https://cdn.dribbble.com/users/1303437/screenshots/3492466/plane_800x600.gif'
-            alt='prepare for takeoff.'
+            className="takeoffGif"
+            src="https://cdn.dribbble.com/users/1303437/screenshots/3492466/plane_800x600.gif"
+            alt="prepare for takeoff."
           />
         </div>
       );
@@ -74,19 +74,19 @@ class UserHome extends Component {
       if (this.state.welcome) {
         return (
           <div>
-            <h1>Welcome to your destination!</h1>
+            <h1 id="welcomeHeader">Welcome to your destination!</h1>
           </div>
         );
       } else {
         return (
-          <div className='videoContainer'>
+          <div className="videoContainer">
             <YouTubePlayer
               url={`https://www.youtube.com/watch?v=${this.state.playVideo}`}
               playing={this.state.playing}
               ref={this.ref}
-              width='1000px'
-              max-width='100%'
-              height='800px'
+              width="100vw"
+              //max-width="100%"
+              height="70vh"
               controls
             />
             {this.state.openFacts ? (
@@ -98,13 +98,13 @@ class UserHome extends Component {
             ) : null}
             <ControlledPopup videoSrc={this.state.playVideo} />
             {/* <LikeVideo _id={this.state.playVideo} /> */}
-            <button className='Favorites' onClick={this.addToFavs}>
+            <button className="Favorites" onClick={this.addToFavs}>
               Add To Favorites
             </button>
-            <button className='popupButton' onClick={this.openJournal}>
+            <button className="popupButton" onClick={this.openJournal}>
               Journal
             </button>
-            <button className='popupButton' onClick={this.openFacts}>
+            <button className="popupButton" onClick={this.openFacts}>
               Facts
             </button>
           </div>
