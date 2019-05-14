@@ -113,9 +113,6 @@ class UserHome extends Component {
                 _id={this.state.playVideo}
                 className='user-home-buttons'
               />
-              {/* <button className='user-home-buttons' onClick={this.addToFavs}>
-                Add To Favs
-              </button> */}
             </div>
           </div>
         );
