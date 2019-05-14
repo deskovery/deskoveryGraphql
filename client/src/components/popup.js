@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Popup from 'reactjs-popup';
-import { Capture } from './momentCapture.js';
-import axios from 'axios';
+import React, { Component } from "react";
+import Popup from "reactjs-popup";
+import { Capture } from "./momentCapture.js";
+import axios from "axios";
 
 class ControlledPopup extends React.Component {
   constructor(props) {
@@ -12,10 +12,10 @@ class ControlledPopup extends React.Component {
   }
   async componentDidMount() {
     this.setState({ loading: true });
-    const { data } = await axios.post('/api/videos', {
-      videoSrc: this.props.videoSrc,
+    const { data } = await axios.post("/api/videos", {
+      videoSrc: this.props.videoSrc
     });
-    const path = data.path.replace('./api/public', '');
+    const path = data.path.replace("./api/public", "");
     this.setState({ videoSrc: `api${path}`, loading: false });
   }
 
@@ -29,10 +29,12 @@ class ControlledPopup extends React.Component {
 
   render() {
     return (
-      <div className="modal">
-        <button className="popupButton" onClick={this.openModal}>
+      <div>
+    <div><button className="user-home-buttons" onClick={this.openModal}>
           Capture moment
-        </button>
+        </button></div>
+      <div className="modal">
+        
         <Popup
           open={this.state.open}
           closeOnDocumentClick
@@ -54,8 +56,9 @@ class ControlledPopup extends React.Component {
             )}
           </div>
         </Popup>
-      </div>
+      </div> </div>
     );
+   
   }
 }
 
