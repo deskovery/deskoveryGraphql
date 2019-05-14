@@ -52,7 +52,7 @@ class LikeVideo extends Component {
     if (this.props.session.getCurrentUser) {
       const { username, favorites } = this.props.session.getCurrentUser;
       const { _id } = this.props;
-      if (favorites[0] !== null) {
+      if (favorites.length) {
         const prevLiked =
           favorites.findIndex(favorite => favorite._id === _id) > -1;
         this.setState({
@@ -98,7 +98,7 @@ class LikeVideo extends Component {
   render() {
     const { liked, username } = this.state;
     const { _id } = this.props;
-    // console.log(_id, this.props)
+    console.log(_id, this.props, ' inside of Like Video');
     return (
       <Mutation
         mutation={UNLIKE_VIDEO}
