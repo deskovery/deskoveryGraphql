@@ -14,9 +14,10 @@ body {
 }
 
 h1 {
-  color: white;
+  color: rgb(205, 231, 240);
   font-family: 'Rock Salt', cursive;
-  font-size: 100px !important;
+  font-size: 6vw;
+  margin: 20px;
 }
 
 h3 {
@@ -142,7 +143,6 @@ nav a:link {
 .landing-page-welcome {
   text-align: center;
   color: rgb(167, 198, 204);
-
   font-size: 50px;
 }
 
@@ -150,6 +150,11 @@ nav a:link {
   text-align: center;
   color: rgb(167, 198, 204);
   font-size: 30px;
+}
+
+#welcomeHeader {
+  font-size: 5vw;
+  text-align: center;
 }
 
 /* rotates the cards*/
@@ -197,7 +202,7 @@ nav a:link {
 }
 
 .card:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 100%;
@@ -277,7 +282,7 @@ nav a:link {
 }
 
 .video-image:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 60vh;
@@ -360,7 +365,7 @@ nav a:link {
   text-align: center;
 }
 
-.content > h1 {
+#journeyHeader {
   text-shadow: 4px 4px 4px #b80c0b;
   font-size: 6vw !important;
 }
@@ -458,7 +463,7 @@ nav a:link {
 }
 
 .popup-content {
-  width: 40% !important;
+  width: 50% !important;
   display: flex !important;
   justify-content: center !important;
 }
@@ -483,17 +488,19 @@ nav a:link {
 }
 
 .moments {
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
-momentsInner > video {
-  width: 100%;
-  padding: 0;
-  margin: 0 auto;
+#popupPlayer {
+  display: inline;
 }
 
 .momentsInner {
+  margin: 0 auto;
+  padding: 0;
+  margin: 0 auto;
   display: inline;
   text-align: center;
 }
@@ -528,11 +535,13 @@ momentsInner > video {
 }
 
 .videoContainer {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 100vw;
+  overflow: scroll;
 }
 
 .quiz {
@@ -614,4 +623,15 @@ button:disabled {
   to {
     transform: rotate(360deg);
   }
+}
+
+.user-home-buttons {
+  display: flex;
+  align-items: row;
+  justify-content: center;
+  margin: 4px;
+}
+
+.journal {
+  display: flex;
 }
