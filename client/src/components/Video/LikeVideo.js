@@ -13,7 +13,6 @@ class LikeVideo extends Component {
   handleClick = (likeVideo, unlikeVideo) => {
     this.handleLike(likeVideo, unlikeVideo);
     this.setState({ liked: !this.state.liked });
-    this.setState({ liked: !this.state.liked });
 
     console.log(this.state.liked, ' is state');
   };

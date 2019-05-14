@@ -202,7 +202,7 @@ nav a:link {
 }
 
 .card:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 100%;
@@ -282,7 +282,7 @@ nav a:link {
 }
 
 .video-image:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 60vh;
@@ -343,12 +343,16 @@ nav a:link {
 }
 
 .like-button {
-  position: fixed;
-  right: 1em;
+  /* position: fixed; */
+  /* right: 1em;
   bottom: 1em;
   font-size: 2rem;
   background-color: #f15f79;
-  color: white !important;
+  color: white !important; */
+  display: flex;
+  align-items: row;
+  justify-content: center;
+  margin: 4px;
 }
 
 .content {
@@ -431,7 +435,7 @@ nav a:link {
   text-align: center;
   padding: 5px;
 }
-/* 
+/*
 .modal > .content {
   width: 100%;
   padding: 10px 5px;
