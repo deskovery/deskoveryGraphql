@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Neucha', cursive;
+  letter-spacing: 0.15em;
+}
+
 .App {
   text-align: center;
   color: rgb(167, 198, 204);
@@ -9,6 +15,8 @@ body {
 
 h1 {
   color: white;
+  font-family: 'Rock Salt', cursive;
+  font-size: 100px !important;
 }
 
 h3 {
@@ -19,18 +27,19 @@ h3 {
 
 nav {
   text-align: center;
-  padding-bottom: 0.2em;
+  padding-bottom: 0.05em;
   padding-top: 2em;
   background-color: black;
   box-shadow: -3px 3px 10px 0px rgba(168, 168, 168, 0.7);
 }
 
-nav ul {
+ul.navbar {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 p,
@@ -53,7 +62,7 @@ nav a,
 nav a:link {
   text-decoration: none;
   font-size: 2.5rem;
-  font-weight: 100;
+  font-weight: bold;
 }
 
 /* .landing-page-text {
@@ -133,6 +142,7 @@ nav a:link {
 .landing-page-welcome {
   text-align: center;
   color: rgb(167, 198, 204);
+
   font-size: 50px;
 }
 
@@ -336,6 +346,49 @@ nav a:link {
   color: white !important;
 }
 
+.content {
+  margin: 15px auto;
+  height: 90vh;
+  width: auto;
+  background-image: url('https://cdn.dribbble.com/users/2033130/screenshots/5418198/fox_jungle_dribbble.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.content > h1 {
+  text-shadow: 4px 4px 4px #b80c0b;
+  font-size: 6vw !important;
+}
+
+#journey {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 5%;
+  white-space: nowrap;
+}
+
+#journeyLink {
+  text-decoration: none;
+}
+
+#jbContainer {
+  margin: 0 auto;
+}
+
+#journeyButton {
+  font-size: 30pt;
+  padding: 20px;
+  height: 15%;
+  color: rgb(167, 198, 204);
+}
+
 /* Search */
 
 .search {
@@ -373,11 +426,11 @@ nav a:link {
   text-align: center;
   padding: 5px;
 }
-
+/* 
 .modal > .content {
   width: 100%;
   padding: 10px 5px;
-}
+} */
 
 .modal > .actions {
   width: 100%;
@@ -507,6 +560,13 @@ momentsInner > video {
   padding: 20px;
 }
 
+.landing-gif {
+  height: auto;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
 .gif {
   display: inline-block;
   transition: transform 0.2s;
@@ -523,10 +583,13 @@ momentsInner > video {
 
 button {
   background-color: black;
+  font-size: 20px;
+  color: lightgray;
 }
 
 button:hover {
   color: whitesmoke;
+  border: 2px solid white;
 }
 
 button:disabled {

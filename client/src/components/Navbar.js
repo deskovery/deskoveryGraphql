@@ -14,53 +14,55 @@ const Navbar = ({ session }) => (
 
 const NavbarAuth = ({ session }) => (
   <Fragment>
-    <ul className='navbar'>
+    <ul className="navbar">
       <li>
-        <NavLink to='/quiz'>{'<'}</NavLink>
+        <NavLink to="/quiz">{'<'}</NavLink>
       </li>
       <li>
-        <NavLink to='/' exact>
+        <NavLink to="/" exact>
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink to='/search'>Search</NavLink>
+        <NavLink to="/search">Search</NavLink>
       </li>
       <li>
-        <NavLink to='/about'>About</NavLink>
+        <NavLink to="/about">About</NavLink>
       </li>
       <li>
-        <NavLink to='/profile'>Profile</NavLink>
+        <NavLink to="/profile">Profile</NavLink>
+      </li>
+      <li>
+        <h4 style={{ color: 'grey' }}>
+          Hello, <strong>{session.getCurrentUser.username}</strong>
+        </h4>
       </li>
       <Signout />
     </ul>
-    <h4 style={{ color: 'grey' }}>
-      Hello, <strong>{session.getCurrentUser.username}</strong>
-    </h4>
   </Fragment>
 );
 
 const NavbarUnAuth = () => (
-  <ul className='navbar'>
+  <ul className="navbar">
     <li>
-      <NavLink to='/quiz'>{'<'}</NavLink>
+      <NavLink to="/quiz">{'<'}</NavLink>
     </li>
     <li>
-      <NavLink to='/' exact>
+      <NavLink to="/" exact>
         Home
       </NavLink>
     </li>
     <li>
-      <NavLink to='/app'>About</NavLink>
+      <NavLink to="/app">About</NavLink>
     </li>
     <li>
-      <NavLink to='/search'>Search</NavLink>
+      <NavLink to="/search">Search</NavLink>
     </li>
     <li>
-      <NavLink to='/signin'>Signin</NavLink>
+      <NavLink to="/signin">Signin</NavLink>
     </li>
     <li>
-      <NavLink to='/signup'>Signup</NavLink>
+      <NavLink to="/signup">Signup</NavLink>
     </li>
   </ul>
 );
