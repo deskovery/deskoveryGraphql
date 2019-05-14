@@ -11,9 +11,6 @@ class LikeVideo extends Component {
   };
 
   handleClick = (likeVideo, unlikeVideo) => {
-    console.log(likeVideo);
-    console.log('Inside clicked');
-
     this.handleLike(likeVideo, unlikeVideo);
     this.setState({ liked: !this.state.liked });
     this.setState({ liked: !this.state.liked });
@@ -43,23 +40,15 @@ class LikeVideo extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.session.getCurrentUser.favorites, ' is FAV"SSSSS');
-    console.log(
-      this.props.session.getCurrentUser.favorites.pop(),
-      ' is FAV"SSSSS AFTER POP'
-    );
-    console.log('props id', this.props._id);
     if (this.props.session.getCurrentUser) {
       const { username, favorites } = this.props.session.getCurrentUser;
       const { _id } = this.props;
-      if (favorites.length) {
-        const prevLiked =
-          favorites.findIndex(favorite => favorite._id === _id) > -1;
-        this.setState({
-          liked: prevLiked,
-          username
-        });
-      }
+      const prevLiked =
+        favorites.findIndex(favorite => favorite._id === _id) > -1;
+      this.setState({
+        liked: prevLiked,
+        username
+      });
     }
   }
 
