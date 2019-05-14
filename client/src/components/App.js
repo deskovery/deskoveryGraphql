@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import VideoItem from './Video/VideoItem';
 import posed from 'react-pose';
+import { withRouter } from 'react-router';
 
 import { Query } from 'react-apollo';
 import { GET_ALL_VIDEOS } from '../queries';
@@ -86,4 +87,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);

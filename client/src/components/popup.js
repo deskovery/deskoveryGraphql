@@ -34,7 +34,7 @@ class ControlledPopup extends React.Component {
           Capture moment
         </button></div>
       <div className="modal">
-        
+
         <Popup
           open={this.state.open}
           closeOnDocumentClick
@@ -58,7 +58,7 @@ class ControlledPopup extends React.Component {
         </Popup>
       </div> </div>
     );
-   
+
   }
 }
 

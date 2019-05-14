@@ -113,7 +113,7 @@ class Quiz extends Component {
       this.setState({ selected: targetState, prompt: 'Choose one...' });
     } else {
       return this.props.history.push({
-        pathname: '/video',
+        pathname: '/video/',
         state: {
           video: this.state.selected[event.target.id].videoId,
         },
