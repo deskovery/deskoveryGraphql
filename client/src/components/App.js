@@ -48,6 +48,24 @@ class App extends React.Component {
           Deskovery channel, we hope you enjoy the sounds of nature and are
           reminded of its beauty.
         </p>
+        <h3>How To Navigate This Site</h3>
+        <p>
+          Each image/gif is a representation of a different part of the world.
+          We have land, sea, mountain, forest, ocean, shore, and space! Simply
+          click on the image/gif that intrigues you the most and enjoy a feed of
+          livestream videos.
+        </p>
+        <p>
+          Once at your final destination, you can capture the moment, with our
+          capture the moment button, allowing you to make gifs or take a
+          snapshot of the wild animals. We also provide you with a journal in
+          case you would like to reflect on your virtual experience in nature.
+          This journal is draggable, so we invite you to place it where you
+          like. If you're curious to learning more about the animals you're
+          watching, be sure to click on the facts button! This feature will
+          satisfy your curiousity.
+        </p>
+        <p>We hope you enjoy your time at Deskovery!</p>
         <div className='card-container'>
           <div className='card-image'>
             <h1 className='front'>hello</h1>
