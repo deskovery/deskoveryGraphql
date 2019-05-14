@@ -53,7 +53,7 @@ class UserHome extends Component {
   };
 
   render() {
-    console.log(this.props);
+    console.log(this.state.videoSrc, 'video???');
     setTimeout(() => {
       this.setState({ takeoff: false });
     }, 6000);
@@ -79,34 +79,40 @@ class UserHome extends Component {
         );
       } else {
         return (
-          <div className="videoContainer">
-            <YouTubePlayer
-              url={`https://www.youtube.com/watch?v=${this.state.playVideo}`}
-              playing={this.state.playing}
-              ref={this.ref}
-              width="100vw"
-              //max-width="100%"
-              height="70vh"
-              controls
-            />
-            {this.state.openFacts ? (
-              <FactCarousel destination={this.state.playVideo} />
-            ) : null}
-            {this.state.openJournal ? <Journal /> : null}
-            {this.state.videoSrc ? (
-              <Capture videoSrc={this.state.videoSrc} />
-            ) : null}
-            <ControlledPopup videoSrc={this.state.playVideo} />
-            {/* <LikeVideo _id={this.state.playVideo} /> */}
-            <button className="Favorites" onClick={this.addToFavs}>
-              Add To Favorites
-            </button>
-            <button className="popupButton" onClick={this.openJournal}>
-              Journal
-            </button>
-            <button className="popupButton" onClick={this.openFacts}>
-              Facts
-            </button>
+          <div>
+            <div className="videoContainer">
+              {this.state.openFacts ? (
+                <FactCarousel destination={this.state.playVideo} />
+              ) : null}
+              <YouTubePlayer
+                url={`https://www.youtube.com/watch?v=${this.state.playVideo}`}
+                playing={this.state.playing}
+                ref={this.ref}
+                width="70vw"
+                height="70vh"
+                controls
+              />
+            </div>
+            <div className="journal">
+              {this.state.openJournal ? <Journal /> : null}
+            </div>
+            <div className="user-home-buttons">
+              <ControlledPopup videoSrc={this.state.playVideo} />
+              <LikeVideo _id={this.state.playVideo} />
+              {this.state.videoSrc ? (
+                <Capture videoSrc={this.state.videoSrc} />
+              ) : null}
+
+              <button className="user-home-buttons" onClick={this.openJournal}>
+                Journal
+              </button>
+              <button className="user-home-buttons" onClick={this.openFacts}>
+                Facts
+              </button>
+              <button className="user-home-buttons" onClick={this.addToFavs}>
+                Add To Favorites
+              </button>
+            </div>
           </div>
         );
       }

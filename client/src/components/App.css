@@ -202,7 +202,7 @@ nav a:link {
 }
 
 .card:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 100%;
@@ -282,7 +282,7 @@ nav a:link {
 }
 
 .video-image:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 60vh;
@@ -623,4 +623,15 @@ button:disabled {
   to {
     transform: rotate(360deg);
   }
+}
+
+.user-home-buttons {
+  display: flex;
+  align-items: row;
+  justify-content: center;
+  margin: 4px;
+}
+
+.journal {
+  display: flex;
 }
