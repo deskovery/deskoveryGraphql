@@ -55,6 +55,7 @@ type Token {
 type Mutation {
   addVideo(name: String!, gifs: [String], videoId: String!): Video
   addVideoGif(name: String!, gifs: String!): Video
+  addVideoImage(name: String!, imageUrl: String!): Video
 
   deleteUserVideo(_id: ID!): Video
 
