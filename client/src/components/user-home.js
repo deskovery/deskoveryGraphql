@@ -50,6 +50,10 @@ class UserHome extends Component {
     });
   };
 
+  skipFlight = () => {
+    this.setState({ takeoff: false });
+  };
+
   render() {
     setTimeout(() => {
       this.setState({ takeoff: false });
@@ -62,6 +66,11 @@ class UserHome extends Component {
             src="https://cdn.dribbble.com/users/1303437/screenshots/3492466/plane_800x600.gif"
             alt="prepare for takeoff."
           />
+          <div className="skipContainer">
+            <button className="skip" onClick={this.skipFlight}>
+              Skip
+            </button>
+          </div>
         </div>
       );
     } else {
