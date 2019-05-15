@@ -122,7 +122,12 @@ let factsObj = {
 
 
   "qWlU7hWEl8c": [
-    `Every summer, the brown bears of Katmai National Park in Alaska flock to Brooks Falls to hunt the sockeye salmon fighting their way upstream to spawn.', 'All grizzly bears are brown bears, but not all brown bears are grizzly bears. The bears you are watching on the cams are brown bears. ', 'On days when many salmon are migrating in the river, a large and dominant male bear will sometimes catch and eat more than 30 fish per day.', 'The shoulder hump on a brown bear is a mass of muscle used to assist them while digging for roots, squirrels, etc. It allows the bear to apply tremendous pressure to the ground to dig.', 'Katmai's brown bears are some of the largest bears in the world. They can stand 3-5 feet  at the shoulder and measure 7-10 feet in length. Most adult males typically weigh 600-900 pounds at their heaviest in mid-summer. ', 'Sockeye salmon are usually 3-5 years old when they return to spawn. A typical sockeye will spend 1-2 years in fresh water before migrating to sea and 2-3 years in the ocean before reversing the journey.', 'Despite their enormous size, brown bears are extremely fast--they've been clocked running at 30 miles per hour!`
+    `Every summer, the brown bears of Katmai National Park in Alaska flock to Brooks Falls to hunt the sockeye salmon fighting their way upstream to spawn.`,
+     `All grizzly bears are brown bears, but not all brown bears are grizzly bears. The bears you are watching on the cams are brown bears.`,
+      `On days when many salmon are migrating in the river, a large and dominant male bear will sometimes catch and eat more than 30 fish per day.`,
+      `The shoulder hump on a brown bear is a mass of muscle used to assist them while digging for roots, squirrels, etc. It allows the bear to apply tremendous pressure to the ground to dig.`,
+      `Katmai's brown bears are some of the largest bears in the world. They can stand 3-5 feet  at the shoulder and measure 7-10 feet in length. Most adult males typically weigh 600-900 pounds at their heaviest in mid-summer.`,
+       `Sockeye salmon are usually 3-5 years old when they return to spawn. A typical sockeye will spend 1-2 years in fresh water before migrating to sea and 2-3 years in the ocean before reversing the journey.', 'Despite their enormous size, brown bears are extremely fast--they've been clocked running at 30 miles per hour!`
   ],
 
   "n6eMRYuo86Y": [
