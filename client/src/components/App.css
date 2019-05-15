@@ -557,6 +557,11 @@ button:disabled:hover {
   border: none;
 }
 
+#welcome {
+  color: rgb(205, 231, 240);
+  font-size: 18pt;
+}
+
 /* User modals */
 
 .App-logo {

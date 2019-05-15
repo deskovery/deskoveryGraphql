@@ -32,10 +32,8 @@ const NavbarAuth = ({ session }) => (
       <li>
         <NavLink to="/profile">Profile</NavLink>
       </li>
-      <li>
-        <h4 style={{ color: 'grey' }}>
-          Hello, <strong>{session.getCurrentUser.username}</strong>
-        </h4>
+      <li id="welcome">
+        Hello, <strong>{session.getCurrentUser.username}</strong>
       </li>
       <Signout />
     </ul>
@@ -59,10 +57,10 @@ const NavbarUnAuth = () => (
       <NavLink to="/search">Search</NavLink>
     </li>
     <li>
-      <NavLink to="/signin">Signin</NavLink>
+      <NavLink to="/signin">Sign In</NavLink>
     </li>
     <li>
-      <NavLink to="/signup">Signup</NavLink>
+      <NavLink to="/signup">Sign Up</NavLink>
     </li>
   </ul>
 );
