@@ -108,7 +108,7 @@ exports.resolvers = {
       return video;
     },
     deleteUserVideo: async (root, { _id }, { Video }) => {
-      const video = await Video.findOneAndRemove({ _id });
+      const video = await Video.findOne({ _id });
       return video;
     },
     addVideoImage: async (root, { name, imageUrl }, { Video }) => {

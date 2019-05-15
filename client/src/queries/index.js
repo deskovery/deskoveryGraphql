@@ -53,6 +53,17 @@ export const ADD_VIDEO = gql`
   }
 `;
 
+// export const ADD_JOURNAL = gql`
+//   mutation($title: String, $text: String, $username: String) {
+//     addJournal(title: $title, text: $text, username: $username) {
+//       _id
+//       title
+//       text
+//       username
+//     }
+//   }
+// `;
+
 export const LIKE_VIDEO = gql`
   mutation($_id: ID!, $username: String!) {
     likeVideo(_id: $_id, username: $username) {
@@ -133,6 +144,17 @@ export const GET_USER_VIDEOS = gql`
     }
   }
 `;
+
+export const GET_USER_JOURNAL = gql`
+  query($username: String) {
+    getUserJournal(username: $username) {
+      _id
+      title
+      text
+    }
+  }
+`;
+
 
 /* User Mutations */
 
