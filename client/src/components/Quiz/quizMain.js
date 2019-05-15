@@ -19,7 +19,7 @@ class Quiz extends Component {
             {
               name: 'forest',
               gifs: [
-                'https://cdn.dribbble.com/users/655449/screenshots/2896602/fodadrib.gif',
+                'https://cdn.dribbble.com/users/1062579/screenshots/4792856/foxlac2.gif',
                 'https://cdn.dribbble.com/users/720555/screenshots/3432505/woods_800x600.gif',
                 'https://cdn.dribbble.com/users/2026467/screenshots/5912909/4x3.gif',
                 'https://cdn.dribbble.com/users/1967051/screenshots/5626073/__1612__99.gif',
@@ -77,9 +77,10 @@ class Quiz extends Component {
             {
               name: 'meditation',
               gifs: [
-                'https://cdn.dribbble.com/users/288472/screenshots/1036781/komp-1_1.gif',
+                'https://cdn.dribbble.com/users/1154928/screenshots/4003136/secondshot.gif',
                 'https://cdn.dribbble.com/users/85713/screenshots/3775213/herbal_dribble.gif',
                 'https://cdn.dribbble.com/users/1421577/screenshots/4860653/dog-sleeping.gif',
+                'https://cdn.dribbble.com/users/280982/screenshots/3575111/yingif.gif'
               ],
               videoId: ['F7wVASdvp8c', 'thHgzWlveqs', 'L2Qln30b2nE'],
             },
