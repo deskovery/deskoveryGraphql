@@ -34,6 +34,10 @@ const UserSchema = new Schema({
       }
     ],
     ref: 'Video'
+  },
+  journal: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Journal'
   }
 });
 

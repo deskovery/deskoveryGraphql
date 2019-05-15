@@ -51,28 +51,20 @@ exports.resolvers = {
         model: 'Video',
         options: { retainNullValues: false }
       });
+      await User.findOne({
+        username: currentUser.username
+      }).populate({
+        path: 'journal',
+        model: 'Journal',
+        options: { retainNullValues: false }
+      });
 
       return user;
     },
-    // More Videos
-    // searchVideos: async (root, { searchTerm }, { Video }) => {
-    //   if (searchTerm) {
-    //     const searchResults = await Video.find(
-    //       {
-    //         $text: { $search: searchTerm }
-    //       },
-    //       {
-    //         score: { $meta: 'textScore' }
-    //       }
-    //     ).sort({
-    //       score: { $meta: 'textScore' }
-    //     });
-    //     return searchResults;
-    //   } else {
-    //     const videos = await Video.find();
-    //     return videos;
-    //   }
-    // },
+    getUserJournal: async (root, { username }, { Journal }) => {
+      const userJournal = await Journal.find({ username });
+      return userJournal;
+    },
     getUserVideos: async (root, { username }, { User }) => {
       const { favorites } = await User.findOne(
         { username },
@@ -118,7 +110,6 @@ exports.resolvers = {
     deleteUserVideo: async (root, { _id }, { Video }) => {
       const video = await Video.findOne({ _id });
       return video;
-     
     },
     addVideoImage: async (root, { name, imageUrl }, { Video }) => {
       const existingVideo = await Video.findOne()
@@ -149,6 +140,14 @@ exports.resolvers = {
         }).save();
         return newVideo;
       }
+    },
+    addJournal: async (root, { title, text, username }, { Journal }) => {
+      const newJournal = await new Journal({
+        title,
+        text,
+        username
+      }).save();
+      return newJournal;
     },
     signinUser: async (root, { username, password }, { User }) => {
       const user = await User.findOne({ username });

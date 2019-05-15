@@ -7,7 +7,10 @@ const JournalSchema = new Schema({
     type: String
   },
   text: {
-    type: [String]
+    type: String
+  },
+  username: {
+    type: String
   }
 });
 
