@@ -3,7 +3,7 @@ import { Query, Mutation } from 'react-apollo';
 import {
   GET_USER_VIDEOS,
   GET_ALL_VIDEOS,
-  DELETE_USER_VIDEO,
+ UNLIKE_VIDEO,
   GET_CURRENT_USER
 } from '../../queries';
 import { Link } from 'react-router-dom';
@@ -16,10 +16,10 @@ class UserVideos extends React.Component {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
   }
-  handleDelete = deleteUserVideo => {
+  handleDelete = unlikeVideo => {
     const confirmDelete = window.confirm('Are you sure?');
     if (confirmDelete) {
-      deleteUserVideo().then(({ data }) => {});
+      unlikeVideo().then(({ data }) => {});
     }
   };
 
@@ -42,54 +42,54 @@ class UserVideos extends React.Component {
               )}
               {data.getUserVideos.map(video => (
                 <li key={video._id}>
-                  <Link to={`/videos/${video.videoId}`}>
-                    <div
-                      style={{
-                        background: `url(${
-                          video.imageUrl
-                        }) center center / cover no-repeat`
-                      }}
-                      className='card'
-                    >
+                  <div
+                    style={{
+                      background: `url(${
+                        video.imageUrl
+                      }) center center / cover no-repeat`
+                    }}
+                    className='card'
+                  >
+                    <Link to={`/videos/${video.videoId}`}>
                       <h4 style={{ color: 'black' }}>{video.name}</h4>
-                      <Mutation
-                        mutation={DELETE_USER_VIDEO}
-                        variables={{ _id: video._id }}
-                        refetchQueries={() => [
-                          { query: GET_ALL_VIDEOS },
-                          { query: GET_CURRENT_USER }
-                        ]}
-                        update={(cache, { data: { deleteUserVideo } }) => {
-                          const { getUserVideos } = cache.readQuery({
-                            query: GET_USER_VIDEOS,
-                            variables: { username }
-                          });
+                    </Link>
+                  </div>
+                  <Mutation
+                    mutation={UNLIKE_VIDEO}
+                    variables={{ _id: video._id, username: username }}
+                    refetchQueries={() => [
+                      { query: GET_ALL_VIDEOS },
+                      { query: GET_CURRENT_USER }
+                    ]}
+                    update={(cache, { data: { unlikeVideo } }) => {
+                      const { getUserVideos } = cache.readQuery({
+                        query: GET_USER_VIDEOS,
+                        variables: { username }
+                      });
 
-                          cache.writeQuery({
-                            query: GET_USER_VIDEOS,
-                            variables: { username },
-                            data: {
-                              getUserVideos: getUserVideos.filter(
-                                video => video._id !== deleteUserVideo._id
-                              )
-                            }
-                          });
-                        }}
-                      >
-                        {(deleteUserVideo, attrs = {}) => (
-                          <div>
-                            <button className='button-primary'>Update</button>
-                            <p
-                              className='delete-button'
-                              onClick={() => this.handleDelete(deleteUserVideo)}
-                            >
-                              {attrs.loading ? 'deleting...' : 'X'}
-                            </p>
-                          </div>
-                        )}
-                      </Mutation>
-                    </div>
-                  </Link>
+                      cache.writeQuery({
+                        query: GET_USER_VIDEOS,
+                        variables: { username },
+                        data: {
+                          getUserVideos: getUserVideos.filter(
+                            video => video._id !== unlikeVideo._id
+                          )
+                        }
+                      });
+                    }}
+                  >
+                    {(unlikeVideo, attrs = {}) => (
+                      <div>
+                        <button className='button-primary'>Update</button>
+                        <p
+                          className='delete-button'
+                          onClick={() => this.handleDelete(unlikeVideo)}
+                        >
+                          {attrs.loading ? 'deleting...' : 'X'}
+                        </p>
+                      </div>
+                    )}
+                  </Mutation>
                 </li>
               ))}
             </ul>

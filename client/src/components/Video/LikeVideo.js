@@ -12,22 +12,27 @@ class LikeVideo extends Component {
 
   handleClick = (likeVideo, unlikeVideo) => {
     this.handleLike(likeVideo, unlikeVideo);
-    this.setState({ liked: !this.state.liked });
+    this.setState(
+      prevState => ({
+        liked: !prevState.liked
+      }),
+      () => this.handleLike(likeVideo, unlikeVideo)
+    );
 
     console.log(this.state.liked, ' is state');
   };
 
   handleLike = (likeVideo, unlikeVideo) => {
     console.log(this.state.liked, ' is state');
-    if (this.state.liked === true) {
+    if (this.state.liked) {
       console.log('**** like video');
-      unlikeVideo().then(async ({ data }) => {
+      likeVideo().then(async ({ data }) => {
         console.log('**** like video');
         await this.props.refetch();
       });
     } else {
       // unlike Video mutation
-      likeVideo()
+      unlikeVideo()
         .then(async ({ data }) => {
           console.log('**** like video is being called');
           await this.props.refetch();
