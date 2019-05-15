@@ -473,6 +473,11 @@ nav a:link {
   color: lightgray;
 }
 
+
+span {
+  content: "\2190";
+}
+
 .shareBox {
   display: flex;
   justify-content: center;

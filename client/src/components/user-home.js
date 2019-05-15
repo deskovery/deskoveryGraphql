@@ -84,10 +84,9 @@ class UserHome extends Component {
   };
 
   render() {
-    
     setTimeout(() => {
       this.setState({ takeoff: false });
-    }, 7800);
+    }, 8000);
     if (this.state.takeoff) {
       return (
         <div>
@@ -110,7 +109,7 @@ class UserHome extends Component {
       setTimeout(() => {
         this.setState({ welcome: false });
       }, 2850);
-      if (this.state.welcome) {
+      if (this.state.welcome && !this.state.takeoff) {
         return (
           <div>
             <h1 id="welcomeHeader">Welcome to your destination!</h1>
@@ -146,9 +145,9 @@ class UserHome extends Component {
             </div>
             <div className="user-home-buttons">
               <button className="next-button" onClick={this.goBack}>
-                Back
+            <span>&#8592;</span>
               </button>
-              <ControlledPopup videoSrc={this.state.playVideo} />
+              <ControlledPopup videoSrc={this.state.playVideo[this.state.playVideoIndex]} />
               {/* {this.state.videoSrc ? (
                 <Capture videoSrc={this.state.playVideo} />
               ) : null} */}
@@ -160,7 +159,7 @@ class UserHome extends Component {
                 Facts
               </button>
               <button className="next-button" onClick={this.goNext}>
-                Next
+              <span>&#8594;</span>
               </button>
               <LikeVideo
                 _id={this.state.playVideo}
