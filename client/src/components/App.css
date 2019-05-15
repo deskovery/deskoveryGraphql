@@ -66,19 +66,6 @@ nav a:link {
   font-weight: bold;
 }
 
-/* .landing-page-text {
-  width: 100%;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.landing {
-  height: 20px;
-  width: 100px;
-} */
-
 .active {
   font-weight: bold;
 }
@@ -120,12 +107,6 @@ nav a:link {
   margin-left: auto;
   margin-right: auto;
   width: 60%;
-  /* justify-content: center;
-  transition: transform 0.2s;
-  object-fit: cover;
-  object-position: center;
-  width: 60%;
-  position: relative; */
 }
 
 .facts {
@@ -239,48 +220,6 @@ nav a:link {
   padding: 0.2em;
 }
 
-.Eagle {
-  width: 20%;
-  margin: 20px;
-  z-index: 1;
-  padding: 7px;
-  border-radius: 5px;
-  color: white;
-  background: #24c6dc;
-  background: linear-gradient(to right, #514a9d, #24c6dc);
-}
-
-.Sky {
-  width: 20%;
-  margin: 20px;
-  z-index: 1;
-  padding: 7px;
-  border-radius: 5px;
-  color: white;
-  background: #50c9c3;
-  background: linear-gradient(to right, rgb(80, 146, 143), rgb(2, 105, 100));
-}
-
-.Land {
-  width: 100px;
-  margin: 20px;
-  z-index: 1;
-  color: white;
-  padding: 7px;
-  background: #9d50bb;
-  border-radius: 50px 120px 120px;
-}
-
-.Sea {
-  width: 20%;
-  margin: 20px;
-  z-index: 1;
-  padding: 7px;
-  color: white;
-  background: linear-gradient(to right, #b24592, #f15f79);
-  border-radius: 50px 120px 120px;
-}
-
 /* video Page */
 
 .video-image {
@@ -350,12 +289,6 @@ nav a:link {
 }
 
 .like-button {
-  /* position: fixed; */
-  /* right: 1em;
-  bottom: 1em;
-  font-size: 2rem;
-  background-color: #f15f79;
-  color: white !important; */
   display: flex;
   align-items: row;
   justify-content: center;
@@ -442,11 +375,6 @@ nav a:link {
   text-align: center;
   padding: 5px;
 }
-/*
-.modal > .content {
-  width: 100%;
-  padding: 10px 5px;
-} */
 
 .modal > .actions {
   width: 100%;
@@ -552,6 +480,13 @@ nav a:link {
   margin: 0 auto;
 }
 
+.skipContainer {
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px auto;
+}
+
 .videoContainer {
   margin-top: 20px;
   display: flex;
@@ -627,6 +562,11 @@ button:disabled {
 
 button:disabled:hover {
   border: none;
+}
+
+#welcome {
+  color: rgb(205, 231, 240);
+  font-size: 18pt;
 }
 
 /* User modals */
