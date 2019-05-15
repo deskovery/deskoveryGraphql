@@ -403,8 +403,9 @@ nav a:link {
 .search {
   font-size: 3rem;
   transition: width 0.2s ease-in;
+  text-align: center;
   margin: 2em;
-  width: 10em;
+  width: 14em;
 }
 
 .search:focus {
