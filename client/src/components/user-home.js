@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 // import { connect } from 'react-redux';
-import YouTubePlayer from 'react-player/lib/players/YouTube';
-import { Capture } from './momentCapture';
-import ControlledPopup from './popup';
-import LikeVideo from './Video/LikeVideo';
-import FactCarousel from './FactCarousel';
-import Journal from './Journal';
+import YouTubePlayer from "react-player/lib/players/YouTube";
+import { Capture } from "./momentCapture";
+import ControlledPopup from "./popup";
+import LikeVideo from "./Video/LikeVideo";
+import FactCarousel from "./FactCarousel";
+import Journal from "./Journal";
 
 class UserHome extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class UserHome extends Component {
       welcome: true,
       openFacts: false,
       openJournal: false,
-      playVideo: this.props.match.params._id || this.props.location.state.video,
+      playVideo: this.props.match.params._id || this.props.location.state.video
     };
     this.addToFavs = this.addToFavs.bind(this);
   }
@@ -30,48 +30,56 @@ class UserHome extends Component {
   };
 
   addToFavs() {
-    let itemsArray = localStorage.getItem('items')
-      ? JSON.parse(localStorage.getItem('items'))
+    let itemsArray = localStorage.getItem("items")
+      ? JSON.parse(localStorage.getItem("items"))
       : [];
 
     itemsArray.push(this.state.videoSrc);
-    localStorage.setItem('items', JSON.stringify(itemsArray));
+    localStorage.setItem("items", JSON.stringify(itemsArray));
   }
 
   openFacts = () => {
     this.setState({
-      openFacts: !this.state.openFacts,
+      openFacts: !this.state.openFacts
     });
   };
 
   openJournal = () => {
     this.setState({
-      openJournal: !this.state.openJournal,
+      openJournal: !this.state.openJournal
     });
   };
 
   render() {
     setTimeout(() => {
       this.setState({ takeoff: false });
-    }, 6000);
+    }, 7800);
     if (this.state.takeoff) {
       return (
+        <div>
+        <h1 id="welcomeHeader">Up, up, and away . . .</h1>
         <div className="takeoff">
           <img
             className="takeoffGif"
             src="https://cdn.dribbble.com/users/1303437/screenshots/3492466/plane_800x600.gif"
             alt="prepare for takeoff."
           />
-        </div>
+        </div></div>
       );
     } else {
       setTimeout(() => {
         this.setState({ welcome: false });
-      }, 1000);
+      }, 2850);
       if (this.state.welcome) {
         return (
-          <div>
+          <div >
             <h1 id="welcomeHeader">Welcome to your destination!</h1>
+            <div id='passport-gif'>
+            <img
+              id="passport-gif"
+              src="https://cdn.dribbble.com/users/1022424/screenshots/3395922/tickets_and_passport_dribble.gif"
+            />
+            </div>
           </div>
         );
       } else {
