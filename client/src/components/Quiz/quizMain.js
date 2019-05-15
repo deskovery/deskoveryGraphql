@@ -34,14 +34,26 @@ class Quiz extends Component {
                 'https://cdn.dribbble.com/users/901963/screenshots/4015420/mountaingif.gif',
                 'https://cdn.dribbble.com/users/404528/screenshots/2036097/04_02_outbx_042515.gif',
               ],
-              videoId: ['dQQimQsCTgE', 'deWeERCVc2o', 'b-AAXWdjZv0', 'HEQ6blgEZwU'],
+              videoId: [
+                'dQQimQsCTgE',
+                'deWeERCVc2o',
+                'b-AAXWdjZv0',
+                'HEQ6blgEZwU',
+              ],
             },
             {
               name: 'grasslands',
               gifs: [
-                'https://cdn.dribbble.com/users/727440/screenshots/2700907/meadow-doe.gif','https://cdn.dribbble.com/users/2198140/screenshots/5277197/elephant_dribbble.gif', 'https://cdn.dribbble.com/users/1063050/screenshots/3659636/drible2.gif'
+                'https://cdn.dribbble.com/users/727440/screenshots/2700907/meadow-doe.gif',
+                'https://cdn.dribbble.com/users/2198140/screenshots/5277197/elephant_dribbble.gif',
+                'https://cdn.dribbble.com/users/1063050/screenshots/3659636/drible2.gif',
               ],
-              videoId: ['z5F1a7_dsrs', 'mhFipoyCQzo', 'NVCi9yYwRCY', 'TL0weAv8C9s'],
+              videoId: [
+                'z5F1a7_dsrs',
+                'mhFipoyCQzo',
+                'NVCi9yYwRCY',
+                'TL0weAv8C9s',
+              ],
             },
           ],
         },
@@ -89,7 +101,7 @@ class Quiz extends Component {
                 'https://cdn.dribbble.com/users/1172684/screenshots/2727143/whale_600x400_lqclemens_wirth.gif',
                 'https://cdn.dribbble.com/users/428251/screenshots/2900364/diver-animation-2.gif',
               ],
-              videoId: ['CEzSXX3tcmU', 'ZIC8QmBKRHc', 'O6Ir_sMsTtc']
+              videoId: ['CEzSXX3tcmU', 'ZIC8QmBKRHc', 'O6Ir_sMsTtc'],
             },
             {
               name: 'shore',
@@ -100,7 +112,12 @@ class Quiz extends Component {
                 'https://cdn.dribbble.com/users/1737376/screenshots/5186212/herbstgifdribb.gif',
                 'https://cdn.dribbble.com/users/205347/screenshots/2291478/untitled-2.gif',
               ],
-              videoId: ['qWlU7hWEl8c', 'n6eMRYuo86Y', 'fqssZSX1bFo', 'O6Ir_sMsTtc']
+              videoId: [
+                'qWlU7hWEl8c',
+                'n6eMRYuo86Y',
+                'fqssZSX1bFo',
+                'O6Ir_sMsTtc',
+              ],
             },
           ],
         },
@@ -123,7 +140,7 @@ class Quiz extends Component {
       return this.props.history.push({
         pathname: `/videos/${this.state.selected[event.target.id].videoId[0]}`,
         state: {
-          video: this.state.selected[event.target.id].videoId,
+          videoList: this.state.selected[event.target.id].videoId,
         },
       });
     }

@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from 'react-router-dom';
 import './index.css';
 import App from './components/App';
@@ -32,21 +32,21 @@ const client = new ApolloClient({
       ? `https://desk0very.herokuapp.com/graphql`
       : `http://localhost:4444/graphql`,
   fetchOptions: {
-    credentials: 'include'
+    credentials: 'include',
   },
   request: operation => {
     const token = localStorage.getItem('token');
     operation.setContext({
       headers: {
-        authorization: token
-      }
+        authorization: token,
+      },
     });
   },
   onError: ({ networkError }) => {
     if (networkError) {
       console.log(networkError);
     }
-  }
+  },
 });
 
 const Root = ({ refetch, session }) => (
@@ -54,19 +54,19 @@ const Root = ({ refetch, session }) => (
     <Fragment>
       <Navbar session={session} />
       <Switch>
-        <Route exact path='/' component={Landingpage} />
-        <Route path='/quiz' component={Quiz} />
-        <Route path='/about' component={App} />
-        <Route path='/search' component={Search} />
-        <Route path='/capture' component={Capture} />
-        <Route path='/favorites' component={Favorites} />
-        <Route path='/facts' component={FactCarousel} />
-        <Route path='/video' component={userHome} />
-        <Route path='/signin' render={() => <Signin refetch={refetch} />} />
-        <Route path='/signup' render={() => <Signup refetch={refetch} />} />
-        <Route path='/videos/:_id' component={userHome} />
-        <Route path='/profile' render={() => <Profile session={session} />} />
-        <Redirect to='/' />
+        <Route exact path="/" component={Landingpage} />
+        <Route path="/quiz" component={Quiz} />
+        <Route path="/about" component={App} />
+        <Route path="/search" component={Search} />
+        <Route path="/capture" component={Capture} />
+        <Route path="/favorites" component={Favorites} />
+        <Route path="/facts" component={FactCarousel} />
+        {/* <Route path="/videos/" component={userHome} /> */}
+        <Route path="/signin" render={() => <Signin refetch={refetch} />} />
+        <Route path="/signup" render={() => <Signup refetch={refetch} />} />
+        <Route path="/videos/:_id" component={userHome} />
+        <Route path="/profile" render={() => <Profile session={session} />} />
+        <Redirect to="/" />
       </Switch>
     </Fragment>
   </Router>

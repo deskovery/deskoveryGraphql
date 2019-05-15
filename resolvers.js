@@ -21,19 +21,19 @@ exports.resolvers = {
       if (searchTerm) {
         const searchResults = await Video.find(
           {
-            $text: { $search: searchTerm }
+            $text: { $search: searchTerm },
           },
           {
-            score: { $meta: 'textScore' }
+            score: { $meta: 'textScore' },
           }
         ).sort({
-          score: { $meta: 'textScore' }
+          score: { $meta: 'textScore' },
         });
         return searchResults;
       } else {
         const videos = await Video.find().sort({
           likes: 'desc',
-          createdDate: 'desc'
+          createdDate: 'desc',
         });
         return videos;
       }
@@ -45,11 +45,11 @@ exports.resolvers = {
         return null;
       }
       const user = await User.findOne({
-        username: currentUser.username
+        username: currentUser.username,
       }).populate({
         path: 'favorites',
         model: 'Video',
-        options: { retainNullValues: false }
+        options: { retainNullValues: false },
       });
 
       return user;
@@ -80,7 +80,7 @@ exports.resolvers = {
         { options: { retainNullValues: false } }
       );
       return favorites;
-    }
+    },
   },
   Mutation: {
     addVideo: async (root, { name, gifs, videoId, imageUrl }, { Video }) => {
@@ -88,7 +88,7 @@ exports.resolvers = {
         name,
         gifs,
         videoId,
-        imageUrl
+        imageUrl,
       }).save();
       return newVideo;
     },
@@ -129,7 +129,7 @@ exports.resolvers = {
       } else {
         const newVideo = await new Video({
           name,
-          imageUrl
+          imageUrl,
         }).save();
         return newVideo;
       }
@@ -144,7 +144,7 @@ exports.resolvers = {
       } else {
         const newVideo = await new Video({
           name,
-          gifs
+          gifs,
         }).save();
         return newVideo;
       }
@@ -170,10 +170,10 @@ exports.resolvers = {
       const newUser = await new User({
         username,
         email,
-        password
+        password,
       }).save();
 
       return { token: createToken(newUser, process.env.SECRET, '24hr') };
-    }
-  }
+    },
+  },
 };
