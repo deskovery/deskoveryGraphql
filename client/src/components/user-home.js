@@ -166,7 +166,7 @@ class UserHome extends Component {
                 className="user-home-buttons"
               />
               {this.state.videoList.length !== 0 &&
-              this.state.playVideoIndex < this.state.videoList.length ? (
+              this.state.playVideoIndex < this.state.videoList.length - 1 ? (
                 <button className="user-home-buttons" onClick={this.goNext}>
                   <span>&#8594;</span>
                 </button>
