@@ -6,4 +6,4 @@ either route you to the ocean and seashore or the forest and mountain!
 Visit the site at: http://www.deskovery.live
 
 
-testing
+hello from amanda!!
