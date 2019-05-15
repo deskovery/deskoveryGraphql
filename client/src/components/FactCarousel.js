@@ -14,13 +14,13 @@ let factsObj = {
   ],
   "ktPv2E-FmmM": [
     "Jedediah Smith Redwood State Park is a 10,000-acre park in northern California.",
-    `Jedediah Smith Redwood State Park is home to 7 percent of the world's remaining old-growth redwoods.`,
-    "The 21-mile long Smith River is one of the few major rivers in the US that is not dammed.",
+    `Jedediah Smith Redwood State Park is home to 7% of the world's remaining old-growth redwoods.`,
+    `The 21-mile long Smith River is one of the few major rivers in the US that is not dammed.`,
     "Dams impede the spawning of salmon, so this free-flowing river plays an important role in the larger Pacific Northwest ecosystem.",
     "These trees are coast redwoods, which are coniferous evergreen trees belonging to the cypress family."
   ],
   "2mVQ2bWapqo": [
-    "Depending on species, chipmunks can be gray to reddish-brown in color with contrasting dark & light stripes on the sides of their face & across their back  &tail",
+    "Depending on species, chipmunks can be gray to reddish-brown in color with contrasting dark & light stripes on the sides of their face & across their back & tail.",
     `The chipmunk's bird-like chirp is usually made upon sensing a threat, but is also used by females as a mating call.`,
     "Chipmunks are found in North America, with the exception of the Siberian chipmunk which is found primarily in Asia.",
     "Chipmunks have an omnivorous diet consisting of seeds, nuts, and other fruits, and buds."
@@ -33,7 +33,7 @@ let factsObj = {
     `The zone is between the lowland forests in the Congo Basin & the highlands of the Albertine Rift, both areas of incredible biodiversity.`,
     `GRACE is an award-winning sanctuary that provides emergency veterinary care & rehabilitation for rescued gorillas`,
     `Gorillas sanctuary includes a chance to live in a group with other orphans, forming a surrogate family.`,
-    "The gorillas are ophrans rescued after being captured during packing events that killed their families."
+    "The gorillas are orphans rescued after being captured during packing events that killed their families."
   ],
   "deWeERCVc2o": [
     "Little is known about the adults of this nest, although they are both sexually mature bald eagles older than five years of age.",
@@ -51,7 +51,7 @@ let factsObj = {
   ],
   "HEQ6blgEZwU": [
     'Ospreys may travel more than 160,000 miles during their lifetime migrating to South and Central America for winter.',
-    'Opposable toes and barbed footpads allows them to hold onto their catch as they return to the nest.',
+    `The ospreys' Opposable toes and barbed footpads allows them to hold onto their catch as they return to the nest.`,
     `The word 'osprey' is thought to come from one of two Latin terms: 'avis pride', which means 'bird of prey' or 'ossifragus' which means 'bone-breaker.`,
     `About 99% of an osprey's diet is fish, from either fresh or saltwater.`,
     `Almost all osprey nests are within a 12 mile radius of a fish-filled water source.`
@@ -129,17 +129,17 @@ let factsObj = {
      `All grizzly bears are brown bears, but not all brown bears are grizzly bears. The bears you are watching on the cams are brown bears.`,
       `On days when many salmon are migrating in the river, a large and dominant male bear will sometimes catch and eat more than 30 fish per day.`,
       `The shoulder hump on a brown bear is a mass of muscle used to assist them while digging for roots, squirrels, etc. It allows the bear to apply tremendous pressure to the ground to dig.`,
-      `Katmai's brown bears are some of the largest bears in the world. They can stand 3-5 feet  at the shoulder and measure 7-10 feet in length. Most adult males typically weigh 600-900 pounds at their heaviest in mid-summer.`,
-       `Sockeye salmon are usually 3-5 years old when they return to spawn. A typical sockeye will spend 1-2 years in fresh water before migrating to sea and 2-3 years in the ocean before reversing the journey.', 'Despite their enormous size, brown bears are extremely fast--they've been clocked running at 30 miles per hour!`
+      `Katmai's brown bears are some of the largest bears in the world. They can stand 3-5 feet  at the shoulder and measure 7-10 feet in length.`,
+       `Sockeye salmon are usually 3-5 years old when they return to spawn.',  'A typical sockeye will spend 1-2 years in fresh water before migrating to sea and 2-3 years in the ocean before reversing the journey.', 'Despite their enormous size, brown bears are extremely fast--they've been clocked running at 30 miles per hour!`
   ],
 
   "n6eMRYuo86Y": [
     `Gray seals, also known as Atlantic seals or horsehead seals, are native to the north Atlantic Ocean. They are sociable animals that form colonies for breeding and feeding.`,
     "The gray seals featured on this camera are found on Seal Island, off the coast of Maine.",
-    "Sea lions are able to rotate their back flippers under their body, which allows them to walk on land, but Seals can't. So, seals are forced to flop around on their bellies when onshore, similar to the motion of a caterpillar.",
+    "Sea lions are able to rotate their back flippers under their body, which allows them to walk on land, but Seals can't.",  "Seals are forced to flop around on their bellies when onshore, similar to the motion of a caterpillar.",
     `Seal Island National Wildlife Refuge (NWR) is a 65-acre offshore island located in outer Penobscot Bay in Maine.`,
-    `Gray seals are opportunistic predators, feeding on up to 30 different species of fish and occasionally crustaceans and mollusks. Feeding methods vary among populations, but gray seals usually hunt together in social groups for greater efficiency.`,
-    "Gray seals are well adapted to a life at sea. Adults have two layers of thick fur and a thick blubber layer to keep them warm. Powerful, webbed flippers with strong claws help seals swim, dive and catch prey in water.",
+    `Gray seals are opportunistic predators, feeding on up to 30 different species of fish and occasionally crustaceans and mollusks.`,
+    "Gray seals are well adapted to a life at sea. Adults have two layers of thick fur and a thick blubber layer to keep them warm.",
     `Seals can dive to depths of nearly 1,000 feet when feeding.`
   ],
 
@@ -153,14 +153,13 @@ let factsObj = {
 
 "O6Ir_sMsTtc": [
   `Ospreys may travel more than 160,000 miles during their lifetime migrating to South and Central America for the winter.`,
-   `When the chicks hatch, they rely on their parents to bring foods. The separation in hatch time can be a disadvantage for the younger chicks when food is scarce, since older chicks can dominate when parents bring the fish back to the nest.`,
+   `When the chicks hatch, they rely on their parents to bring foods.', 'The separation in hatch time can be a disadvantage for the younger chicks when food is scarce, since older chicks can dominate when parents bring the fish back to the nest.`,
    `Opposable toes and barbed footpads allow them to hold onto their catch as they return to the nest.`,
    `Almost all osprey nests are within a twelve mile radius of a fish-filled water source.', 'Ospreys are found on every continent except Antarctica, usually in coastal areas or near rivers or lakes.`
   ],
 
   "L2Qln30b2nE": [
     `The word ‘meditation’ derives from the Latin word “meditate,” which means “to ponder.`,
-     `One of the earliest recorded mentions of medication.`,
      `The act of meditating involves a combination of concentration, contemplation, and the practice of abstraction, or focusing on ideas rather than occurrences or events.`
     ],
 
