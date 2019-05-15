@@ -72,7 +72,8 @@ class Quiz extends Component {
                 'https://cdn.dribbble.com/users/59947/screenshots/4516932/astronaut.gif',
                 'https://cdn.dribbble.com/users/1102039/screenshots/4962825/space-1.gif',
               ],
-              videoId: 'uj3FqkflC7g',
+              videoId: ['uj3FqkflC7g']
+
             },
             {
               name: 'meditation',
