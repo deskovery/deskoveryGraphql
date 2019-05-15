@@ -81,6 +81,7 @@ class UserHome extends Component {
     this.setState({
       counter: index
     });
+    
   };
 
   render() {
