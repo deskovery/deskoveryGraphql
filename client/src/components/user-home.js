@@ -155,26 +155,22 @@ class UserHome extends Component {
                 </button>
               ) : null}
               <ControlledPopup videoSrc={this.state.playVideo} />
-              {/* {this.state.videoSrc ? (
-                <Capture videoSrc={this.state.playVideo} />
-              ) : null} */}
-
               <button className="user-home-buttons" onClick={this.openJournal}>
                 Journal
               </button>
               <button className="user-home-buttons" onClick={this.openFacts}>
                 Facts
               </button>
+              <LikeVideo
+                _id={this.state.playVideo}
+                className="user-home-buttons"
+              />
               {this.state.videoList.length !== 0 &&
               this.state.playVideoIndex < this.state.videoList.length ? (
                 <button className="user-home-buttons" onClick={this.goNext}>
                   <span>&#8594;</span>
                 </button>
               ) : null}
-              <LikeVideo
-                _id={this.state.playVideo}
-                className="user-home-buttons"
-              />
             </div>
           </div>
         );
