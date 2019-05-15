@@ -20,7 +20,7 @@ class UserHome extends Component {
       welcome: true,
       openFacts: false,
       openJournal: false,
-      playVideo:  this.props.location.state.video || [this.props.match.params._id],
+      playVideo:  this.props.location.state.video,
       playVideoIndex: 0,
       counter: 0,
     };
