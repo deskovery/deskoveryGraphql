@@ -87,22 +87,21 @@ class UserHome extends Component {
   render() {
     setTimeout(() => {
       this.setState({ takeoff: false });
-    }, 8000);
+    }, 7800);
     if (this.state.takeoff) {
       return (
         <div>
-          <h1 id="welcomeHeader">Up, up, and away . . .</h1>
-          <div className="takeoff">
-            <img
-              className="takeoffGif"
-              src="https://cdn.dribbble.com/users/1303437/screenshots/3492466/plane_800x600.gif"
-              alt="prepare for takeoff."
-            />
-            <div className="skipContainer">
-              <button className="skip" onClick={this.skipFlight}>
-                Skip
-              </button>
-            </div>
+        <h1 id="welcomeHeader">Up, up, and away . . .</h1>
+        <div className="takeoff">
+          <img
+            className="takeoffGif"
+            src="https://cdn.dribbble.com/users/1303437/screenshots/3492466/plane_800x600.gif"
+            alt="prepare for takeoff."
+          />
+          <div className="skipContainer">
+            <button className="skip" onClick={this.skipFlight}>
+              Skip
+            </button>
           </div>
         </div>
       );
@@ -112,7 +111,7 @@ class UserHome extends Component {
       }, 2850);
       if (this.state.welcome && !this.state.takeoff) {
         return (
-          <div>
+          <div >
             <h1 id="welcomeHeader">Welcome to your destination!</h1>
             <div id="passport-gif">
               <img
