@@ -51,13 +51,6 @@ exports.resolvers = {
         model: 'Video',
         options: { retainNullValues: false },
       });
-      await User.findOne({
-        username: currentUser.username
-      }).populate({
-        path: 'journal',
-        model: 'Journal',
-        options: { retainNullValues: false }
-      });
 
       return user;
     },
