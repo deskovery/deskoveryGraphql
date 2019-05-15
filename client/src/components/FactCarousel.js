@@ -20,16 +20,19 @@ let factsObj = {
     "These trees are coast redwoods, which are coniferous evergreen trees belonging to the cypress family."
   ],
   "2mVQ2bWapqo": [
-    "Depending on species, chipmunks can be gray to reddish-brown in color with contrasting dark and light stripes on the sides of their face and across their back and tail",
-    `The chipmunk's bird-like chirp is usually made upon sensing a threat, but is also used by females as a matig call.`,
+    "Depending on species, chipmunks can be gray to reddish-brown in color with contrasting dark & light stripes on the sides of their face & across their back  &tail",
+    `The chipmunk's bird-like chirp is usually made upon sensing a threat, but is also used by females as a mating call.`,
     "Chipmunks are found in North America, with the exception of the Siberian chipmunk which is found primarily in Asia.",
     "Chipmunks have an omnivorous diet consisting of seeds, nuts, and other fruits, and buds."
   ],
   "dQQimQsCTgE": [
     `The gorilla cam shows the Grauer's gorillas inside their 39-acre forest habitat at GRACE`,
-     `The forest's former wild gorilla habitat makes it ideal for the orphans to practice skills needed for the wild such as foraging, nest building, and coordinating group travel.`,
-    "GRACE is located in a remote part of Democratic Republic of Congo within a transition zone between the lowland forests in the Congo Basin and the highlands of the Albertine Rift, both areas of incredible biodiversity.",
-    "GRACE is an award-winning sanctuary that provides emergency veterinary care and rehabilitation for rescued gorillas, including a chance to live in a group with other orphans, forming a surrogate family.",
+     `The forest's former wild gorilla habitat makes it ideal for the orphans to practice skills` ,
+     `Such skills needed for the wild are foraging, nest building, & coordinating group travel.`,
+    `GRACE is located in a remote part of Democratic Republic of Congo within a transition zone`,
+    `The zone is between the lowland forests in the Congo Basin & the highlands of the Albertine Rift, both areas of incredible biodiversity.`,
+    `GRACE is an award-winning sanctuary that provides emergency veterinary care & rehabilitation for rescued gorillas`,
+    `Gorillas sanctuary includes a chance to live in a group with other orphans, forming a surrogate family.`,
     "The gorillas are ophrans rescued after being captured during packing events that killed their families."
   ],
   "deWeERCVc2o": [
@@ -186,8 +189,8 @@ let factsObj = {
 // uj3FqkflC7g: ['outer space cam!', 'I love NASA', 'I want to be an astronaut'],
 // CEzSXX3tcmU: ['scuba cam', 'under the sea'],
 
-const width = "400px",
-  height = "80px";
+const width = "890px",
+  height = "85px";
 
 const Container = styled.div`
   border: 1px solid white;
