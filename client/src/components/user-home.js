@@ -33,6 +33,7 @@ class UserHome extends Component {
   };
 
   componentDidMount() {
+    console.log(this.state, 'STATE');
     if (this.props.location.state && this.props.location.state.videoList) {
       // console.log(this.props.location.state.videoList, 'VL STATE PROPS');
       this.setState({ videoList: this.props.location.state.videoList });
@@ -71,6 +72,7 @@ class UserHome extends Component {
     });
     this.setState({
       counter: index,
+      playVideoIndex: index,
     });
   };
 
@@ -81,7 +83,9 @@ class UserHome extends Component {
     });
     this.setState({
       counter: index,
+      playVideoIndex: index,
     });
+    console.log(this.state);
   };
 
   render() {
@@ -127,7 +131,7 @@ class UserHome extends Component {
         const hasNext =
           this.state.videoList.length !== 0 &&
           this.state.playVideoIndex > this.state.videoList.length;
-        const hasPrev = this.state.playVideoIndex <= 0;
+        const hasPrev = this.state.playVideoIndex !== 0;
         return (
           <div>
             <div className="videoContainer">
@@ -148,13 +152,11 @@ class UserHome extends Component {
               {this.state.openJournal ? <Journal /> : null}
             </div>
             <div className="user-home-buttons">
-              <button
-                className="next-button"
-                onClick={this.goBack}
-                diabled={hasPrev}
-              >
-                <span>&#8592;</span>
-              </button>
+              {this.state.playVideoIndex !== 0 ? (
+                <button className="next-button" onClick={this.goBack}>
+                  <span>&#8592;</span>
+                </button>
+              ) : null}
               <ControlledPopup videoSrc={this.state.playVideo} />
               {/* {this.state.videoSrc ? (
                 <Capture videoSrc={this.state.playVideo} />
@@ -166,13 +168,12 @@ class UserHome extends Component {
               <button className="user-home-buttons" onClick={this.openFacts}>
                 Facts
               </button>
-              <button
-                className="next-button"
-                onClick={this.goNext}
-                diabled={hasNext}
-              >
-                <span>&#8594;</span>
-              </button>
+              {this.state.videoList.length !== 0 &&
+              this.state.playVideoIndex < this.state.videoList.length ? (
+                <button className="next-button" onClick={this.goNext}>
+                  <span>&#8594;</span>
+                </button>
+              ) : null}
               <LikeVideo
                 _id={this.state.playVideo}
                 className="user-home-buttons"
