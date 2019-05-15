@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
 // import { connect } from 'react-redux';
-import YouTubePlayer from "react-player/lib/players/YouTube";
-import { Capture } from "./momentCapture";
-import ControlledPopup from "./popup";
-import LikeVideo from "./Video/LikeVideo";
-import FactCarousel from "./FactCarousel";
-import Journal from "./Journal";
+import YouTubePlayer from 'react-player/lib/players/YouTube';
+import { Capture } from './momentCapture';
+import ControlledPopup from './popup';
+import LikeVideo from './Video/LikeVideo';
+import FactCarousel from './FactCarousel';
+import Journal from './Journal';
 
 class UserHome extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class UserHome extends Component {
       openJournal: false,
       playVideo: this.props.location.state.video,
       playVideoIndex: 0,
-      counter: 0
+      counter: 0,
     };
     this.addToFavs = this.addToFavs.bind(this);
   }
@@ -32,27 +32,27 @@ class UserHome extends Component {
   };
 
   componentDidMount() {
-    console.log(this.state.playVideo, "video array");
+    console.log(this.state.playVideo, 'video array');
   }
 
   addToFavs() {
-    let itemsArray = localStorage.getItem("items")
-      ? JSON.parse(localStorage.getItem("items"))
+    let itemsArray = localStorage.getItem('items')
+      ? JSON.parse(localStorage.getItem('items'))
       : [];
 
     itemsArray.push(this.state.videoSrc);
-    localStorage.setItem("items", JSON.stringify(itemsArray));
+    localStorage.setItem('items', JSON.stringify(itemsArray));
   }
 
   openFacts = () => {
     this.setState({
-      openFacts: !this.state.openFacts
+      openFacts: !this.state.openFacts,
     });
   };
 
   openJournal = () => {
     this.setState({
-      openJournal: !this.state.openJournal
+      openJournal: !this.state.openJournal,
     });
   };
 
@@ -64,11 +64,11 @@ class UserHome extends Component {
     let index = this.state.counter - 1;
 
     this.setState({
-      playVideoIndex: index
+      playVideoIndex: index,
     });
 
     this.setState({
-      counter: index
+      counter: index,
     });
   };
 
@@ -76,32 +76,33 @@ class UserHome extends Component {
     let index = this.state.counter + 1;
 
     this.setState({
-      playVideoIndex: index
+      playVideoIndex: index,
     });
     this.setState({
-      counter: index
+      counter: index,
     });
-    
   };
 
   render() {
     setTimeout(() => {
       this.setState({ takeoff: false });
     }, 7800);
+
     if (this.state.takeoff) {
       return (
         <div>
-        <h1 id="welcomeHeader">Up, up, and away . . .</h1>
-        <div className="takeoff">
-          <img
-            className="takeoffGif"
-            src="https://cdn.dribbble.com/users/1303437/screenshots/3492466/plane_800x600.gif"
-            alt="prepare for takeoff."
-          />
-          <div className="skipContainer">
-            <button className="skip" onClick={this.skipFlight}>
-              Skip
-            </button>
+          <h1 id="welcomeHeader">Up, up, and away . . .</h1>
+          <div className="takeoff">
+            <img
+              className="takeoffGif"
+              src="https://cdn.dribbble.com/users/1303437/screenshots/3492466/plane_800x600.gif"
+              alt="prepare for takeoff."
+            />
+            <div className="skipContainer">
+              <button className="skip" onClick={this.skipFlight}>
+                Skip
+              </button>
+            </div>
           </div>
         </div>
       );
@@ -111,7 +112,7 @@ class UserHome extends Component {
       }, 2850);
       if (this.state.welcome && !this.state.takeoff) {
         return (
-          <div >
+          <div>
             <h1 id="welcomeHeader">Welcome to your destination!</h1>
             <div id="passport-gif">
               <img
@@ -145,9 +146,11 @@ class UserHome extends Component {
             </div>
             <div className="user-home-buttons">
               <button className="next-button" onClick={this.goBack}>
-            <span>&#8592;</span>
+                <span>&#8592;</span>
               </button>
-              <ControlledPopup videoSrc={this.state.playVideo[this.state.playVideoIndex]} />
+              <ControlledPopup
+                videoSrc={this.state.playVideo[this.state.playVideoIndex]}
+              />
               {/* {this.state.videoSrc ? (
                 <Capture videoSrc={this.state.playVideo} />
               ) : null} */}
@@ -159,7 +162,7 @@ class UserHome extends Component {
                 Facts
               </button>
               <button className="next-button" onClick={this.goNext}>
-              <span>&#8594;</span>
+                <span>&#8594;</span>
               </button>
               <LikeVideo
                 _id={this.state.playVideo}
