@@ -40,6 +40,7 @@ const Video = require('./models/Video');
 const User = require('./models/User');
 const Quiz = require('./models/Quiz');
 const Next = require('./models/Next');
+const Journal = require('./models/Journal')
 
 // GraphQL-Express middleware
 const { graphiqlExpress, graphqlExpress } = require('apollo-server-express');
