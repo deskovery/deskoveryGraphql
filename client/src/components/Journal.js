@@ -25,6 +25,9 @@ class Journal extends Component {
       notes
     });
   }
+  // set an interval that saves every 10 seconds
+  // clear interval on exit
+
   // colors={[D3D3D3]
   render() {
     return <ReactStickies notes={this.state.notes} onChange={this.onChange} />;
