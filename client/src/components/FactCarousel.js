@@ -51,7 +51,7 @@ let factsObj = {
   ],
   "HEQ6blgEZwU": [
     'Ospreys may travel more than 160,000 miles during their lifetime migrating to South and Central America for winter.',
-    `The ospreys' Opposable toes and barbed footpads allows them to hold onto their catch as they return to the nest.`,
+    `The ospreys' opposable toes and barbed footpads allows them to hold onto their catch as they return to the nest.`,
     `The word 'osprey' is thought to come from one of two Latin terms: 'avis pride', which means 'bird of prey' or 'ossifragus' which means 'bone-breaker.`,
     `About 99% of an osprey's diet is fish, from either fresh or saltwater.`,
     `Almost all osprey nests are within a 12 mile radius of a fish-filled water source.`
