@@ -20,7 +20,7 @@ class UserHome extends Component {
       welcome: true,
       openFacts: false,
       openJournal: false,
-      playVideo: this.props.location.state.video,
+      playVideo:  this.props.location.state.video,
       playVideoIndex: 0,
       counter: 0,
     };
@@ -127,7 +127,7 @@ class UserHome extends Component {
           <div>
             <div className="videoContainer">
               {this.state.openFacts ? (
-                <FactCarousel destination={this.state.playVideo} />
+                <FactCarousel destination={this.state.playVideo[this.state.playVideoIndex]} />
               ) : null}
 
               <YouTubePlayer
