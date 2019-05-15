@@ -74,6 +74,15 @@ class Quiz extends Component {
               ],
               videoId: 'uj3FqkflC7g',
             },
+            {
+              name: 'meditation',
+              gifs: [
+                'https://cdn.dribbble.com/users/288472/screenshots/1036781/komp-1_1.gif',
+                'https://cdn.dribbble.com/users/85713/screenshots/3775213/herbal_dribble.gif',
+                'https://cdn.dribbble.com/users/1421577/screenshots/4860653/dog-sleeping.gif',
+              ],
+              videoId: ['F7wVASdvp8c', 'thHgzWlveqs', 'L2Qln30b2nE'],
+            },
           ],
         },
         {
