@@ -122,16 +122,13 @@ class UserHome extends Component {
             <div id="passport-gif">
               <img
                 id="passport-gif"
+                alt="passport"
                 src="https://cdn.dribbble.com/users/1022424/screenshots/3395922/tickets_and_passport_dribble.gif"
               />
             </div>
           </div>
         );
       } else {
-        const hasNext =
-          this.state.videoList.length !== 0 &&
-          this.state.playVideoIndex > this.state.videoList.length;
-        const hasPrev = this.state.playVideoIndex !== 0;
         return (
           <div>
             <div className="videoContainer">
@@ -153,7 +150,7 @@ class UserHome extends Component {
             </div>
             <div className="user-home-buttons">
               {this.state.playVideoIndex !== 0 ? (
-                <button className="next-button" onClick={this.goBack}>
+                <button className="user-home-buttons" onClick={this.goBack}>
                   <span>&#8592;</span>
                 </button>
               ) : null}
@@ -170,7 +167,7 @@ class UserHome extends Component {
               </button>
               {this.state.videoList.length !== 0 &&
               this.state.playVideoIndex < this.state.videoList.length ? (
-                <button className="next-button" onClick={this.goNext}>
+                <button className="user-home-buttons" onClick={this.goNext}>
                   <span>&#8594;</span>
                 </button>
               ) : null}
