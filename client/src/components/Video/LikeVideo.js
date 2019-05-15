@@ -33,6 +33,7 @@ class LikeVideo extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props, 'CDM PROPS IN LIKE VIDEO');
     if (this.props.session.getCurrentUser) {
       const { username, favorites } = this.props.session.getCurrentUser;
       const { _id } = this.props;

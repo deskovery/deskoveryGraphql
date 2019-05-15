@@ -20,9 +20,10 @@ class UserHome extends Component {
       welcome: true,
       openFacts: false,
       openJournal: false,
-      playVideo: this.props.location.state.video,
+      playVideo: this.props.match.params._id,
       playVideoIndex: 0,
       counter: 0,
+      videoList: [],
     };
     this.addToFavs = this.addToFavs.bind(this);
   }
@@ -32,7 +33,10 @@ class UserHome extends Component {
   };
 
   componentDidMount() {
-    console.log(this.state.playVideo, 'video array');
+    if (this.props.location.state && this.props.location.state.videoList) {
+      // console.log(this.props.location.state.videoList, 'VL STATE PROPS');
+      this.setState({ videoList: this.props.location.state.videoList });
+    }
   }
 
   addToFavs() {
@@ -62,11 +66,9 @@ class UserHome extends Component {
 
   goBack = () => {
     let index = this.state.counter - 1;
-
     this.setState({
-      playVideoIndex: index,
+      playVideo: this.state.videoList[index],
     });
-
     this.setState({
       counter: index,
     });
@@ -74,9 +76,8 @@ class UserHome extends Component {
 
   goNext = () => {
     let index = this.state.counter + 1;
-
     this.setState({
-      playVideoIndex: index,
+      playVideo: this.state.videoList[index],
     });
     this.setState({
       counter: index,
@@ -110,6 +111,8 @@ class UserHome extends Component {
       setTimeout(() => {
         this.setState({ welcome: false });
       }, 2850);
+      const hasNext = this.state.playVideo !== 0;
+      const hasPrev = this.state.playVideoIndex > 0;
       if (this.state.welcome && !this.state.takeoff) {
         return (
           <div>
@@ -131,9 +134,7 @@ class UserHome extends Component {
               ) : null}
 
               <YouTubePlayer
-                url={`https://www.youtube.com/watch?v=${
-                  this.state.playVideo[this.state.playVideoIndex]
-                }`}
+                url={`https://www.youtube.com/watch?v=${this.state.playVideo}`}
                 playing={this.state.playing}
                 ref={this.ref}
                 width="70vw"
@@ -145,12 +146,14 @@ class UserHome extends Component {
               {this.state.openJournal ? <Journal /> : null}
             </div>
             <div className="user-home-buttons">
-              <button className="next-button" onClick={this.goBack}>
+              <button
+                className="next-button"
+                onClick={this.goBack}
+                diabled={hasPrev}
+              >
                 <span>&#8592;</span>
               </button>
-              <ControlledPopup
-                videoSrc={this.state.playVideo[this.state.playVideoIndex]}
-              />
+              <ControlledPopup videoSrc={this.state.playVideo} />
               {/* {this.state.videoSrc ? (
                 <Capture videoSrc={this.state.playVideo} />
               ) : null} */}
@@ -161,7 +164,11 @@ class UserHome extends Component {
               <button className="user-home-buttons" onClick={this.openFacts}>
                 Facts
               </button>
-              <button className="next-button" onClick={this.goNext}>
+              <button
+                className="next-button"
+                onClick={this.goNext}
+                diabled={hasNext}
+              >
                 <span>&#8594;</span>
               </button>
               <LikeVideo
