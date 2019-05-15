@@ -52,7 +52,7 @@ const { resolvers } = require('./resolvers');
 // Creates graphql schema
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers
+  resolvers,
 });
 
 // Creates graphiql
@@ -78,6 +78,7 @@ app.use(
 
 // api routes
 app.use('/api', require('./api/index'));
+app.use('/videos', require('./videos/index'));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // actually connects to the database

@@ -7,34 +7,23 @@ import { GET_VIDEO, LIKE_VIDEO, UNLIKE_VIDEO } from '../../queries';
 class LikeVideo extends Component {
   state = {
     username: '',
-    liked: false
+    liked: false,
   };
 
   handleClick = (likeVideo, unlikeVideo) => {
     this.handleLike(likeVideo, unlikeVideo);
-    this.setState(
-      prevState => ({
-        liked: !prevState.liked
-      }),
-      () => this.handleLike(likeVideo, unlikeVideo)
-    );
-
-    console.log(this.state.liked, ' is state');
+    this.setState({ liked: !this.state.liked });
   };
 
   handleLike = (likeVideo, unlikeVideo) => {
-    console.log(this.state.liked, ' is state');
-    if (this.state.liked) {
-      console.log('**** like video');
-      likeVideo().then(async ({ data }) => {
-        console.log('**** like video');
+    if (this.state.liked === true) {
+      unlikeVideo().then(async ({ data }) => {
         await this.props.refetch();
       });
     } else {
       // unlike Video mutation
       unlikeVideo()
         .then(async ({ data }) => {
-          console.log('**** like video is being called');
           await this.props.refetch();
         })
         .catch(err => {
@@ -44,6 +33,7 @@ class LikeVideo extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props, 'CDM PROPS IN LIKE VIDEO');
     if (this.props.session.getCurrentUser) {
       const { username, favorites } = this.props.session.getCurrentUser;
       const { _id } = this.props;
@@ -51,7 +41,7 @@ class LikeVideo extends Component {
         favorites.findIndex(favorite => favorite._id === _id) > -1;
       this.setState({
         liked: prevLiked,
-        username
+        username,
       });
     }
   }
@@ -60,15 +50,15 @@ class LikeVideo extends Component {
     const { _id } = this.props;
     const { getVideo } = cache.readQuery({
       query: GET_VIDEO,
-      variables: { _id }
+      variables: { _id },
     });
 
     cache.writeQuery({
       query: GET_VIDEO,
       variables: { _id },
       data: {
-        getVideo: { ...getVideo, likes: likeVideo.likes + 1 }
-      }
+        getVideo: { ...getVideo, likes: likeVideo.likes + 1 },
+      },
     });
   };
 
@@ -76,22 +66,21 @@ class LikeVideo extends Component {
     const { _id } = this.props;
     const { getVideo } = cache.readQuery({
       query: GET_VIDEO,
-      variables: { _id }
+      variables: { _id },
     });
 
     cache.writeQuery({
       query: GET_VIDEO,
       variables: { _id },
       data: {
-        getVideo: { ...getVideo, likes: unlikeVideo.likes - 1 }
-      }
+        getVideo: { ...getVideo, likes: unlikeVideo.likes - 1 },
+      },
     });
   };
 
   render() {
     const { liked, username } = this.state;
     const { _id } = this.props;
-    console.log(_id, this.props, ' inside of Like Video');
     return (
       <Mutation
         mutation={UNLIKE_VIDEO}
@@ -109,7 +98,7 @@ class LikeVideo extends Component {
                 username && (
                   <button
                     onClick={() => this.handleClick(likeVideo, unlikeVideo)}
-                    className='like-button'
+                    className="like-button"
                   >
                     {liked ? 'Added to Favorites' : 'Like'}
                   </button>

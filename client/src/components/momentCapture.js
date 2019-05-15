@@ -57,7 +57,7 @@ export class Capture extends Component {
     this.setState({ gifLoading: true });
     gifshot.createGIF(
       {
-        video: [this.state.videoSrc],
+        video: this.state.videoSrc,
         gifWidth: 300,
         gifHeight: 200,
         text: this.state.gifText,
@@ -86,7 +86,6 @@ export class Capture extends Component {
   };
 
   handleChange(event) {
-    console.log(event, 'what is event');
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -99,6 +98,7 @@ export class Capture extends Component {
   };
 
   render() {
+    console.log(this.state.videoSrc, 'VS in RENDEr!!');
     const { shareUrl } = this.state;
     const disableSnap = this.state.gifText;
     return (
@@ -119,7 +119,7 @@ export class Capture extends Component {
               <input
                 type="text"
                 name="gifText"
-                placeHolder="gif text here"
+                placeholder="gif text here"
                 value={this.state.gifText}
                 onChange={this.handleChange}
               />
