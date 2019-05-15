@@ -66,6 +66,7 @@ class UserHome extends Component {
 
   goBack = () => {
     let index = this.state.counter - 1;
+    console.log(this.hasPrev());
     this.setState({
       playVideo: this.state.videoList[index],
     });
@@ -76,12 +77,21 @@ class UserHome extends Component {
 
   goNext = () => {
     let index = this.state.counter + 1;
+    console.log(this.hasNext());
     this.setState({
       playVideo: this.state.videoList[index],
     });
     this.setState({
       counter: index,
     });
+  };
+
+  hasNext = () => {
+    return this.state.playVideoIndex < this.state.videoList.length;
+  };
+
+  hasPrev = () => {
+    return this.state.playVideoIndex > 0;
   };
 
   render() {
@@ -111,8 +121,6 @@ class UserHome extends Component {
       setTimeout(() => {
         this.setState({ welcome: false });
       }, 2850);
-      const hasNext = this.state.playVideo !== 0;
-      const hasPrev = this.state.playVideoIndex > 0;
       if (this.state.welcome && !this.state.takeoff) {
         return (
           <div>
@@ -149,7 +157,7 @@ class UserHome extends Component {
               <button
                 className="next-button"
                 onClick={this.goBack}
-                diabled={hasPrev}
+                diabled={!this.hasPrev}
               >
                 <span>&#8592;</span>
               </button>
@@ -167,7 +175,7 @@ class UserHome extends Component {
               <button
                 className="next-button"
                 onClick={this.goNext}
-                diabled={hasNext}
+                diabled={this.hasNext}
               >
                 <span>&#8594;</span>
               </button>
