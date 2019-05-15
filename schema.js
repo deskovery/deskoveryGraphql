@@ -9,6 +9,13 @@ type Video {
   videoId: String!
 }
 
+type Journal {
+  _id: ID
+  title: String
+  text: String
+  username: String
+}
+
 type User {
   _id: ID
   username: String! @unique
@@ -46,6 +53,7 @@ type Query {
 
   getCurrentUser: User
   getUserVideos(username: String!): [Video]
+  getUserJournal(username: String!): Journal
 }
 
 type Token {
@@ -56,6 +64,7 @@ type Mutation {
   addVideo(name: String!, gifs: [String], videoId: String!, imageUrl: String!): Video
   addVideoGif(name: String!, gifs: String!): Video
   addVideoImage(name: String!, imageUrl: String!): Video
+  addJournal(title: String, text: String, username: String): Journal
 
   deleteUserVideo(_id: ID!): Video
 
