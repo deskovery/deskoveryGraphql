@@ -44,7 +44,8 @@ let factsObj = {
   ],
   "b-AAXWdjZv0": [
     "With a maximum depth of 1,640 feet (about 500 meters), Lake Tahoe is the second deepest lake in the United States.",
-    `At the surface, Lake Tahoe's water temperature varies from 41-68 degrees Fahrenheit. Below 600 feet, the water temperature is a constant 39 degrees.`,
+    `At the surface, Lake Tahoe's water temperature varies from 41-68 degrees Fahrenheit.`,
+     `Below 600 feet, the water temperature is a constant 39 degrees.`,
     "The surface of Like Tahoe is at an elevation of 6,220 feet above sea level.",
     "Lake Tahoe is a large freshwater lake in the northern Sierra Nevada mountains on the California-Nevada border.",
     "Lake Tahoe exists in a fault basin created about 25 million years ago around the same time the Sierra Nevada mountains were formed."
@@ -118,7 +119,8 @@ let factsObj = {
     `In this tank, you might spot a Flying Gunnard, a fish impressive pectoral fins that allow them to 'walk' along the ocean floor.`,
     "This tropical fish cam features mainly anthias and wrasse, though there are also others, including cowfish and angelfish.",
     `Wrasse are a type of brightly colored tropical fish found on coral reefs. There are over 580 species of wrasse, ranging in size from 2 inches to 6.5 feet. Some smaller species of wrasse act as "cleaners'; they will pick off and eat the external parasites on larger fish.`,
-    `Most tropical coral reefs around the world are home to swarms of pink, orange, and yellow fish, many of which are anthias. A generally small fish that feeds primarily on zooplankton, anthias form complex social structures called "harems" based on their location on the reef and the ratio of male to female fish in the population.`,
+    `Most tropical coral reefs around the world are home to swarms of pink, orange, and yellow fish, many of which are anthias.`,
+     `A generally small fish that feeds primarily on zooplankton, anthias form complex social structures called "harems" based on their location on the reef and the ratio of male to female fish in the population.`,
     "Corals are marine invertebrates within the class Anthozoa of the phylum Cnidaria. They typically live in compact colonies of many identical individual polyps.",
     "Much of the coral in this tank is fan coral, a type of soft coral that does not produce a calcium skeleton."
   ],
@@ -128,9 +130,12 @@ let factsObj = {
     `Every summer, the brown bears of Katmai National Park in Alaska flock to Brooks Falls to hunt the sockeye salmon fighting their way upstream to spawn.`,
      `All grizzly bears are brown bears, but not all brown bears are grizzly bears. The bears you are watching on the cams are brown bears.`,
       `On days when many salmon are migrating in the river, a large and dominant male bear will sometimes catch and eat more than 30 fish per day.`,
-      `The shoulder hump on a brown bear is a mass of muscle used to assist them while digging for roots, squirrels, etc. It allows the bear to apply tremendous pressure to the ground to dig.`,
+      `The shoulder hump on a brown bear is a mass of muscle used to assist them while digging for roots, squirrels, etc.`,
+       `It allows the bear to apply tremendous pressure to the ground to dig.`,
       `Katmai's brown bears are some of the largest bears in the world. They can stand 3-5 feet  at the shoulder and measure 7-10 feet in length.`,
-       `Sockeye salmon are usually 3-5 years old when they return to spawn.',  'A typical sockeye will spend 1-2 years in fresh water before migrating to sea and 2-3 years in the ocean before reversing the journey.', 'Despite their enormous size, brown bears are extremely fast--they've been clocked running at 30 miles per hour!`
+       `Sockeye salmon are usually 3-5 years old when they return to spawn.`,
+       'A typical sockeye will spend 1-2 years in fresh water before migrating to sea and 2-3 years in the ocean before reversing the journey.',
+       `Despite their enormous size, brown bears are extremely fast--they've been clocked running at 30 miles per hour!`
   ],
 
   "n6eMRYuo86Y": [
@@ -153,7 +158,8 @@ let factsObj = {
 
 "O6Ir_sMsTtc": [
   `Ospreys may travel more than 160,000 miles during their lifetime migrating to South and Central America for the winter.`,
-   `When the chicks hatch, they rely on their parents to bring foods.', 'The separation in hatch time can be a disadvantage for the younger chicks when food is scarce, since older chicks can dominate when parents bring the fish back to the nest.`,
+   `When the chicks hatch, they rely on their parents to bring foods.`,
+   `The separation in hatch time can be a disadvantage for the younger chicks when food is scarce, since older chicks can dominate when parents bring the fish back to the nest.`,
    `Opposable toes and barbed footpads allow them to hold onto their catch as they return to the nest.`,
    `Almost all osprey nests are within a twelve mile radius of a fish-filled water source.', 'Ospreys are found on every continent except Antarctica, usually in coastal areas or near rivers or lakes.`
   ],
