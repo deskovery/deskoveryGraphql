@@ -289,6 +289,20 @@ class FactCarousel extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.destination !== prevProps.destination) {
+    for (let key in factsObj) {
+      if (key === this.props.destination) {
+        console.log(key, "key");
+        let theseFacts = factsObj[key];
+        this.setState({
+          facts: theseFacts
+        });
+      }
+    }
+  }
+  }
+
   render() {
     return (
       <div className="carousel">

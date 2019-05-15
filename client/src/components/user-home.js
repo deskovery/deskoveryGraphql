@@ -136,7 +136,7 @@ class UserHome extends Component {
           <div>
             <div className="videoContainer">
               {this.state.openFacts ? (
-                <FactCarousel destination={this.state.playVideo[this.state.playVideoIndex]} />
+                <FactCarousel destination={this.state.playVideo} />
               ) : null}
 
               <YouTubePlayer
