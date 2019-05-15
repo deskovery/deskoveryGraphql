@@ -191,9 +191,7 @@ nav a:link {
 
 .card:after {
   content: '';
-  position: absolute;
   width: 100%;
-  height: 100%;
   background-color: black;
   opacity: 0.25;
   transition: opacity 0.3s ease-in-out;
@@ -201,6 +199,29 @@ nav a:link {
 
 .card:hover:after {
   opacity: 0;
+}
+
+#favesTitle {
+  color: rgb(167, 198, 204);
+  text-shadow: 2px 2px 2px black;
+}
+
+#eachFaveContainer {
+  width: 100%;
+  padding: 20px;
+}
+
+#allFavesContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  justify-content: space-evenly;
+  width: 80%;
+}
+
+.favesContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .card-text {
