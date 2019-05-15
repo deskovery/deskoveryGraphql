@@ -44,22 +44,22 @@ exports.resolvers = {
       if (!currentUser) {
         return null;
       }
-      await User.findOne({
+      const user = await User.findOne({
         username: currentUser.username
       }).populate({
         path: 'favorites',
         model: 'Video',
         options: { retainNullValues: false }
       });
-      await User.findOne({
-        username: currentUser.username
-      }).populate({
-        path: 'journal',
-        model: 'Journal',
-        options: { retainNullValues: false }
-      });
+      // await User.findOne({
+      //   username: currentUser.username
+      // }).populate({
+      //   path: 'journal',
+      //   model: 'Journal',
+      //   options: { retainNullValues: false }
+      // });
 
-      return User;
+      return user;
     },
     getUserJournal: async (root, { username }, { Journal }) => {
       const userJournal = await Journal.find({ username });
