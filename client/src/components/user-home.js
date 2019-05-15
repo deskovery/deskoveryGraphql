@@ -73,7 +73,7 @@ class UserHome extends Component {
               Skip
             </button>
           </div>
-        </div>
+        </div></div>
       );
     } else {
       setTimeout(() => {
