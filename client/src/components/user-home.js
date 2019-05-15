@@ -20,7 +20,9 @@ class UserHome extends Component {
       welcome: true,
       openFacts: false,
       openJournal: false,
-      playVideo: this.props.match.params._id || this.props.location.state.video
+      playVideo: this.props.location.state.video,
+      playVideoIndex: 0,
+      counter: 0
     };
     this.addToFavs = this.addToFavs.bind(this);
   }
@@ -28,6 +30,10 @@ class UserHome extends Component {
   ref = youtube => {
     this.player = youtube;
   };
+
+  componentDidMount() {
+    console.log(this.state.playVideo, "video array");
+  }
 
   addToFavs() {
     let itemsArray = localStorage.getItem("items")
@@ -52,6 +58,30 @@ class UserHome extends Component {
 
   skipFlight = () => {
     this.setState({ takeoff: false });
+  };
+
+  goBack = () => {
+    let index = this.state.counter - 1;
+
+    this.setState({
+      playVideoIndex: index
+    });
+
+    this.setState({
+      counter: index
+    });
+  };
+
+  goNext = () => {
+    let index = this.state.counter + 1;
+
+    this.setState({
+      playVideoIndex: index
+    });
+    this.setState({
+      counter: index
+    });
+    
   };
 
   render() {
@@ -79,15 +109,15 @@ class UserHome extends Component {
       setTimeout(() => {
         this.setState({ welcome: false });
       }, 2850);
-      if (this.state.welcome) {
+      if (this.state.welcome && !this.state.takeoff) {
         return (
           <div >
             <h1 id="welcomeHeader">Welcome to your destination!</h1>
-            <div id='passport-gif'>
-            <img
-              id="passport-gif"
-              src="https://cdn.dribbble.com/users/1022424/screenshots/3395922/tickets_and_passport_dribble.gif"
-            />
+            <div id="passport-gif">
+              <img
+                id="passport-gif"
+                src="https://cdn.dribbble.com/users/1022424/screenshots/3395922/tickets_and_passport_dribble.gif"
+              />
             </div>
           </div>
         );
@@ -98,8 +128,11 @@ class UserHome extends Component {
               {this.state.openFacts ? (
                 <FactCarousel destination={this.state.playVideo} />
               ) : null}
+
               <YouTubePlayer
-                url={`https://www.youtube.com/watch?v=${this.state.playVideo}`}
+                url={`https://www.youtube.com/watch?v=${
+                  this.state.playVideo[this.state.playVideoIndex]
+                }`}
                 playing={this.state.playing}
                 ref={this.ref}
                 width="70vw"
@@ -111,7 +144,10 @@ class UserHome extends Component {
               {this.state.openJournal ? <Journal /> : null}
             </div>
             <div className="user-home-buttons">
-              <ControlledPopup videoSrc={this.state.playVideo} />
+              <button className="next-button" onClick={this.goBack}>
+            <span>&#8592;</span>
+              </button>
+              <ControlledPopup videoSrc={this.state.playVideo[this.state.playVideoIndex]} />
               {/* {this.state.videoSrc ? (
                 <Capture videoSrc={this.state.playVideo} />
               ) : null} */}
@@ -121,6 +157,9 @@ class UserHome extends Component {
               </button>
               <button className="user-home-buttons" onClick={this.openFacts}>
                 Facts
+              </button>
+              <button className="next-button" onClick={this.goNext}>
+              <span>&#8594;</span>
               </button>
               <LikeVideo
                 _id={this.state.playVideo}

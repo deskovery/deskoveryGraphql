@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Popup from 'reactjs-popup';
-import { Capture } from './momentCapture.js';
-import axios from 'axios';
+import React, { Component } from "react";
+import Popup from "reactjs-popup";
+import { Capture } from "./momentCapture.js";
+import axios from "axios";
 
 class ControlledPopup extends React.Component {
   constructor(props) {
@@ -12,12 +12,26 @@ class ControlledPopup extends React.Component {
   }
   async componentDidMount() {
     this.setState({ loading: true });
-    const { data } = await axios.post('/api/videos', {
-      videoSrc: this.props.videoSrc,
+    const { data } = await axios.post("/api/videos", {
+      videoSrc: this.props.videoSrc
     });
-    console.log(data, 'PATH IN POPUP');
-    const path = data.path.replace('./videos/public/', '');
+    console.log(this.state.videoSrc, "video in popup CDM");
+    console.log(data, "PATH IN POPUP");
+    const path = data.path.replace("./videos/public/", "");
     this.setState({ videoSrc: `${path}`, loading: false });
+  }
+
+  async componentDidUpdate(prevProps) {
+    if (this.props.videoSrc !== prevProps.videoSrc) {
+      this.setState({ loading: true });
+      const { data } = await axios.post("/api/videos", {
+        videoSrc: this.props.videoSrc
+      });
+      console.log(this.state.videoSrc, "video in popup CDM");
+      console.log(data, "PATH IN POPUP");
+      const path = data.path.replace("./videos/public/", "");
+      this.setState({ videoSrc: `${path}`, loading: false });
+    }
   }
 
   openModal() {
@@ -58,7 +72,7 @@ class ControlledPopup extends React.Component {
               )}
             </div>
           </Popup>
-        </div>{' '}
+        </div>{" "}
       </div>
     );
   }
