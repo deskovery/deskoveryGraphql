@@ -353,7 +353,7 @@ nav a:link {
 }
 
 #journeyButton {
-  font-size: 30pt;
+  font-size: 4vw;
   padding: 20px;
   height: 15%;
   color: rgb(167, 198, 204);
@@ -365,7 +365,7 @@ nav a:link {
   font-size: 3rem;
   transition: width 0.2s ease-in;
   margin: 2em;
-  width: 14em;
+  width: 40%;
 }
 
 .search:focus {
@@ -625,4 +625,70 @@ button:disabled:hover {
 
 .aboutContent {
   z-index: -5;
+}
+
+@media only screen and (max-width: 600px) {
+  .quizBox {
+    flex-direction: column;
+  }
+  .optionBox {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .user-home-buttons {
+    flex-wrap: wrap;
+  }
+
+  .popup-content {
+    width: 100% !important;
+    flex-direction: column;
+    height: 80%;
+  }
+
+  .rowHolder {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .moments {
+    margin: 0 20%;
+    width: 100%;
+  }
+
+  .modal {
+    width: 100%;
+  }
+
+  nav a,
+  nav a:link {
+    font-size: 2.5vh;
+  }
+
+  #welcome {
+    font-size: 2.5vh;
+  }
+
+  .video-stream {
+    width: 100% !important;
+    height: auto;
+  }
+
+  .search {
+    width: 80%;
+  }
+
+  .App {
+    display: flex;
+    justify-content: center;
+    flex-direction: wrap;
+    padding: 12px;
+  }
+
+  p {
+    font-size: 12pt;
+  }
 }
